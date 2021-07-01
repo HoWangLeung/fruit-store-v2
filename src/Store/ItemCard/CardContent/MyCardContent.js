@@ -20,13 +20,13 @@ export default function MyCardContent({ filteredData, page }) {
                     container
                     item
                     xs={12} md={6} lg={4}
-            
+
                 >
                     <Card className="itemCard_card" variant="outlined" key={i}    >
                         <CardContent style={{ padding: "0px" }}  >
                             <img src={item.img} alt="pic" />
                             <div style={{ padding: "0px 10px 10px 10px" }}>
-                                <h3>{item.name}</h3>
+                                <h3 style={{ fontWeight: 600 }} >{item.name}</h3>
                                 <Grid
                                     container
                                     direction="row"

@@ -10,7 +10,7 @@ export default function Banner() {
         className="banner_container">
        
             <img src={banner} alt="banner" />
-            <h1 className="centered text">購物滿$300即免費送貨</h1>
+            <h1 className="centered text">購物滿$1000即免費送貨</h1>
         </Grid>
     )
 }
