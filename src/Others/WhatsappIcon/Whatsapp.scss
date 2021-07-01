@@ -1,0 +1,22 @@
+.whatsappIcon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: green;
+   font-size: 2.3rem;
+    border-radius: 50%;
+    color: white;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    cursor: pointer;
+    a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: inherit; /* blue colors for links too */
+        text-decoration: inherit; /* no underline */
+    }
+}

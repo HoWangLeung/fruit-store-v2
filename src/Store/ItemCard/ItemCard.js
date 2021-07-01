@@ -1,10 +1,20 @@
-import { Grid, Card, CardActions, CardContent, Button } from '@material-ui/core'
-import React from 'react'
-
-import { createMuiTheme, makeStyles, useTheme } from '@material-ui/core/styles';
+import { Grid, Card, CardActions, CardContent, Button, CardMedia } from '@material-ui/core'
+import React, { useState } from 'react'
+import MyCardContent from './CardContent/MyCardContent'
+import Pagination from '@material-ui/lab/Pagination';
+import usePagination from './usePagination';
+import { useEffect } from 'react';
 
 function ItemCard({ data, selectedCountry, selectedCategory }) {
-    console.log(selectedCategory);
+    const PER_PAGE = 6;
+
+    let [page, setPage] = useState(1);
+    const [dataLength, setDataLength] = useState(data.length);
+
+    let count = Math.ceil(dataLength / PER_PAGE)
+   
+
+
     let filteredData = data.filter(d => {
 
         if (selectedCategory && selectedCountry) {
@@ -15,52 +25,47 @@ function ItemCard({ data, selectedCountry, selectedCategory }) {
             return d.category === selectedCategory
         }
         if (selectedCountry) {
-
             return d.country === selectedCountry
         }
 
         return d
     })
+    const _DATA = usePagination(filteredData, PER_PAGE);
+    const handlePaginationChange = (e, p) => {
+        setPage(p);
+        _DATA.jump(p)
+    };
+  
+    
+    useEffect(() => {
+
+        console.log(filteredData);
+        setDataLength(filteredData.length)
+    }, [filteredData])
 
     return (
-        <Grid container
+        <Grid
+
+            container
             direction="row"
-            justify="center"
+            justify="flex-start"
             alignItems="center"
             className="itemCard_container"
-            spacing={3}
         >
+            <Grid container item xs={12}>
+                <MyCardContent page={page} filteredData={_DATA.currentData()} />
+            </Grid>
+            <Grid
 
-            {filteredData
-                .map((item, i) => {
-
-                    return (
-                        <Grid
-                            key={i}
-                            direction="row"
-                            justify="center"
-                            alignItems="center"
-                            container item xs={12} md={6} lg={3}
-                        >
-                            <Card className="itemCard_card" variant="outlined" key={i}    >
-                                <CardContent style={{padding:"0px"}} >
-                                    <img src={item.img} alt="prd" />
-                                    <h3>{item.name}</h3>
-                                    <Grid
-                                        container
-                                        direction="row"
-                                        justify="space-between"
-                                        alignItems="center">
-                                        <span>價錢: ${item.price}</span>
-                                        <span>產地: {item.country} </span>
-                                    </Grid>
-
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    )
-                })}
-
+                justify="center"
+                alignItems="center"
+                container item xs={12} style={{ padding: "50px 0px" }}>
+                <Pagination
+                    size="large"
+                    count={count}
+                    onChange={handlePaginationChange}
+                />
+            </Grid>
         </Grid>
     )
 }

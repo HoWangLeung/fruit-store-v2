@@ -1,75 +1,86 @@
 import { Grid } from '@material-ui/core'
 import React from 'react'
-import { data } from '../FruitItem'
+import { data } from '../Data/FruitItem'
 import { Button, Paper } from "@material-ui/core";
 import { useState } from 'react';
 function ItemFilter({ selectedCategory, setSelectedCategory, selectedCountry, setSelectedCountry, categories, countries }) {
 
 
     return (
-        <Grid container direction="row"
+
+        <Grid
+        className="itemFilter"
+         container 
+         direction="row"
             justify="center"
             alignItems="center">
+       
+                <Grid
 
-            <Paper>
+                    container direction="row"
+                    justify="center"
+                    alignItems="center">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td colSpan="1">種類:</td>
+                                <td colSpan="1">
+                                    <>
+                                        <Button 
+                                             style={{color:"#646e73"}}
+                                        value="all" onClick={(e) => setSelectedCategory(null)}  >
+                                            全部
+                                        </Button>
+                                        {categories.map((category, i) => {
+                                            return (
+                                                <Button
+                                                style={{color:"#646e73"}}
+                                                    color={`${selectedCategory === category ? "primary" : "default"}`}
+                                                    variant={`${selectedCategory === category ? "contained" : "default"}`}
+                                                    value={category} key={i}
+                                                    onClick={(e) => setSelectedCategory(e.currentTarget.value)}
+                                                >
+                                                    {category}
+                                                </Button>
+                                            )
+                                        })}
+                                    </>
+                                </td>
 
-                <table>
-                    <tbody>
-                        <tr>
-                            <td colSpan="1">種類:</td>
-                            <td colSpan="1">
-                                <>
-                                    <Button value="all" onClick={(e) => setSelectedCategory(null)}  >
+                            </tr>
+                            <tr>
+                                <td colSpan="1">國家:</td>
+                                <td colSpan="1">
+                                    <Button 
+                                    style={{color:"#646e73"}}
+                                    value="all" onClick={(e) => setSelectedCountry(null)}   >
                                         全部
                                     </Button>
-                                    {categories.map((category, i) => {
+                                    {countries.map((country, i) => {
                                         return (
                                             <Button
-                                                color={`${selectedCategory === category ? "primary" : "default"}`}
-                                                variant={`${selectedCategory === category ? "contained" : "default"}`}
-                                                value={category} key={i}
-                                                onClick={(e) => setSelectedCategory(e.currentTarget.value)}
-                                            >
-                                                {category}
+                                            style={{color:"#646e73"}}
+                                                color={`${selectedCountry === country ? "primary" : "default"}`}
+                                                variant={`${selectedCountry === country ? "contained" : "default"}`}
+                                                value={country} key={i} onClick={(e) => setSelectedCountry(e.currentTarget.value)} >
+                                                {country}
                                             </Button>
                                         )
                                     })}
-                                </>
-                            </td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+ 
 
-                        </tr>
-                        <tr>
-                            <td colSpan="1">國家:</td>
-                            <td colSpan="1">
-                                <Button value="all" onClick={(e) => setSelectedCountry(null)}   >
-                                    全部
-                                </Button>
-                                {countries.map((country, i) => {
-                                    return (
-                                        <Button
-                                            color={`${selectedCountry === country ? "primary" : "default"}`}
-                                            variant={`${selectedCountry === country ? "contained" : "default"}`}
-                                            value={country} key={i} onClick={(e) => setSelectedCountry(e.currentTarget.value)} >
-                                            {country}
-                                        </Button>
-                                    )
-                                })}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
 
-                {/* <div>種類:</div> */}
+ 
+                </Grid>
+            {/* </Paper> */}
+        </Grid>
 
 
 
-                <br />
-
-
-            </Paper>
-
-
-        </Grid >
     )
 }
 

@@ -1,35 +1,50 @@
+$card-width: 350px;
+$card-height:350px;
 .App{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: auto;
+    width: auto;
+ 
+ 
 }
 
 .store_container{
-    height: 100%;
-    width: 80%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     width: 800px;
 
 }
 
 .itemCard_container{
-    height: 100%;
-    width: 80%;
+ 
+
   
 }
 
-.itemCard_card{
-    min-height: 300px;
-    min-width: 300px;
-    padding: 0px;
+.itemCard_inner_container{
+    max-width: $card-width;
+    // min-width: $card-width;
+  
+    max-height: $card-height;
+    //min-height: $card-height;
  
+}
+
+.itemCard_card{
+   
+    max-height: $card-height;
+     max-width: $card-width;
+
     img{
-        width: 300px;
-        height: 300px;
+         max-width: $card-width;
+        max-height: 250px;
     }
 }
 
 *{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
     font-weight: 400;
+ 
 }
+
