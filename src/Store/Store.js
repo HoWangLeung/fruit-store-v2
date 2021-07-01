@@ -11,10 +11,9 @@ const categories = Array.from(categorySet).sort();
 const countries = Array.from(countrySet).sort();
 
 function Store() {
-    
     const [selectedCategory, setSelectedCategory] = useState()
     const [selectedCountry, setSelectedCountry] = useState()
-
+    
     return (
         <div className="store_container" >
             <ItemFilter

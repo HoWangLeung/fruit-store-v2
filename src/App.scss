@@ -6,27 +6,30 @@ $card-height:350px;
  
  
 }
-.ItemCard_innerContainer{
-    height: 720px;
-}
+
 .store_container{
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
      width: 810px;
-
+     height: 100%; 
+     overflow: auto; 
 }
 
 .itemCard_container{
-
+   
+    height: auto;
+    .ItemCard_innerContainer{
+        height: auto;
+    }
 }
 
 .itemCard_inner_container{
+
     max-width: $card-width;
- 
     max-height: $card-height;
-   
+   margin-top: 18px !important;
 }
 
 .itemCard_card{

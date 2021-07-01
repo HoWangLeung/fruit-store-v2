@@ -53,8 +53,10 @@ function ItemCard({ data, selectedCountry, selectedCategory }) {
             className="itemCard_container"
            
         >
-            <Grid container item xs={12} className="ItemCard_innerContainer" >
+            <Grid container item xs={12}  className="ItemCard_innerContainer"   >
+                
                 <MyCardContent page={page} filteredData={_DATA.currentData()}  />
+
             </Grid>
             <Grid
 

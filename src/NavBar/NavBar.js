@@ -5,7 +5,7 @@ import './Navbar.scss'
 
 export default function NavBar() {
     return (
-        <Grid container className="Navbar" >
+        <Grid container item className="Navbar" >
             <Logo />
         </Grid>
     )

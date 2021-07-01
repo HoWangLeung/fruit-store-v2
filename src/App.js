@@ -15,9 +15,8 @@ function App() {
       <Grid container
         direction="row"
         justify="center"
-        alignItems="center">
-
-
+        alignItems="center"
+        >
 
         <NavBar />
         <Banner />
@@ -25,9 +24,9 @@ function App() {
           <Route exact path="/" render={props => <Store  {...props} />} />
         </Switch>
         <Footer />
-        
-        <WhatsappIcon />
       </Grid>
+
+      <WhatsappIcon />
     </div>
   );
 }

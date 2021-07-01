@@ -20,9 +20,9 @@ export default function MyCardContent({ filteredData, page }) {
                     container
                     item
                     xs={12} md={6} lg={4}
-             
+                    // style={{marginTop:"50px"}} 
                 >
-                    <Card className="itemCard_card" variant="outlined" key={i}     >
+                    <Card className="itemCard_card" variant="outlined" key={i}    >
                         <CardContent style={{ padding: "0px" }}  >
                             <img src={item.img} alt="pic" />
                             <div style={{ padding: "0px 10px 10px 10px" }}>
