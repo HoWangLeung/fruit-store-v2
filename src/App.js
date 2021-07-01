@@ -8,28 +8,19 @@ import Banner from './Others/Banner/Banner'
 import Container from '@material-ui/core/Container';
 import { Grid } from '@material-ui/core';
 import Footer from './Others/Footer/Footer'
+import DefaultContainer from './Others/Router/DefaultContainer';
+import LoginContainer from './Others/Router/LoginContainer';
 
 
 function App() {
   return (
-    <div className="App">
+    <Switch>
+      <div className="App">
+        <Route exact path="/auth/sigin" component={LoginContainer} />
+        <Route exact path="/" component={DefaultContainer} />
 
-      <Grid container
-        direction="row"
-        justify="center"
-        alignItems="center"
-      >
-        <NavBar />
-        <Banner />
-        <Switch>
-          <Route exact path="/" render={props => <Store  {...props} />} />
-          <Route exact path="/auth/login" render={props => <p>Hello</p>} />
-        </Switch>
-        <Footer />
-      </Grid>
-
-      <WhatsappIcon />
-    </div>
+      </div>
+    </Switch>
   );
 }
 
