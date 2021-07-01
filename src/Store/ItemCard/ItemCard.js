@@ -18,6 +18,7 @@ function ItemCard({ data, selectedCountry, selectedCategory }) {
     let filteredData = data.filter(d => {
 
         if (selectedCategory && selectedCountry) {
+
             return d.category === selectedCategory && d.country === selectedCountry
         }
 
@@ -38,9 +39,11 @@ function ItemCard({ data, selectedCountry, selectedCategory }) {
 
 
     useEffect(() => {
+        setPage(1)
+        if(selectedCountry||selectedCategory)
+             _DATA.jump(1)
 
-        console.log(filteredData);
-        setDataLength(filteredData.length)
+         setDataLength(filteredData.length)
     }, [filteredData])
 
     return (
@@ -51,11 +54,11 @@ function ItemCard({ data, selectedCountry, selectedCategory }) {
             justify="flex-start"
             alignItems="center"
             className="itemCard_container"
-           
+
         >
-            <Grid container item xs={12}  className="ItemCard_innerContainer"   >
-                
-                <MyCardContent page={page} filteredData={_DATA.currentData()}  />
+            <Grid container item xs={12} className="ItemCard_innerContainer"   >
+
+                <MyCardContent page={page} filteredData={_DATA.currentData()} />
 
             </Grid>
             <Grid
