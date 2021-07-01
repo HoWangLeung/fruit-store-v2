@@ -12,7 +12,7 @@ function ItemCard({ data, selectedCountry, selectedCategory }) {
     const [dataLength, setDataLength] = useState(data.length);
 
     let count = Math.ceil(dataLength / PER_PAGE)
-   
+
 
 
     let filteredData = data.filter(d => {
@@ -35,8 +35,8 @@ function ItemCard({ data, selectedCountry, selectedCategory }) {
         setPage(p);
         _DATA.jump(p)
     };
-  
-    
+
+
     useEffect(() => {
 
         console.log(filteredData);
@@ -51,9 +51,10 @@ function ItemCard({ data, selectedCountry, selectedCategory }) {
             justify="flex-start"
             alignItems="center"
             className="itemCard_container"
+           
         >
-            <Grid container item xs={12}>
-                <MyCardContent page={page} filteredData={_DATA.currentData()} />
+            <Grid container item xs={12} className="ItemCard_innerContainer" >
+                <MyCardContent page={page} filteredData={_DATA.currentData()}  />
             </Grid>
             <Grid
 

@@ -6,36 +6,34 @@ $card-height:350px;
  
  
 }
-
+.ItemCard_innerContainer{
+    height: 720px;
+}
 .store_container{
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
-     width: 800px;
+     width: 810px;
 
 }
 
 .itemCard_container{
- 
 
-  
 }
 
 .itemCard_inner_container{
     max-width: $card-width;
-    // min-width: $card-width;
-  
-    max-height: $card-height;
-    //min-height: $card-height;
  
+    max-height: $card-height;
+   
 }
 
 .itemCard_card{
-   
+  
     max-height: $card-height;
      max-width: $card-width;
-
+   
     img{
          max-width: $card-width;
         max-height: 250px;

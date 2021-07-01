@@ -5,7 +5,7 @@ export default function MyCardContent({ filteredData, page }) {
     console.log(page);
     let begin = 0
     let end = 6
-  
+
 
     return filteredData
         // .slice(begin, end)
@@ -20,7 +20,7 @@ export default function MyCardContent({ filteredData, page }) {
                     container
                     item
                     xs={12} md={6} lg={4}
-
+             
                 >
                     <Card className="itemCard_card" variant="outlined" key={i}     >
                         <CardContent style={{ padding: "0px" }}  >
