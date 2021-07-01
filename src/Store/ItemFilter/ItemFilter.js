@@ -3,7 +3,15 @@ import React from 'react'
 import { data } from '../Data/FruitItem'
 import { Button, Paper } from "@material-ui/core";
 import { useState } from 'react';
-function ItemFilter({ selectedCategory, setSelectedCategory, selectedCountry, setSelectedCountry, categories, countries }) {
+import FilterButton from './FilterButton';
+function ItemFilter({
+ 
+    selectedCategory,
+    setSelectedCategory,
+    selectedCountry,
+    setSelectedCountry,
+    categories,
+    countries }) {
 
 
     return (
@@ -18,7 +26,7 @@ function ItemFilter({ selectedCategory, setSelectedCategory, selectedCountry, se
             <Grid
 
                 container direction="row"
-                justify="center"
+                justify="flex-start"
                 alignItems="center">
                 <table>
                     <tbody>
@@ -33,15 +41,14 @@ function ItemFilter({ selectedCategory, setSelectedCategory, selectedCountry, se
                                     </Button>
                                     {categories.map((category, i) => {
                                         return (
-                                            <Button
-                                                style={{ color: "#646e73" }}
-                                                color={`${selectedCategory === category ? "primary" : "default"}`}
-                                                variant={`${selectedCategory === category ? "contained" : "text"}`}
-                                                value={category} key={i}
-                                                onClick={(e) => setSelectedCategory(e.currentTarget.value)}
+                                            <FilterButton
+                                            key={i}
+                                                selectedCategory={selectedCategory}
+                                                value={category}
+                                                setSelectedCategory={setSelectedCategory}
                                             >
                                                 {category}
-                                            </Button>
+                                            </FilterButton>
                                         )
                                     })}
                                 </>
@@ -59,7 +66,8 @@ function ItemFilter({ selectedCategory, setSelectedCategory, selectedCountry, se
                                 {countries.map((country, i) => {
                                     return (
                                         <Button
-                                            style={{ color: "#646e73" }}
+                                            key={i}
+                                            style={{ color: `${selectedCountry === country ? "white" : "#646e73"}` }}
                                             color={`${selectedCountry === country ? "primary" : "default"}`}
                                             variant={`${selectedCountry === country ? "contained" : "text"}`}
                                             value={country} key={i} onClick={(e) => setSelectedCountry(e.currentTarget.value)} >

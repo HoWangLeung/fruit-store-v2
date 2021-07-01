@@ -1,13 +1,13 @@
 import React from 'react'
 import { Grid, Card, CardActions, CardContent, Button, CardMedia } from '@material-ui/core'
 
-export default function MyCardContent({ filteredData, page }) {
+export default function MyCardContent({ data, page }) {
     console.log(page);
     let begin = 0
     let end = 6
 
 
-    return filteredData
+    return data
         // .slice(begin, end)
         .map((item, i) => {
             return (

@@ -5,33 +5,22 @@ import Pagination from '@material-ui/lab/Pagination';
 import usePagination from './usePagination';
 import { useEffect } from 'react';
 
-function ItemCard({ data, selectedCountry, selectedCategory }) {
+function ItemCard({
+  
+    data, selectedCountry, selectedCategory,
+    
+ 
+    }) {
     const PER_PAGE = 6;
-
     let [page, setPage] = useState(1);
     const [dataLength, setDataLength] = useState(data.length);
-
     let count = Math.ceil(dataLength / PER_PAGE)
 
 
 
-    let filteredData = data.filter(d => {
 
-        if (selectedCategory && selectedCountry) {
+    const _DATA = usePagination(data, PER_PAGE);
 
-            return d.category === selectedCategory && d.country === selectedCountry
-        }
-
-        if (selectedCategory) {
-            return d.category === selectedCategory
-        }
-        if (selectedCountry) {
-            return d.country === selectedCountry
-        }
-
-        return d
-    })
-    const _DATA = usePagination(filteredData, PER_PAGE);
     const handlePaginationChange = (e, p) => {
         setPage(p);
         _DATA.jump(p)
@@ -40,11 +29,14 @@ function ItemCard({ data, selectedCountry, selectedCategory }) {
 
     useEffect(() => {
         setPage(1)
-        if(selectedCountry||selectedCategory)
-             _DATA.jump(1)
+        if (selectedCountry || selectedCategory)
+            _DATA.jump(1)
 
-         setDataLength(filteredData.length)
-    }, [filteredData])
+        setDataLength(data.length)
+
+ 
+
+    }, [data])
 
     return (
         <Grid
@@ -58,7 +50,7 @@ function ItemCard({ data, selectedCountry, selectedCategory }) {
         >
             <Grid container item xs={12} className="ItemCard_innerContainer"   >
 
-                <MyCardContent page={page} filteredData={_DATA.currentData()} />
+                <MyCardContent page={page} data={_DATA.currentData()} />
 
             </Grid>
             <Grid

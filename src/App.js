@@ -8,6 +8,8 @@ import Banner from './Others/Banner/Banner'
 import Container from '@material-ui/core/Container';
 import { Grid } from '@material-ui/core';
 import Footer from './Others/Footer/Footer'
+
+
 function App() {
   return (
     <div className="App">
@@ -16,12 +18,12 @@ function App() {
         direction="row"
         justify="center"
         alignItems="center"
-        >
-
+      >
         <NavBar />
         <Banner />
         <Switch>
           <Route exact path="/" render={props => <Store  {...props} />} />
+          <Route exact path="/auth/login" render={props => <p>Hello</p>} />
         </Switch>
         <Footer />
       </Grid>
