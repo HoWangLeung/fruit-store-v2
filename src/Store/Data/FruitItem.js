@@ -11,7 +11,7 @@ export const data =
         {
             id: "1",
             category: "桃",
-            country: "日本 山梨縣",
+            country: "日本",
             name: "一宮桃-黑盒",
             img: peach_1,
             price: "800"
