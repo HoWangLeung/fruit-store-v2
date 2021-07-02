@@ -1,10 +1,10 @@
 import React from 'react';
-import peach_1  from '../../Images/peach_1.jpeg'
-import peach_2  from '../../Images/peach_2.jpeg'
-import persimmon_1 from  '../../Images/persimmon_1.jpeg'
-import mandarin_1 from '../../Images/mandarin_1.jpeg'
-import grape_1 from '../../Images/grape_1.jpeg'
-import avocado_1 from '../../Images/avocado_1.jpeg'
+import peach_1  from '../../../Images/peach_1.jpeg'
+import peach_2  from '../../../Images/peach_2.jpeg'
+import persimmon_1 from  '../../../Images/persimmon_1.jpeg'
+import mandarin_1 from '../../../Images/mandarin_1.jpeg'
+import grape_1 from '../../../Images/grape_1.jpeg'
+import avocado_1 from '../../../Images/avocado_1.jpeg'
 let sample = "https://images.unsplash.com/photo-1591735179859-a049994205de?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"
 export const data =
     [

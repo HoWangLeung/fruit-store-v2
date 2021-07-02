@@ -1,7 +1,8 @@
 import { Grid } from '@material-ui/core'
 import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
-import Login from '../../Components/Authentication/Login'
+import Login from '../../Authentication/Login'
+import SignUp from '../../Authentication/SignUp'
 import NavBar from '../../NavBar/NavBar'
 import Store from '../../Store/Store'
 import Banner from '../Banner/Banner'
@@ -21,7 +22,7 @@ function LoginContainer() {
 
 
                 {/* <Route exact path="/" render={() => <Redirect to="/auth/sigin" />} /> */}
-                {/* <Route path="/auth/sigin" component={Login} /> */}
+                {/* <Route exact path="/auth/signup" component={SignUp} /> */}
                 <Login />
 
             </Grid>

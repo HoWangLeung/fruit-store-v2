@@ -1,6 +1,6 @@
 import { Grid } from '@material-ui/core'
 import React from 'react'
-import banner from '../../Images/banner.jpg'
+import banner from '../../../Images/banner.jpg'
 import './Banner.scss'
 export default function Banner() {
     return (

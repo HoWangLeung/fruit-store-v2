@@ -8,7 +8,7 @@ export default function NavBar() {
     return (
         <Grid container item className="Navbar" >
             <Logo />
-            <Link to="/auth/sigin">
+            <Link to="/auth/signin">
                 <Button
                     style={{
 

@@ -1,11 +1,12 @@
 import { Grid } from '@material-ui/core'
 import React, { useEffect } from 'react'
-import ItemCard from './ItemCard/ItemCard'
-import ItemFilter from './ItemFilter/ItemFilter'
+
+ 
 import { useState } from 'react'
 import './Store.scss'
 import useData from './Data/useData'
-
+import ItemCard from './ItemCard/ItemCard'
+import ItemFilter from './ItemFilter/ItemFilter'
 
 function Store() {
     let data = useData()
