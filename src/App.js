@@ -11,13 +11,14 @@ import Footer from './Components/Others/Footer/Footer'
 import DefaultContainer from './Components/Others/Router/DefaultContainer';
 import LoginContainer from './Components/Others/Router/LoginContainer';
 import SignUp from './Components/Authentication/SignUp';
+import { useSelector } from 'react-redux';
 
 
 function App() {
+  const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
+
   return (
     <Switch>
-
-
       <Route exact path="/auth/signin" render={props => <LoginContainer />} />
       <Route exact path="/auth/signup" render={props => <SignUp />} />
       <Route>
@@ -26,13 +27,9 @@ function App() {
           justify="center"
           alignItems="center"
         >
-          <NavBar />
+          <NavBar isAuthenticated={isAuthenticated} />
           <Banner />
-
-
           <Route exact path="/" render={props => <Store  {...props} />} />
-
-
           <Footer />
           <WhatsappIcon />
         </Grid>

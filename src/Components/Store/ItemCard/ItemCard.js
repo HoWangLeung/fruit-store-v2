@@ -8,7 +8,10 @@ import { useEffect } from 'react';
 function ItemCard({
   
     data, selectedCountry, selectedCategory,
-    
+    quantity,
+    setQuantity,
+    cart,
+    setCart
  
     }) {
     const PER_PAGE = 6;
@@ -50,7 +53,12 @@ function ItemCard({
         >
             <Grid container item xs={12} className="ItemCard_innerContainer"   >
 
-                <MyCardContent page={page} data={_DATA.currentData()} />
+                <MyCardContent 
+                cart={cart}
+                setCart={setCart}
+                quantity={quantity}
+                setQuantity={setQuantity}
+                page={page} data={_DATA.currentData()} />
 
             </Grid>
             <Grid

@@ -10,7 +10,7 @@ import Footer from '../Footer/Footer'
 import WhatsappIcon from '../WhatsappIcon/WhatsappIcon'
 
 function LoginContainer() {
-    console.log('in loginContainer');
+ 
     return (
         <>
 

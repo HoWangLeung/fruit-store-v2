@@ -9,7 +9,7 @@ let sample = "https://images.unsplash.com/photo-1591735179859-a049994205de?ixid=
 export const data =
     [
         {
-            id: "1",
+            id: "0",
             category: "桃",
             country: "日本",
             name: "一宮桃-黑盒",
@@ -17,7 +17,7 @@ export const data =
             price: "800"
         },
         {
-            id: "2",
+            id: "1",
             category: "柿",
             country: "紐西蘭",
             name: "紐西蘭柿 (一箱 15裝)",
@@ -25,7 +25,7 @@ export const data =
             price: "30"
         },
         {
-            id: "3",
+            id: "2",
             category: "柑",
             country: "日本",
             unit:"盒",
@@ -35,7 +35,7 @@ export const data =
             price: "250"
         },
         {
-            id: "4",
+            id: "3",
             category: "提子",
             country: "日本",
             name: "日本巨峰波波提",
@@ -43,7 +43,7 @@ export const data =
             price: "65"
         },
         {
-            id: "5",
+            id: "4",
             category: "牛油果",
             country: "澳洲",
             name: "澳洲牛油果4個",
@@ -51,7 +51,7 @@ export const data =
             price: "100"
         },
         {
-            id: "6",
+            id: "5",
             category: "桃",
             country: "美國",
             name: "美國扁桃",
@@ -59,7 +59,7 @@ export const data =
             price: "30"
         },
         {
-            id: "7",
+            id: "6",
             category: "香蕉",
             country: "日本",
             name: "富士蘋果",
@@ -67,7 +67,7 @@ export const data =
             price: "30"
         },
         {
-            id: "8",
+            id: "7",
             category: "香蕉",
             country: "紐西蘭",
             name: "富士蘋果",
@@ -75,7 +75,7 @@ export const data =
             price: "30"
         },
         {
-            id: "9",
+            id: "8",
             category: "香蕉",
             country: "日本",
             name: "富士蘋果",
@@ -83,9 +83,17 @@ export const data =
             price: "30"
         },
         {
-            id: "10",
+            id: "9",
             category: "提子",
             country: "英國",
+            name: "富士蘋果",
+            img: sample,
+            price: "30"
+        },
+        {
+            id: "10",
+            category: "提子",
+            country: "日本",
             name: "富士蘋果",
             img: sample,
             price: "30"
@@ -93,23 +101,23 @@ export const data =
         {
             id: "11",
             category: "提子",
-            country: "日本",
-            name: "富士蘋果",
-            img: sample,
-            price: "30"
-        },
-        {
-            id: "12",
-            category: "提子",
             country: "英國",
             name: "富士蘋果",
             img: sample,
             price: "30"
         },
           {
-            id: "13",
+            id: "12",
             category: "蘋果",
             country: "日本",
+            name: "富士蘋果",
+            img: sample,
+            price: "30"
+        },
+        {
+            id: "13",
+            category: "蘋果",
+            country: "美國",
             name: "富士蘋果",
             img: sample,
             price: "30"
@@ -117,7 +125,7 @@ export const data =
         {
             id: "14",
             category: "蘋果",
-            country: "美國",
+            country: "英國",
             name: "富士蘋果",
             img: sample,
             price: "30"
@@ -125,7 +133,7 @@ export const data =
         {
             id: "15",
             category: "蘋果",
-            country: "英國",
+            country: "美國",
             name: "富士蘋果",
             img: sample,
             price: "30"
@@ -133,21 +141,13 @@ export const data =
         {
             id: "16",
             category: "蘋果",
-            country: "美國",
-            name: "富士蘋果",
-            img: sample,
-            price: "30"
-        },
-        {
-            id: "17",
-            category: "蘋果",
             country: "日本",
             name: "富士蘋果",
             img: sample,
             price: "30"
         },
         {
-            id: "18",
+            id: "17",
             category: "蘋果",
             country: "美國",
             name: "富士蘋果",

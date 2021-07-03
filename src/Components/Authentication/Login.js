@@ -16,6 +16,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants/index'
 import axios from 'axios'
+import { setSignInStatus } from './Actions/AuthenticationAction';
+import { useDispatch } from 'react-redux';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -51,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
     let history = useHistory();
+    const dispatch = useDispatch()
     const classes = useStyles();
     const [user, setUser] = useState({
         email: "",
@@ -85,10 +88,12 @@ export default function SignIn() {
             data: payload
         }
         console.log(config);
+
         axios(config)
             .then(res => {
                 console.log(res);
                 localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
+                dispatch(setSignInStatus(true))
                 history.push("/")
             })
             .catch(e => console.log(e.response))
