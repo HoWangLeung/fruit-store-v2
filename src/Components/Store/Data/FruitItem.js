@@ -29,7 +29,6 @@ export const data =
             category: "柑",
             country: "日本",
             unit:"盒",
-            npu:"",
             name: "唐津柑",
             img: mandarin_1,
             price: "250"

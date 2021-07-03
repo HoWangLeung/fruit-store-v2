@@ -12,15 +12,21 @@ import DefaultContainer from './Components/Others/Router/DefaultContainer';
 import LoginContainer from './Components/Others/Router/LoginContainer';
 import SignUp from './Components/Authentication/SignUp';
 import { useSelector } from 'react-redux';
+import Cart from './Components/Store/Cart/Cart';
+import Checkout from './Components/Store/Checkout/Checkout';
 
 
 function App() {
   const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
+  console.log("isAuthenticated: ", isAuthenticated);
 
   return (
     <Switch>
-      <Route exact path="/auth/signin" render={props => <LoginContainer />} />
-      <Route exact path="/auth/signup" render={props => <SignUp />} />
+
+      <Route exact path="/checkout" render={props => <Checkout {...props} />} />
+      <Route exact path="/auth/signup" render={props => <SignUp {...props} />} />
+      <Route exact path="/cart" render={props => <Cart {...props} />} />
+      <Route exact path="/auth/signin" render={props => <LoginContainer {...props} />} />
       <Route>
         <Grid container
           direction="row"

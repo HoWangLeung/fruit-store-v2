@@ -21,7 +21,9 @@ const request = (payload) => {
             console.log(res);
             return res
         })
-        .catch(e =>        console.log(e.response))
+        .catch(e =>{
+            console.log(e.response)
+        })
     // return fetch(options.url, options)
     //     .then(response =>
     //         response.json().then(json => {

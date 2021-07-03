@@ -1,6 +1,6 @@
 
 const initState = {
-    isAuthenticated: false
+    isAuthenticated: localStorage.getItem("access_token")===null?false:true
 }
 
 

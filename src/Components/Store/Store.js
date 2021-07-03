@@ -39,32 +39,51 @@ function Store() {
     let categories = Array.from(categorySet).sort();
     let countries = Array.from(countrySet).sort();
     const handleSetQuantity = (target) => {
-        console.log(target.name);
+
         setQuantity(state => ({
             ...state,
             [target.name]: target.value,
         }))
     }
     const handleSetCart = (i) => {
-        console.log(i);
-        let selected = data.filter(d=>{
-            let d1 = +d.id
-            let d2= +i
 
-            console.log(d1===d2);
+        let selected = data
+            .filter(d => parseInt(d.id - 1) == parseInt(i))
+            .map(d => {
+                d.quantity = Object.keys(quantity).indexOf(d.name) >= 0 ? quantity[`${d.name}`] : 1
+                return d
+            })[0]
 
-      
-            return parseInt(d.id)== parseInt(i)
-        })
-        console.log(selected);
-        // setCart(state => ({
-        //     ...state,
-        //     [target.name]: target.value,
-        // }))
+
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+
+
+
+        console.log('NOT empty');
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].name === selected.name) {
+                console.log('found duplicate');
+                cart[i].quantity += selected.quantity
+            }
+        }
+        let isExist = cart.some(obj => obj.name === selected.name);
+
+
+
+        if (!isExist)
+            cart.push(selected)
+
+
+
+        localStorage.setItem('cart', JSON.stringify(cart))
+        console.log(cart);
+
     }
-    
 
-    console.log(quantity);
+
+
     return (
         <div className="store_container" >
             <ItemFilter
@@ -78,7 +97,7 @@ function Store() {
             />
             <ItemCard
                 cart={cart}
-             
+
                 data={data}
                 selectedCountry={selectedCountry}
                 selectedCategory={selectedCategory}

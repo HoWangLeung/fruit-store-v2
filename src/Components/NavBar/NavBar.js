@@ -23,19 +23,34 @@ export default function NavBar({ isAuthenticated }) {
     return (
         <Grid container item className="Navbar" >
             <Logo />
-            <Button
-                onClick={handleClick}
-                style={{
 
-                    position: "absolute", right: "2%", top: "8px"
-                }}
-            >
-                <p style={{
-                    fontFamily: "Noto Sans TC",
-                    fontWeight: "600",
+            <div style={{
 
-                }}>{isAuthenticated ? "登出" : "登記/登入"}</p>
-            </Button>
+                position: "absolute", right: "2%", top: "8px"
+            }}>
+                <Link to="/cart" style={{textDecoration:"none"}}>
+                    <Button
+                       
+                  
+                    >
+                        <p style={{
+                            fontFamily: "Noto Sans TC",
+                            fontWeight: "600",
+
+                        }}>購物籃</p>
+                    </Button>
+                </Link>
+                <Button
+                    onClick={handleClick}
+
+                >
+                    <p style={{
+                        fontFamily: "Noto Sans TC",
+                        fontWeight: "600",
+
+                    }}>{isAuthenticated ? "登出" : "登記/登入"}</p>
+                </Button>
+            </div>
         </Grid>
     )
 }

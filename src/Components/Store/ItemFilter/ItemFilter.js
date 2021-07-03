@@ -41,14 +41,15 @@ function ItemFilter({
                                     </Button>
                                     {categories.map((category, i) => {
                                         return (
-                                            <FilterButton
-                                            key={i}
-                                                selectedCategory={selectedCategory}
-                                                value={category}
-                                                setSelectedCategory={setSelectedCategory}
+                                            <Button
+                                         key={i}
+                                            style={{ color: `${selectedCategory === category ? "white" : "#646e73"}` }}
+                                            color={`${selectedCategory === category ? "primary" : "default"}`}
+                                            variant={`${selectedCategory === category ? "contained" : "text"}`}
+                                            value={category} key={i} onClick={(e) => setSelectedCategory(e.currentTarget.value)}
                                             >
                                                 {category}
-                                            </FilterButton>
+                                            </Button>
                                         )
                                     })}
                                 </>
@@ -70,7 +71,8 @@ function ItemFilter({
                                             style={{ color: `${selectedCountry === country ? "white" : "#646e73"}` }}
                                             color={`${selectedCountry === country ? "primary" : "default"}`}
                                             variant={`${selectedCountry === country ? "contained" : "text"}`}
-                                            value={country} key={i} onClick={(e) => setSelectedCountry(e.currentTarget.value)} >
+                                            value={country} key={i} onClick={(e) => setSelectedCountry(e.currentTarget.value)}
+                                             >
                                             {country}
                                         </Button>
                                     )

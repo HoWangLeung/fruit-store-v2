@@ -69,7 +69,7 @@ export default function MyCardContent({ data, page, quantity, setQuantity, setCa
                                         label="Quantity"
                                         labelId={item.name}
                                         id={item.name}
-                                        name={`item_${i}`}
+                                        name={item.name}
 
                                         value={quantity.name}
                                         defaultValue={1}
