@@ -21,6 +21,10 @@ import Payment from './Payment';
 
 export default function Checkout() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let sum = 0;
+    cart.forEach(d => {
+        sum += (d.quantity * d.price)
+    });
     return (
 
         <Grid
@@ -33,9 +37,9 @@ export default function Checkout() {
             <Grid
                 container item lg={4}
                 direction="column"
-                
+
             >
-                <OrderSummary  />
+                <OrderSummary sum={sum} />
                 <Address />
 
             </Grid>
