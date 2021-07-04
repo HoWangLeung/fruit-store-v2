@@ -41,7 +41,7 @@ function Cart() {
     // const addToCart = useCartAnimation(cartItems)
     const history = useHistory()
     const classes = useStyles();
-    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")))
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart"))||[])
     // console.log(JSON.stringify(cart));
     let sum = 0;
     cart.map(d => {
