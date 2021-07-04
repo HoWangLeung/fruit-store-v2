@@ -16,7 +16,7 @@ export default function useData() {
                     d.quantity=0
                     return d
                 })
-            
+          
                  setData(data)
             })
 

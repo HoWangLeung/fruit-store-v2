@@ -85,8 +85,8 @@ export default function MyCardContent({ data, page, quantity, setQuantity, setCa
                                     </Select>
                                 </FormControl>
                                 <Button
-                                    value={i}
-                                    onClick={() => setCart(i)}
+                                    value={item.name}
+                                    onClick={() => setCart(item.name)}
                                     variant="contained" color="primary" >Add</Button>
                             </Grid>
 

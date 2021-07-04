@@ -10,13 +10,19 @@ import ItemFilter from './ItemFilter/ItemFilter'
 
 function Store() {
     let data = useData()
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = []
+
+    if (localStorage.getItem("cart")) {
+        console.log('yesssss');
+        cart = JSON.parse(localStorage.getItem("cart"))
+    }
+console.log(cart);
     const [selectedCategory, setSelectedCategory] = useState()
     const [selectedCountry, setSelectedCountry] = useState()
     const [quantity, setQuantity] = useState({})
- 
 
 
+    console.log(data);
     data = data.filter(d => {
 
         if (selectedCategory && selectedCountry) {
@@ -44,26 +50,36 @@ function Store() {
             [target.name]: target.value,
         }))
     }
-    const handleSetCart = (i) => {
-
+    const handleSetCart = (itemName) => {
+        console.log('selected i = ' ,itemName);
         let selected = data
-            .filter(d => parseInt(d.id - 1) == parseInt(i))
+            .filter(d => d.name == itemName)
             .map(d => {
+                console.log(d);
                 d.quantity = Object.keys(quantity).indexOf(d.name) >= 0 ? quantity[`${d.name}`] : 1
-             
+
                 return d
             })[0]
-        for (let i = 0; i < cart.length; i++) {
-            if (cart[i].name === selected.name) {
-                cart[i].quantity += selected.quantity
-            }
-        }
-        let isExist = cart.some(obj => obj.name === selected.name);
-        if (!isExist)
-            cart.push(selected)
+        console.log(selected, cart.length);
 
+
+ 
+            cart.map(d => {
+                console.log(d);
+                if (d.name === selected.name) {
+                    d.quantity += selected.quantity
+                }
+                return d
+            })
+            let isExist = cart.some(obj => obj.name === selected.name);
+
+            if (!isExist)
+                cart.push(selected)
+      
+
+ 
         localStorage.setItem('cart', JSON.stringify(cart))
-        
+
 
     }
 
