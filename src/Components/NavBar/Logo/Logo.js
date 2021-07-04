@@ -4,7 +4,7 @@ export default function Logo() {
     return (
         <div className="store_logo">
             <div className="inner">
-                <h1>華記鮮果</h1>
+                <h2>華記鮮果</h2>
             </div>
         </div>
     )

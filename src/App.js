@@ -6,7 +6,7 @@ import WhatsappIcon from './Components/Others/WhatsappIcon/WhatsappIcon';
 import NavBar from './Components/NavBar/NavBar';
 import Banner from './Components/Others/Banner/Banner'
 import Container from '@material-ui/core/Container';
-import { Grid } from '@material-ui/core';
+import { Divider, Grid } from '@material-ui/core';
 import Footer from './Components/Others/Footer/Footer'
 import DefaultContainer from './Components/Others/Router/DefaultContainer';
 import LoginContainer from './Components/Others/Router/LoginContainer';
@@ -36,6 +36,7 @@ function App() {
           <NavBar isAuthenticated={isAuthenticated} />
           <Banner />
           <Route exact path="/" render={props => <Store  {...props} />} />
+        
           <Footer />
           <WhatsappIcon />
         </Grid>
