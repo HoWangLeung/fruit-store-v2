@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, Paper, TextField } from '@material-ui/core';
+import { Button, CircularProgress, Divider, Grid, Paper, TextField } from '@material-ui/core';
 import React, { useRef } from 'react'
 import './Cart.scss'
 import { Link, useHistory } from 'react-router-dom'
@@ -41,7 +41,8 @@ function Cart() {
     // const addToCart = useCartAnimation(cartItems)
     const history = useHistory()
     const classes = useStyles();
-    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart"))||[])
+    const [isLoading, setIsloading] = useState(false)
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || [])
     // console.log(JSON.stringify(cart));
     let sum = 0;
     cart.map(d => {
@@ -122,6 +123,7 @@ function Cart() {
     }
 
     const createPendingOrder = () => {
+        setIsloading(true)
         let orderItems = cart.map(d => {
             let newItems = {
                 ...d,
@@ -147,6 +149,7 @@ function Cart() {
         axios(config)
             .then(res => {
                 console.log(res);
+                setIsloading(false)
                 history.push("/checkout")
 
             })
@@ -157,8 +160,8 @@ function Cart() {
         gsap.from(nodes.current, {
             duration: .5,
             stagger: 0.08,
-         
-            scale:.8,
+
+            scale: .8,
             ease: "Power3.easeInOut"
         });
 
@@ -234,15 +237,18 @@ function Cart() {
                 justify="center"
                 alignItems="flex-end"
             >
-                <div>
+                <div style={{ paddingBottom: "30px" }} >
                     <div>
                         <h3>小計:$ {sum}</h3>
                     </div>
 
                     <Button variant="contained" color="primary"
                         onClick={createPendingOrder}
-
+                        disabled={isLoading}
+                        
                     >
+                        {isLoading && <CircularProgress
+                            size={18} style={{ marginRight: "10px" }} />}
                         前往付款
                     </Button>
 

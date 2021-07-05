@@ -221,14 +221,14 @@ export default function CredentialDetail() {
                             }}
                             InputProps={{
                               
-                                maxLength: 3,
+                            
                                 inputProps: {
                                   
                                     component: CardCvcElement,
                                 
                                 },
                                 inputComponent: StripeInput,
-                                maxLength: 3,
+                           
                             }}
                         />
                     </Grid>
