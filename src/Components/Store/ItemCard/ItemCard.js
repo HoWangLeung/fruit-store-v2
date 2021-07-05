@@ -1,25 +1,24 @@
-import { Grid, Card, CardActions, CardContent, Button, CardMedia } from '@material-ui/core'
+import { Grid, Card, CardActions, CardContent, Button, CardMedia, Box } from '@material-ui/core'
 import React, { useState } from 'react'
 import MyCardContent from './CardContent/MyCardContent'
 import Pagination from '@material-ui/lab/Pagination';
 import usePagination from './usePagination';
 import { useEffect } from 'react';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 function ItemCard({
-  
+    isLoading,
     data, selectedCountry, selectedCategory,
     quantity,
     setQuantity,
     cart,
     setCart
- 
-    }) {
+
+}) {
     const PER_PAGE = 6;
     let [page, setPage] = useState(1);
     const [dataLength, setDataLength] = useState(data.length);
     let count = Math.ceil(dataLength / PER_PAGE)
-
-
 
 
     const _DATA = usePagination(data, PER_PAGE);
@@ -37,7 +36,7 @@ function ItemCard({
 
         setDataLength(data.length)
 
- 
+
 
     }, [data])
 
@@ -51,16 +50,45 @@ function ItemCard({
             className="itemCard_container"
 
         >
+
+
             <Grid container item xs={12} className="ItemCard_innerContainer"   >
 
-                <MyCardContent 
-                cart={cart}
-                setCart={setCart}
-                quantity={quantity}
-                setQuantity={setQuantity}
-                page={page} data={_DATA.currentData()} />
+                {isLoading ?
+                    (
+                        Array.from(new Array(6)).map(item => (
+                            <Grid
+                                key={item}
+                                direction="row"
+                                justify="center"
+                                alignItems="center"
+                                className="itemCard_inner_container"
+                                container
+                                item
+                                xs={12} md={6} lg={4}
+
+                            >
+                                <Box key={item}  >
+                                    <Skeleton variant="rect" width={350} height={250} />
+                                    <Skeleton />
+                                    <Skeleton width="60%" />
+                                </Box>
+                            </Grid>
+                        ))
+                    ) : (
+                        <MyCardContent
+                            cart={cart}
+                            setCart={setCart}
+                            quantity={quantity}
+                            setQuantity={setQuantity}
+                            page={page} data={_DATA.currentData()} />
+                    )}
+
 
             </Grid>
+
+
+
             <Grid
 
                 justify="center"
@@ -72,6 +100,8 @@ function ItemCard({
                     onChange={handlePaginationChange}
                 />
             </Grid>
+
+
         </Grid>
     )
 }

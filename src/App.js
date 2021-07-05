@@ -14,7 +14,7 @@ import SignUp from './Components/Authentication/SignUp';
 import { useSelector } from 'react-redux';
 import Cart from './Components/Store/Cart/Cart';
 import Checkout from './Components/Store/Checkout/Checkout';
-
+import { SnackbarProvider } from 'notistack';
 
 function App() {
   const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
@@ -35,8 +35,13 @@ function App() {
         >
           <NavBar isAuthenticated={isAuthenticated} />
           <Banner />
-          <Route exact path="/" render={props => <Store  {...props} />} />
-        
+          <Route exact path="/" render={props => (
+            <SnackbarProvider maxSnack={6}>
+              <Store  {...props} />
+            </SnackbarProvider>
+          )
+          } />
+
           <Footer />
           <WhatsappIcon />
         </Grid>

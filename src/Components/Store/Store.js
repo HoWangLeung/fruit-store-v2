@@ -1,28 +1,29 @@
 import { Grid } from '@material-ui/core'
-import React, { useEffect } from 'react'
-
-
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Store.scss'
 import useData from './Data/useData'
 import ItemCard from './ItemCard/ItemCard'
 import ItemFilter from './ItemFilter/ItemFilter'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import {  useSnackbar } from 'notistack';
 
 function Store() {
-    let data = useData()
+
+    const { enqueueSnackbar } = useSnackbar();
+    let [data, isLoading] = useData()
     let cart = []
 
     if (localStorage.getItem("cart")) {
-        console.log('yesssss');
+
         cart = JSON.parse(localStorage.getItem("cart"))
     }
-console.log(cart);
+
     const [selectedCategory, setSelectedCategory] = useState()
     const [selectedCountry, setSelectedCountry] = useState()
     const [quantity, setQuantity] = useState({})
 
 
-    console.log(data);
     data = data.filter(d => {
 
         if (selectedCategory && selectedCountry) {
@@ -51,64 +52,58 @@ console.log(cart);
         }))
     }
     const handleSetCart = (itemName) => {
-        console.log('selected i = ' ,itemName);
+      
         let selected = data
             .filter(d => d.name == itemName)
             .map(d => {
-                console.log(d);
+
                 d.quantity = Object.keys(quantity).indexOf(d.name) >= 0 ? quantity[`${d.name}`] : 1
 
                 return d
             })[0]
-        console.log(selected, cart.length);
+        cart.map(d => {
+            if (d.name === selected.name) {
+                d.quantity += selected.quantity
+            }
+            return d
+        })
+        let isExist = cart.some(obj => obj.name === selected.name);
 
-
- 
-            cart.map(d => {
-                console.log(d);
-                if (d.name === selected.name) {
-                    d.quantity += selected.quantity
-                }
-                return d
-            })
-            let isExist = cart.some(obj => obj.name === selected.name);
-
-            if (!isExist)
-                cart.push(selected)
-      
-
- 
+        if (!isExist)
+            cart.push(selected)
         localStorage.setItem('cart', JSON.stringify(cart))
-
-
+        enqueueSnackbar('已成功加入購物籃 !', { variant: 'success',   autoHideDuration: 2000, });
     }
 
 
 
     return (
-        <div className="store_container" >
-            <ItemFilter
+    
+            <div className="store_container" id="store_container">
+                <ItemFilter
+                    isLoading={isLoading}
+                    selectedCategory={selectedCategory}
+                    setSelectedCategory={setSelectedCategory}
+                    selectedCountry={selectedCountry}
+                    setSelectedCountry={setSelectedCountry}
+                    categories={categories}
+                    countries={countries}
+                />
+                <ItemCard
+                    isLoading={isLoading}
+                    cart={cart}
+                    data={data}
+                    selectedCountry={selectedCountry}
+                    selectedCategory={selectedCategory}
+                    quantity={quantity}
+                    setQuantity={handleSetQuantity}
+                    setCart={handleSetCart}
 
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                selectedCountry={selectedCountry}
-                setSelectedCountry={setSelectedCountry}
-                categories={categories}
-                countries={countries}
-            />
-            <ItemCard
-                cart={cart}
+                />
 
-                data={data}
-                selectedCountry={selectedCountry}
-                selectedCategory={selectedCategory}
-                quantity={quantity}
-                setQuantity={handleSetQuantity}
-                setCart={handleSetCart}
 
-            />
-        </div>
-
+            </div>
+    
     )
 }
 

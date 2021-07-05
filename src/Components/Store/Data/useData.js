@@ -5,6 +5,7 @@ import { API_BASE_URL } from '../../../constants'
  
 
 export default function useData() {
+    const [isLoading, setIsLoading] = useState(true)
     const [data, setData] = useState([])
 
     useEffect(() => {
@@ -18,6 +19,7 @@ export default function useData() {
                 })
           
                  setData(data)
+                 setIsLoading(false)
             })
 
       
@@ -26,5 +28,5 @@ export default function useData() {
     }, [])
 
 
-    return data
+    return [data,isLoading]
 }
