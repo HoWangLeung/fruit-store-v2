@@ -18,13 +18,18 @@ import Address from './Address';
 import OrderSummary from './OrderSummary';
 import Payment from './Payment';
 
+const publishable_key = 'pk_test_oHDsyL0Wxhko6HIFRMrm7QXS00h1og1ziG'
 
-export default function Checkout() {
+export default function Checkout(props) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     let sum = 0;
     cart.forEach(d => {
         sum += (d.quantity * d.price)
     });
+
+ 
+ 
+ 
     return (
 
         <Grid
@@ -44,7 +49,7 @@ export default function Checkout() {
 
             </Grid>
             <Grid container item lg={8} >
-                <Payment />
+                <Payment   />
             </Grid>
         </Grid>
 

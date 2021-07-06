@@ -32,6 +32,7 @@ function App() {
           direction="row"
           justify="center"
           alignItems="center"
+          
         >
           <NavBar isAuthenticated={isAuthenticated} />
           <Banner />

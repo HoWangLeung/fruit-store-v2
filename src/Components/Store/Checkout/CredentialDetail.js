@@ -15,8 +15,8 @@ import {
     CardCvcElement,
     CardExpiryElement,
     CardNumberElement,
-  
 } from "@stripe/react-stripe-js";
+import { ElementsConsumer, CardElement } from "@stripe/react-stripe-js";
 const territories = [
     {
         value: 'HK',
@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function StripeInput(props) {
+
     const { component: Component, inputRef, ...other } = props;
     const elementRef = React.useRef();
 
@@ -72,12 +73,12 @@ function StripeInput(props) {
     );
 }
 
-export default function CredentialDetail() {
+function CredentialDetail(props) {
     const [errorMessage, setErrorMessage] = useState(
         {
             cardNumber: null,
             cardExpiry: null,
-            cardCvc:null
+            cardCvc: null
         }
     );
     let history = useHistory();
@@ -89,8 +90,11 @@ export default function CredentialDetail() {
         CXC: "123"
     })
     const classes = useStyles();
-    const handleSubmit = (e) => {
-
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const CardElement = props.elements.getElement(CardNumberElement)
+        const result = await props.stripe.createToken(CardElement, { name: cardDetail.cardHolder });
+        console.log(result);
     }
 
     const handleChange = (e) => {
@@ -205,7 +209,7 @@ export default function CredentialDetail() {
                         xs={5}
                     >
                         <TextField
-                        fullWidth
+                            fullWidth
                             variant="outlined"
                             margin="normal"
                             required
@@ -215,28 +219,29 @@ export default function CredentialDetail() {
                             helperText={errorMessage.cardCvc}
                             error={errorMessage.cardCvc == null ? false : true}
                             onChange={handleElementChange}
-                           
+
                             InputLabelProps={{
                                 shrink: true
                             }}
                             InputProps={{
-                              
-                            
+
+
                                 inputProps: {
-                                  
+
                                     component: CardCvcElement,
-                                
+
                                 },
                                 inputComponent: StripeInput,
-                           
+
                             }}
                         />
                     </Grid>
                 </Grid>
                 <Grid container
                     justify="center"
-                    alignItems="center" style={{padding:'50px'}}>
+                    alignItems="center" style={{ padding: '50px' }}>
                     <Button
+                        type="submit"
                         color="primary" size="large" variant="contained">
                         付款
                     </Button>
@@ -246,4 +251,14 @@ export default function CredentialDetail() {
             </form>
         </>
     )
+}
+
+export default function InjectedCheckoutForm() {
+    return (
+        <ElementsConsumer>
+            {({ stripe, elements }) => (
+                <CredentialDetail stripe={stripe} elements={elements} />
+            )}
+        </ElementsConsumer>
+    );
 }
