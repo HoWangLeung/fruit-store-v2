@@ -1,3 +1,6 @@
+$card-width: 350px;
+$card-height:450px;
+
 .itemFilter{
     position: sticky;
     top: 0;
@@ -10,4 +13,37 @@ margin-left: 7px;
           
      }
 }
+.store_container{
  
+     
+  
+   
+  
+}
+
+.itemCard_container{
+   
+    height: auto;
+    .ItemCard_innerContainer{
+        height: auto;
+    }
+}
+
+.itemCard_inner_container{
+
+    // max-width: $card-width;
+    max-height: $card-height;
+   margin-top: 18px !important;
+}
+
+.itemCard_card{
+  
+  height: $card-height;
+     max-width: $card-width;
+   
+    img{
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+}

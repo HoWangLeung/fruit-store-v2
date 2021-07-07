@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core'
+import { Container, Grid } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import './Store.scss'
 import useData from './Data/useData'
@@ -6,7 +6,7 @@ import ItemCard from './ItemCard/ItemCard'
 import ItemFilter from './ItemFilter/ItemFilter'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import {  useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 
 function Store() {
 
@@ -52,7 +52,7 @@ function Store() {
         }))
     }
     const handleSetCart = (itemName) => {
-      
+
         let selected = data
             .filter(d => d.name == itemName)
             .map(d => {
@@ -72,38 +72,41 @@ function Store() {
         if (!isExist)
             cart.push(selected)
         localStorage.setItem('cart', JSON.stringify(cart))
-        enqueueSnackbar('已成功加入購物籃 !', { variant: 'success',   autoHideDuration: 2000, });
+        enqueueSnackbar('已成功加入購物籃 !', { variant: 'success', autoHideDuration: 2000, });
     }
 
 
 
     return (
-    
-            <div className="store_container"  >
-                <ItemFilter
-                    isLoading={isLoading}
-                    selectedCategory={selectedCategory}
-                    setSelectedCategory={setSelectedCategory}
-                    selectedCountry={selectedCountry}
-                    setSelectedCountry={setSelectedCountry}
-                    categories={categories}
-                    countries={countries}
-                />
-                <ItemCard
-                    isLoading={isLoading}
-                    cart={cart}
-                    data={data}
-                    selectedCountry={selectedCountry}
-                    selectedCategory={selectedCategory}
-                    quantity={quantity}
-                    setQuantity={handleSetQuantity}
-                    setCart={handleSetCart}
 
-                />
+        <Container  style={{maxWidth:"1150px"}}  className="store_container">
+           
+                    <ItemFilter
+                        isLoading={isLoading}
+                        selectedCategory={selectedCategory}
+                        setSelectedCategory={setSelectedCategory}
+                        selectedCountry={selectedCountry}
+                        setSelectedCountry={setSelectedCountry}
+                        categories={categories}
+                        countries={countries}
+                    />
+             
+                    <ItemCard
+                        isLoading={isLoading}
+                        cart={cart}
+                        data={data}
+                        selectedCountry={selectedCountry}
+                        selectedCategory={selectedCategory}
+                        quantity={quantity}
+                        setQuantity={handleSetQuantity}
+                        setCart={handleSetCart}
+
+                    />
+        
 
 
-            </div>
-    
+        </Container>
+
     )
 }
 

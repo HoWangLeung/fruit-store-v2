@@ -11,14 +11,17 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 ReactDOM.render(
   <React.StrictMode>
-    <StylesProvider injectFirst>
-      <Provider store={store}>
+
+    <Provider store={store}>
+      <StylesProvider injectFirst>
         <Router>
+
           {/* <CssBaseline /> */}
           <App />
         </Router>
-      </Provider>
-    </StylesProvider>
+      </StylesProvider>
+    </Provider>
+
   </React.StrictMode>,
   document.getElementById('root')
 );

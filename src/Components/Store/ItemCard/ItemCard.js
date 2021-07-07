@@ -45,14 +45,14 @@ function ItemCard({
 
             container
             direction="row"
-            justify="flex-start"
+            justify="center"
             alignItems="center"
             className="itemCard_container"
 
         >
 
 
-            <Grid container item xs={12} className="ItemCard_innerContainer"   >
+            <Grid container item xs={12} className="ItemCard_innerContainer"      >
 
                 {isLoading ?
                     (

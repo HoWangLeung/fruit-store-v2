@@ -32,8 +32,8 @@ function App() {
       <Route exact path="/cart" render={props => <Cart {...props} />} />
       <Route exact path="/auth/signin" render={props => <LoginContainer {...props} />} />
       <Route>
-        <Grid 
-        container
+        <Grid
+          container
           direction="row"
           justify="center"
           alignItems="center"
@@ -42,9 +42,11 @@ function App() {
           <NavBar isAuthenticated={isAuthenticated} />
           <Banner />
           <Route exact path="/" render={props => (
-            <SnackbarProvider maxSnack={6}>
-              <Store  {...props} />
-            </SnackbarProvider>
+           
+              <SnackbarProvider maxSnack={6}>
+                <Store  {...props} />
+              </SnackbarProvider>
+         
           )
           } />
 
@@ -52,7 +54,6 @@ function App() {
           <WhatsappIcon />
         </Grid>
       </Route>
-
 
     </Switch>
   );
