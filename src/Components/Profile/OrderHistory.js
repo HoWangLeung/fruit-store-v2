@@ -5,14 +5,14 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { Container, Grid, Paper, Button, Divider, Box } from '@material-ui/core'
+import { Container, Grid, Paper, Button, Divider, Box, Chip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 export default function OrderHistory({ rows, classes }) {
     return (
 
 
-        <Box  style={{display:"flex" ,flexDirection:"column",width: '100%'}}>
+        <Box style={{ display: "flex", flexDirection: "column", width: '100%' }}>
             <h2>購買紀錄</h2>
             <Paper elevation={8} style={{ padding: "30px", width: '100%' }} >
 
@@ -37,7 +37,10 @@ export default function OrderHistory({ rows, classes }) {
                                             {row.id}
                                         </TableCell>
                                         <TableCell align="right">{row.createdDate}</TableCell>
-                                        <TableCell align="right">{row.status}</TableCell>
+                                        <TableCell align="right">
+                                            <Chip label={row.status}  style={{backgroundColor:"#4BB543",color:"white"}}/>
+
+                                        </TableCell>
                                         <TableCell align="right">$ {row.finalTotal}</TableCell>
                                         <TableCell align="right">{row.protein}</TableCell>
 

@@ -21,6 +21,7 @@ import { ACCESS_TOKEN, API_BASE_URL } from '../../../constants';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setPaymentDetail } from './Actions/CheckoutActions';
+import { CircularProgress } from '@material-ui/core';
 const territories = [
     {
         value: 'HK',
@@ -86,6 +87,7 @@ function CredentialDetail(props) {
             cardCvc: null
         }
     );
+    const [isLoading, setIsLoading] = useState(false)
     let history = useHistory();
 
     const [cardDetail, setCardDetail] = useState({
@@ -97,6 +99,7 @@ function CredentialDetail(props) {
     const classes = useStyles();
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setIsLoading(true)
         const CardElement = props.elements.getElement(CardNumberElement)
         const token = await props.stripe.createToken(CardElement, { name: cardDetail.cardHolder });
         console.log(token.token);
@@ -120,10 +123,12 @@ function CredentialDetail(props) {
             .then(res => {
                 console.log(res);
                 if (res.data.status === "succeeded") {
+                    setIsLoading(false)
                     console.log(res);
                     dispatch(setPaymentDetail(res.data))
                     localStorage.setItem("paymentInfo", JSON.stringify(res.data));
-                   history.push("/checkout/success")
+
+                    history.push("/checkout/success")
                 }
 
             })
@@ -275,8 +280,11 @@ function CredentialDetail(props) {
                     justify="center"
                     alignItems="center" style={{ padding: '50px' }}>
                     <Button
+                        disabled={isLoading}
                         type="submit"
                         color="primary" size="large" variant="contained">
+                        {isLoading && <CircularProgress
+                            size={18} style={{ marginRight: "10px" }} />}
                         付款
                     </Button>
                 </Grid>
