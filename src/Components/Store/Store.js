@@ -79,7 +79,7 @@ function Store() {
 
     return (
     
-            <div className="store_container" id="store_container">
+            <div className="store_container"  >
                 <ItemFilter
                     isLoading={isLoading}
                     selectedCategory={selectedCategory}

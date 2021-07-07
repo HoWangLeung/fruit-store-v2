@@ -8,11 +8,11 @@ import { ReactComponent as CoverSvg } from '../../../Images/cover.svg';
 import './Banner.scss'
 export default function Banner() {
 
-    const handleClick=()=>{
-     
-           document.querySelector('#store_container').scrollIntoView({ behavior: 'smooth' });
-      
-       
+    const handleClick = () => {
+
+        //    document.querySelector('#store_container').scrollIntoView({ behavior: 'smooth' });
+
+
     }
     return (
 
@@ -20,19 +20,20 @@ export default function Banner() {
             direction="row"
             justify="center"
             alignItems="center"
-
             container
         >
-            <Grid container item lg={6} className="banner_container"
+            <Grid
+                container item
+                lg={6} className="banner_container"
                 direction="column"
                 justify="center"
                 alignItems="center"
-                style={{padding:"50px"}}
+                style={{ padding: "50px" }}
             >
 
-                <Grid item justify="flex-start" >
+                <Grid item   >
                     <h1>點擊開始購物</h1>
-                    <p style={{ color: "#646e73",fontSize:"1.5em" }}>專營各國水果,價廉物美 <br />
+                    <p style={{ color: "#646e73", fontSize: "1.5em" }}>專營各國水果,價廉物美 <br />
                         購物消費滿1000元, 港島區免費送貨</p>
 
                 </Grid>

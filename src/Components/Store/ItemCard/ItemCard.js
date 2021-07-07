@@ -56,9 +56,9 @@ function ItemCard({
 
                 {isLoading ?
                     (
-                        Array.from(new Array(6)).map(item => (
+                        Array.from(new Array(6)).map((item,i) => (
                             <Grid
-                                key={item}
+                                key={i}
                                 direction="row"
                                 justify="center"
                                 alignItems="center"
@@ -75,8 +75,9 @@ function ItemCard({
                                 </Box>
                             </Grid>
                         ))
-                    ) : (
+                    ) : ( 
                         <MyCardContent
+
                             cart={cart}
                             setCart={setCart}
                             quantity={quantity}

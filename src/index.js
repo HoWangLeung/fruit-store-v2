@@ -7,18 +7,18 @@ import { HashRouter as Router } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import store from './configureStore'
 import { Provider } from 'react-redux';
+import { StylesProvider } from '@material-ui/core/styles';
 
- 
 ReactDOM.render(
   <React.StrictMode>
-
-    <Provider store={store}>
-      <Router>
-        {/* <CssBaseline /> */}
-        <App />
-      </Router>
-    </Provider>
-
+    <StylesProvider injectFirst>
+      <Provider store={store}>
+        <Router>
+          {/* <CssBaseline /> */}
+          <App />
+        </Router>
+      </Provider>
+    </StylesProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

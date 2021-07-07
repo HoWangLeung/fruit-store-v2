@@ -32,7 +32,8 @@ function App() {
       <Route exact path="/cart" render={props => <Cart {...props} />} />
       <Route exact path="/auth/signin" render={props => <LoginContainer {...props} />} />
       <Route>
-        <Grid container
+        <Grid 
+        container
           direction="row"
           justify="center"
           alignItems="center"
