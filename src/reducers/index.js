@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
 import AuthenticationReducer from './AuthenticationReducer'
-
+import PaymentReducer from './PaymentReducer'
 const rootReducer = combineReducers({
-    AuthenticationReducer
+    AuthenticationReducer,
+    PaymentReducer
 })
 
 export default (state, action) => {

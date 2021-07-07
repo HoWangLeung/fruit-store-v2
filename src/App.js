@@ -15,6 +15,8 @@ import { useSelector } from 'react-redux';
 import Cart from './Components/Store/Cart/Cart';
 import Checkout from './Components/Store/Checkout/Checkout';
 import { SnackbarProvider } from 'notistack';
+import CheckoutSuccess from './Components/Store/Checkout/Result/CheckOutSuccess'
+import Profile from './Components/Profile/Profile';
 
 function App() {
   const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
@@ -23,7 +25,9 @@ function App() {
   return (
     <Switch>
 
+      <Route exact path="/user/settings" render={props => <Profile {...props} />} />
       <Route exact path="/checkout" render={props => <Checkout {...props} />} />
+      <Route exact path="/checkout/success" render={props => <CheckoutSuccess {...props} />} />
       <Route exact path="/auth/signup" render={props => <SignUp {...props} />} />
       <Route exact path="/cart" render={props => <Cart {...props} />} />
       <Route exact path="/auth/signin" render={props => <LoginContainer {...props} />} />
@@ -32,7 +36,7 @@ function App() {
           direction="row"
           justify="center"
           alignItems="center"
-          
+
         >
           <NavBar isAuthenticated={isAuthenticated} />
           <Banner />

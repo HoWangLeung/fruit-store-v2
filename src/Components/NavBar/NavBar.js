@@ -28,16 +28,26 @@ export default function NavBar({ isAuthenticated }) {
 
                 position: "absolute", right: "2%", top: "8px"
             }}>
-                <Link to="/cart" style={{textDecoration:"none"}}>
+                <Link to="/cart" style={{ textDecoration: "none" }}>
                     <Button
-                       
-                  
+
+
                     >
                         <p style={{
                             fontFamily: "Noto Sans TC",
                             fontWeight: "600",
 
                         }}>購物籃</p>
+                    </Button>
+                </Link>
+                <Link to="/user/settings" style={{ textDecoration: "none" }}>
+                    <Button
+                    >
+                        <p style={{
+                            fontFamily: "Noto Sans TC",
+                            fontWeight: "600",
+
+                        }}>個人檔案</p>
                     </Button>
                 </Link>
                 <Button

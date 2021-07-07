@@ -17,6 +17,10 @@ import {
     CardNumberElement,
 } from "@stripe/react-stripe-js";
 import { ElementsConsumer, CardElement } from "@stripe/react-stripe-js";
+import { ACCESS_TOKEN, API_BASE_URL } from '../../../constants';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setPaymentDetail } from './Actions/CheckoutActions';
 const territories = [
     {
         value: 'HK',
@@ -74,6 +78,7 @@ function StripeInput(props) {
 }
 
 function CredentialDetail(props) {
+    const dispatch = useDispatch()
     const [errorMessage, setErrorMessage] = useState(
         {
             cardNumber: null,
@@ -93,8 +98,37 @@ function CredentialDetail(props) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const CardElement = props.elements.getElement(CardNumberElement)
-        const result = await props.stripe.createToken(CardElement, { name: cardDetail.cardHolder });
-        console.log(result);
+        const token = await props.stripe.createToken(CardElement, { name: cardDetail.cardHolder });
+        console.log(token.token);
+        const headers = {
+            'Content-Type': 'application/json',
+            token: token.token.id,
+            amount: 50
+        }
+        if (localStorage.getItem(ACCESS_TOKEN)) {
+            headers['Authorization'] = 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+        }
+
+        let config = {
+            headers: headers,
+            method: 'post',
+            url: API_BASE_URL + "/api/payment/charge"
+        }
+        console.log(config);
+
+        axios(config)
+            .then(res => {
+                console.log(res);
+                if (res.data.status === "succeeded") {
+                    console.log(res);
+                    dispatch(setPaymentDetail(res.data))
+                    localStorage.setItem("paymentInfo", JSON.stringify(res.data));
+                   history.push("/checkout/success")
+                }
+
+            })
+            .catch(e => console.log(e.response))
+
     }
 
     const handleChange = (e) => {
