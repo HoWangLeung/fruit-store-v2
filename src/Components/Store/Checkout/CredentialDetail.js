@@ -79,6 +79,8 @@ function StripeInput(props) {
 }
 
 function CredentialDetail(props) {
+    const {setFocus}=props
+   
     const dispatch = useDispatch()
     const [errorMessage, setErrorMessage] = useState(
         {
@@ -159,6 +161,7 @@ function CredentialDetail(props) {
             }));
         }
     }
+ 
     const hasError = errorMessage !== null;
     return (
         <>
@@ -237,6 +240,7 @@ function CredentialDetail(props) {
                                 },
                                 inputComponent: StripeInput
                             }}
+                         
                         />
                     </Grid>
                     <Grid
@@ -258,7 +262,8 @@ function CredentialDetail(props) {
                             helperText={errorMessage.cardCvc}
                             error={errorMessage.cardCvc == null ? false : true}
                             onChange={handleElementChange}
-
+                            onFocus={()=>setFocus(true)}
+                          onBlur={()=>setFocus(false)}
                             InputLabelProps={{
                                 shrink: true
                             }}
@@ -295,11 +300,11 @@ function CredentialDetail(props) {
     )
 }
 
-export default function InjectedCheckoutForm() {
+export default function InjectedCheckoutForm({setFocus}) {
     return (
         <ElementsConsumer>
             {({ stripe, elements }) => (
-                <CredentialDetail stripe={stripe} elements={elements} />
+                <CredentialDetail stripe={stripe} elements={elements} setFocus={setFocus} />
             )}
         </ElementsConsumer>
     );
