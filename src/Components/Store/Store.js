@@ -79,7 +79,7 @@ function Store() {
 
     return (
 
-        <Container  style={{maxWidth:"1150px"}}  className="store_container">
+        <Container     className="store_container">
            
                     <ItemFilter
                         isLoading={isLoading}
