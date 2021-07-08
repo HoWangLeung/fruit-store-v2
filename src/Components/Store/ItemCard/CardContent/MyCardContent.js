@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     menuPaper: {
         maxHeight: 300
     }
-}));
+}), {index: 1});
 export default function MyCardContent({ data, page, quantity, setQuantity, setCart, cart }) {
     const classes = useStyles()
     return data

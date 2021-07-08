@@ -8,7 +8,7 @@ const theme = createMuiTheme({
             main: orange[500]
         },
     },
-});
+}, {index: 1});
 function FilterButton({ setSelectedCategory, children, value, selectedCategory }) {
     return (
         <ThemeProvider theme={theme}>

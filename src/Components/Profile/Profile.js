@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     table: {
         minWidth: 650,
     },
-});
+}, {index: 1});
 
 function createData(id, createdDate, finalTotal, status, protein) {
     return { id, createdDate, finalTotal, status, protein };

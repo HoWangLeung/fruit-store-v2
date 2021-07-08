@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-}));
+}), {index: 1});
 
 export default function SignUp() {
     let history = useHistory();

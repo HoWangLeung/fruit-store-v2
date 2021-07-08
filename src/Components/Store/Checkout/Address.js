@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     //     minWidth: 120,
 
     // },
-}));
+}), {index: 1});
 export default function Address() {
     let history = useHistory();
     console.log(history);

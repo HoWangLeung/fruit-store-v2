@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     //     minWidth: 120,
 
     // },
-}));
+}), {index: 1});
 
 function StripeInput(props) {
 

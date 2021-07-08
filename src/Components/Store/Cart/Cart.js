@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-}));
+}), {index: 1});
 function Cart() {
     const nodes = useRef([])
     nodes.current = []
