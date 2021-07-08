@@ -31,7 +31,7 @@ export default function MyCardContent({ data, page, quantity, setQuantity, setCa
                     alignItems="center"
                    className="itemCard_inner_container"
                     container
-               
+               item
                     xs={12} md={6} lg={4}
 
                 >

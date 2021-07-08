@@ -57,7 +57,7 @@ export default function Checkout(props) {
                 alignItems="center"
             >
 
-                {/* <CreditCard focus={focus} /> */}
+                <CreditCard focus={focus} />
                 <Payment setFocus={setFocus} />
 
             </Grid>

@@ -15,8 +15,7 @@ ReactDOM.render(
     <Provider store={store}>
       <StylesProvider injectFirst>
         <Router>
-
-          {/* <CssBaseline /> */}
+ 
           <App />
         </Router>
       </StylesProvider>
