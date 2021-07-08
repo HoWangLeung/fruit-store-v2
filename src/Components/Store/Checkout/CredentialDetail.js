@@ -181,6 +181,7 @@ function CredentialDetail(props) {
                     onChange={handleChange}
                     value={cardDetail.cardHolder}
                     autoFocus
+                
                 />
                 <TextField
                     variant="outlined"
@@ -199,7 +200,14 @@ function CredentialDetail(props) {
                     }}
                     InputProps={{
                         inputProps: {
-                            component: CardNumberElement
+                            component: CardNumberElement,
+                            options:{
+                                style: {
+                                  base: {
+                                    fontSize: '16px',
+                                  },
+                                },
+                              }
                         },
                         inputComponent: StripeInput
                     }}
@@ -236,11 +244,20 @@ function CredentialDetail(props) {
                             }}
                             InputProps={{
                                 inputProps: {
-                                    component: CardExpiryElement
+
+                                    component: CardExpiryElement,
+                                    options:{
+                                        style: {
+                                          base: {
+                                            fontSize: '16px',
+                                          },
+                                        },
+                                      }
                                 },
-                                inputComponent: StripeInput
+                                inputComponent: StripeInput,
+                           
                             }}
-                         
+                        
                         />
                     </Grid>
                     <Grid
@@ -252,6 +269,7 @@ function CredentialDetail(props) {
                         xs={5}
                     >
                         <TextField
+                     
                             fullWidth
                             variant="outlined"
                             margin="normal"
@@ -269,11 +287,17 @@ function CredentialDetail(props) {
                             }}
                             InputProps={{
 
-
+                             
                                 inputProps: {
-
+                                   
                                     component: CardCvcElement,
-
+                                    options:{
+                                        style: {
+                                          base: {
+                                            fontSize: '16px',
+                                          },
+                                        },
+                                      }
                                 },
                                 inputComponent: StripeInput,
 
