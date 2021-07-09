@@ -6,7 +6,7 @@ import WhatsappIcon from './Components/Others/WhatsappIcon/WhatsappIcon';
 import NavBar from './Components/NavBar/NavBar';
 import Banner from './Components/Others/Banner/Banner'
 import Container from '@material-ui/core/Container';
-import { Divider, Grid } from '@material-ui/core';
+import { Divider, Grid, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import Footer from './Components/Others/Footer/Footer'
 import DefaultContainer from './Components/Others/Router/DefaultContainer';
 import LoginContainer from './Components/Others/Router/LoginContainer';
@@ -18,44 +18,56 @@ import { SnackbarProvider } from 'notistack';
 import CheckoutSuccess from './Components/Store/Checkout/Result/CheckOutSuccess'
 import Profile from './Components/Profile/Profile';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#01BFA6",
+      contrastText: "#fff" //button text white instead of black
+    },
+   
+  },
+ 
+})
+
 function App() {
   const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
   console.log("isAuthenticated: ", isAuthenticated);
 
   return (
-    <Switch>
+    <ThemeProvider theme={theme}>
+      <Switch>
 
-      <Route exact path="/user/settings" render={props => <Profile {...props} />} />
-      <Route exact path="/checkout" render={props => <Checkout {...props} />} />
-      <Route exact path="/checkout/success" render={props => <CheckoutSuccess {...props} />} />
-      <Route exact path="/auth/signup" render={props => <SignUp {...props} />} />
-      <Route exact path="/cart" render={props => <Cart {...props} />} />
-      <Route exact path="/auth/signin" render={props => <LoginContainer {...props} />} />
-      <Route>
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
+        <Route exact path="/user/settings" render={props => <Profile {...props} />} />
+        <Route exact path="/checkout" render={props => <Checkout {...props} />} />
+        <Route exact path="/checkout/success" render={props => <CheckoutSuccess {...props} />} />
+        <Route exact path="/auth/signup" render={props => <SignUp {...props} />} />
+        <Route exact path="/cart" render={props => <Cart {...props} />} />
+        <Route exact path="/auth/signin" render={props => <LoginContainer {...props} />} />
+        <Route>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
 
-        >
-          <NavBar isAuthenticated={isAuthenticated} />
-          <Banner />
-          <Route exact path="/" render={props => (
-           
+          >
+            <NavBar isAuthenticated={isAuthenticated} />
+            <Banner />
+            <Route exact path="/" render={props => (
+
               <SnackbarProvider maxSnack={6}>
                 <Store  {...props} />
               </SnackbarProvider>
-         
-          )
-          } />
 
-          <Footer />
-          <WhatsappIcon />
-        </Grid>
-      </Route>
+            )
+            } />
 
-    </Switch>
+            <Footer />
+            <WhatsappIcon />
+          </Grid>
+        </Route>
+      </Switch>
+    </ThemeProvider>
   );
 }
 

@@ -19,7 +19,7 @@ import { loadStripe } from '@stripe/stripe-js';
 const stripePromise = loadStripe('pk_test_oHDsyL0Wxhko6HIFRMrm7QXS00h1og1ziG');
 
 
-export default function Payment({ setFocus }) {
+export default function Payment({ setFocus,cardDetail,setCardDetail }) {
 
     return (
         <Container
@@ -27,12 +27,8 @@ export default function Payment({ setFocus }) {
             style={{ marginBottom: "50px" }}
 
         >
-            <Elements stripe={stripePromise}
-            
-
-
-            >
-                <CredentialDetail setFocus={setFocus} />
+            <Elements stripe={stripePromise} >
+                <CredentialDetail setFocus={setFocus} cardDetail={cardDetail} setCardDetail={setCardDetail} />
             </Elements>
         </Container>
     )

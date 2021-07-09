@@ -79,7 +79,7 @@ function StripeInput(props) {
 }
 
 function CredentialDetail(props) {
-    const {setFocus}=props
+    const {setFocus,setCardDetail,cardDetail}=props
    
     const dispatch = useDispatch()
     const [errorMessage, setErrorMessage] = useState(
@@ -92,12 +92,7 @@ function CredentialDetail(props) {
     const [isLoading, setIsLoading] = useState(false)
     let history = useHistory();
 
-    const [cardDetail, setCardDetail] = useState({
-        cardHolder: "Leung Ho Wang",
-        cardNumber: "",
-        expiryDate: "",
-        CXC: "123"
-    })
+  
     const classes = useStyles();
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -138,13 +133,13 @@ function CredentialDetail(props) {
 
     }
 
-    const handleChange = (e) => {
-
-        setCardDetail(state => ({
-            ...state,
-            [e.target.name]: e.target.value
-        }))
-    }
+    // const handleChange = (e) => {
+       
+    //     setCardDetail(state => ({
+    //         ...state,
+    //         [e.target.name]: e.target.value
+    //     }))
+    // }
 
     const handleElementChange = (prop) => {
         console.log(prop);
@@ -174,11 +169,11 @@ function CredentialDetail(props) {
                     margin="normal"
                     required
                     fullWidth
-                    id="email"
+                    id="cardHolder"
                     label="持卡人"
-                    name="email"
-                    autoComplete="email"
-                    onChange={handleChange}
+                    name="cardHolder"
+                    autoComplete="cardHolder"
+                    onChange={(e)=>setCardDetail(e)}
                     value={cardDetail.cardHolder}
                     autoFocus
                 
@@ -324,11 +319,13 @@ function CredentialDetail(props) {
     )
 }
 
-export default function InjectedCheckoutForm({setFocus}) {
+export default function InjectedCheckoutForm({setFocus,cardDetail,setCardDetail}) {
     return (
         <ElementsConsumer>
             {({ stripe, elements }) => (
-                <CredentialDetail stripe={stripe} elements={elements} setFocus={setFocus} />
+                <CredentialDetail stripe={stripe} elements={elements} setFocus={setFocus} 
+                setCardDetail={setCardDetail}
+                cardDetail={cardDetail} />
             )}
         </ElementsConsumer>
     );

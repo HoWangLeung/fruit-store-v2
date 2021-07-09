@@ -34,7 +34,7 @@
 }
 
 .creditCard_container{
-    background: linear-gradient(0.25turn, #7b4397  , #dc2430);
+    background: linear-gradient(0.25turn, #01BFA6  , #521d46);
     position:relative;
    height: 100%;
     width: 100%;           /* whatever width you like */
@@ -66,4 +66,41 @@
     height: 20%;
     width: 20%;
     z-index: 4;
+}
+
+.creditCard_number{
+    z-index: 5;
+    position:absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 270%;
+    padding-top: 10%;
+    color: white;
+    @media only screen and (max-width: 425px) {
+        font-size: 200%;
+  }
+}
+.creditCard_cardHolder{
+    z-index: 5;
+    position:absolute;
+   
+   left: 5%;
+   bottom: 5%;
+    font-size: 1.25rem;
+    padding-top: 10%;
+    color: white;
+    font-weight: 600;
+}
+.creditCard_expDate{
+    z-index: 5;
+    position:absolute;
+   
+   right: 5%;
+   bottom: 5%;
+    font-size: 1.1rem;
+    padding-top: 10%;
+    color: white;
 }

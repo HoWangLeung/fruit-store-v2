@@ -13,6 +13,7 @@ function ItemFilter({
     setSelectedCountry,
     categories,
     countries }) {
+       console.log(JSON.stringify(data));
   
     return (
 

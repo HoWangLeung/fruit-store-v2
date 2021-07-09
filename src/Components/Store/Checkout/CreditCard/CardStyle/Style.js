@@ -59,7 +59,7 @@ export const FlipCardFront = styled(Container)`
 `
 
 export const FlipCardBack = styled(Paper)`
-  background: linear-gradient(0.25turn, #7b4397  , #dc2430);
+ background: linear-gradient(0.25turn, #01BFA6  , #521d46);
   color: white;
   transform: rotateY(180deg);
     position: absolute;
@@ -105,10 +105,15 @@ position:absolute;
   width: 90px;
   height: 50px;
   color:black;
- 
+
   display: flex;
   align-items: center;
   justify-content: center;
+  p{
+    font-size: 200%;
+ font-weight: 600;
+ padding-top: 15px;
+  }
   
 `
 

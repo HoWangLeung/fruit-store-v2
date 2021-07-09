@@ -23,6 +23,10 @@ const publishable_key = 'pk_test_oHDsyL0Wxhko6HIFRMrm7QXS00h1og1ziG'
 
 export default function Checkout(props) {
     const [focus, setFocus] = useState(false)
+    const [cardDetail, setCardDetail] = useState({
+        cardHolder: "Leung Ho Wang",
+        
+    })
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     let sum = 0;
     cart.forEach(d => {
@@ -30,8 +34,14 @@ export default function Checkout(props) {
     });
 
    
-
-
+  const handleChange = (e) => {
+       
+        setCardDetail(state => ({
+            ...state,
+            [e.target.name]: e.target.value
+        }))
+    }
+console.log(cardDetail);
     return (
 
         <Grid
@@ -57,8 +67,11 @@ export default function Checkout(props) {
                 alignItems="center"
             >
 
-                <CreditCard focus={focus} />
-                <Payment setFocus={setFocus} />
+                <CreditCard focus={focus} cardDetail={cardDetail}/>
+                <Payment 
+                cardDetail={cardDetail}
+                setCardDetail={handleChange}
+                setFocus={setFocus} />
 
             </Grid>
         </Grid>
