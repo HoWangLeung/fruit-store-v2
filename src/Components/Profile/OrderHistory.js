@@ -8,7 +8,8 @@ import TableRow from '@material-ui/core/TableRow';
 import { Container, Grid, Paper, Button, Divider, Box, Chip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
-export default function OrderHistory({ rows, classes }) {
+export default function OrderHistory({ rows, classes, data }) {
+    
     return (
 
 
@@ -22,27 +23,27 @@ export default function OrderHistory({ rows, classes }) {
                         <TableHead>
                             <TableRow>
                                 <TableCell>訂單編號 #</TableCell>
-                                <TableCell align="right">創立日期</TableCell>
-                                <TableCell align="right">狀態</TableCell>
-                                <TableCell align="right">金額</TableCell>
-                                <TableCell align="right">下載</TableCell>
+                                <TableCell align="center">建立日期</TableCell>
+                                <TableCell align="center">狀態</TableCell>
+                                <TableCell align="center">金額</TableCell>
+                                <TableCell align="center">下載</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row, i) => {
+                            {rows && rows.map((row, i) => {
                                 console.log(row);
                                 return (
                                     <TableRow key={i}>
                                         <TableCell component="th" scope="row">
                                             {row.id}
                                         </TableCell>
-                                        <TableCell align="right">{row.createdDate}</TableCell>
-                                        <TableCell align="right">
-                                            <Chip label={row.status}  style={{backgroundColor:"#4BB543",color:"white"}}/>
+                                        <TableCell align="center">{row.createdDate}</TableCell>
+                                        <TableCell align="center">
+                                            <Chip label={row.status==="PAID" ?"已付款" :null}  style={{backgroundColor:"#4BB543",color:"white"}}/>
 
                                         </TableCell>
-                                        <TableCell align="right">$ {row.finalTotal}</TableCell>
-                                        <TableCell align="right">{row.protein}</TableCell>
+                                        <TableCell align="center">$ {row.finalTotal}</TableCell>
+                                        <TableCell align="center">Download</TableCell>
 
                                     </TableRow>
                                 )

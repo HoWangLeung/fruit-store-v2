@@ -19,7 +19,7 @@ function createData(id, createdDate, finalTotal, status, protein) {
 export default function Profile() {
     const classes = useStyles();
     let data = useProfileData()
-    if(data.length===0) return null
+    if(data.length===0) return <h1>NO ORDER</h1>
 
 
     let rows = data.map(({ refId, createdDate, status, finalTotal }) => {
@@ -27,7 +27,7 @@ export default function Profile() {
         return row
     })
    
-    let user = data[0].user
+    
 
     return (
         <Container maxWidth="md"   >
@@ -41,15 +41,17 @@ export default function Profile() {
                 <Grid container item
                     justify="center"
                     alignItems="center">
-                    <PersonalInfo user={user} />
+                    <PersonalInfo data={data} />
                 </Grid>
                 <Grid container item
                     justify="center"
                     alignItems="center">
-
+ 
                     <OrderHistory
                         classes={classes}
-                        rows={rows} />
+                        rows={rows} 
+                        data={data}
+                        />
 
                 </Grid>
             </Grid>

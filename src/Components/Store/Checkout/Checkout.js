@@ -69,6 +69,7 @@ console.log(cardDetail);
 
                 <CreditCard focus={focus} cardDetail={cardDetail}/>
                 <Payment 
+                sum={sum}
                 cardDetail={cardDetail}
                 setCardDetail={handleChange}
                 setFocus={setFocus} />

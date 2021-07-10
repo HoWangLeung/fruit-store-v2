@@ -79,7 +79,7 @@ function StripeInput(props) {
 }
 
 function CredentialDetail(props) {
-    const {setFocus,setCardDetail,cardDetail}=props
+    const {setFocus,setCardDetail,cardDetail,sum}=props
    
     const dispatch = useDispatch()
     const [errorMessage, setErrorMessage] = useState(
@@ -103,7 +103,7 @@ function CredentialDetail(props) {
         const headers = {
             'Content-Type': 'application/json',
             token: token.token.id,
-            amount: 50
+            amount: sum
         }
         if (localStorage.getItem(ACCESS_TOKEN)) {
             headers['Authorization'] = 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
@@ -124,7 +124,7 @@ function CredentialDetail(props) {
                     console.log(res);
                     dispatch(setPaymentDetail(res.data))
                     localStorage.setItem("paymentInfo", JSON.stringify(res.data));
-
+                    localStorage.removeItem("cart")
                     history.push("/checkout/success")
                 }
 
@@ -319,13 +319,17 @@ function CredentialDetail(props) {
     )
 }
 
-export default function InjectedCheckoutForm({setFocus,cardDetail,setCardDetail}) {
+export default function InjectedCheckoutForm({setFocus,cardDetail,setCardDetail,sum}) {
     return (
         <ElementsConsumer>
             {({ stripe, elements }) => (
                 <CredentialDetail stripe={stripe} elements={elements} setFocus={setFocus} 
                 setCardDetail={setCardDetail}
-                cardDetail={cardDetail} />
+                cardDetail={cardDetail}
+                
+                sum={sum}
+                />
+             
             )}
         </ElementsConsumer>
     );

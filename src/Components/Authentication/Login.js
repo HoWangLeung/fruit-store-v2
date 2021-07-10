@@ -107,7 +107,7 @@ export default function SignIn() {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    登入
                 </Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <TextField
@@ -147,7 +147,7 @@ export default function SignIn() {
                         color="primary"
                         className={classes.submit}
                     >
-                        Sign In
+                       登入
                     </Button>
                     <Grid container>
                         <Grid item xs>

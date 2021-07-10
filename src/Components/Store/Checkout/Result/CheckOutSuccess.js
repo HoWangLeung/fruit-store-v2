@@ -27,8 +27,8 @@ export default function CheckOutSuccess() {
 
                     <svg
                         style={{
-                            height: "150px",
-                            width: "150px"
+                            height: "100px",
+                            width: "100px"
                         }}
                         aria-hidden="true" focusable="false"
 
@@ -48,13 +48,13 @@ export default function CheckOutSuccess() {
                         direction="column"
                         justify="center"
                         alignItems="center">
-                        <h1>Payment Complete</h1>
-                        <p>Thank you, your payment has been successful.<br />
-                            A confirmation email has been sent to abc@abc.com</p>
+                        <h1>付款成功</h1>
+                        <p>感謝你的支持 !<br />
+                           </p>
                     </Grid>
 
                     <Divider style={{ width: '50%' }} />
-                    <h1>ORDER DETAILS</h1>
+                    <h1>訂單資料</h1>
                     <Grid container item
                         direction="column"
                         justify="center"
@@ -63,15 +63,15 @@ export default function CheckOutSuccess() {
                         <table>
                             <tbody>
                                 <tr>
-                                    <td style={{ whiteSpace: "nowrap" }} colSpan="1">Reference ID : </td>
+                                    <td style={{ whiteSpace: "nowrap" }} colSpan="1">訂單編號 : </td>
                                     <td colSpan="1">{data.id}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">Card Holder : </td>
+                                    <td colSpan="1">持卡人 : </td>
                                     <td colSpan="1">{data.source.name}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">Card Type : </td>
+                                    <td colSpan="1">信用卡 : </td>
                                     <td colSpan="1">{data.source.brand}</td>
                                 </tr>
                                 <tr>
@@ -79,23 +79,23 @@ export default function CheckOutSuccess() {
                                     <td colSpan="1">{data.source.last4}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">Amount : </td>
-                                    <td colSpan="1">{data.amount}</td>
+                                    <td colSpan="1">金額 : </td>
+                                    <td colSpan="1">$ {data.amount/100}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">Currency : </td>
+                                    <td colSpan="1">貨幣 : </td>
                                     <td colSpan="1">{data.currency}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">Created at : </td>
+                                    <td colSpan="1">建立日期 : </td>
                                     <td colSpan="1">{data.created}</td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <Link to="/">
-                            <Button style={{ marginTop: "15px" }} color="primary" variant="contained">
-                                Back to Home
+                            <Button style={{ marginTop: "15px", marginBottom: "15px" }} color="primary" variant="contained">
+                                回到主頁
                             </Button>
                         </Link>
                     </Grid>

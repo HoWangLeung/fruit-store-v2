@@ -52,7 +52,7 @@ export default function NavBar({ isAuthenticated }) {
                 </Link>
                 <Button
                     onClick={handleClick}
-
+                        
                 >
                     <p style={{
                         fontFamily: "Noto Sans TC",
