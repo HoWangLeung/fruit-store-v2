@@ -10,7 +10,7 @@ export default function Banner() {
 
     const handleClick = () => {
 
-        //    document.querySelector('#store_container').scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('.store_container').scrollIntoView({ behavior: 'smooth' });
 
 
     }

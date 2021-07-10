@@ -75,7 +75,7 @@ export default function CheckOutSuccess() {
                                     <td colSpan="1">{data.source.brand}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">運費 : </td>
+                                    <td colSpan="1">最後4碼 : </td>
                                     <td colSpan="1">{data.source.last4}</td>
                                 </tr>
                                 <tr>
@@ -94,7 +94,7 @@ export default function CheckOutSuccess() {
                         </table>
 
                         <Link to="/">
-                            <Button style={{ marginTop: "15px", marginBottom: "15px" }} color="primary" variant="contained">
+                            <Button style={{ marginTop: "15px", marginBottom: "5px" }} color="primary" variant="contained">
                                 回到主頁
                             </Button>
                         </Link>
