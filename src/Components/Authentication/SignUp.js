@@ -76,7 +76,7 @@ export default function SignUp() {
         let config = {
             headers: headers,
             method: 'post',
-            url: API_BASE_URL + "/api/auth/signup",
+            url: API_BASE_URL + "/api/auth/signup?exchangeName=topic-exchange&routingKey=queue.registration",
             data: payload
         }
         axios(config)
