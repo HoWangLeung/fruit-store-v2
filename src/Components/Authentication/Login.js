@@ -18,12 +18,13 @@ import { API_BASE_URL, ACCESS_TOKEN } from '../../constants/index'
 import axios from 'axios'
 import { setSignInStatus } from './Actions/AuthenticationAction';
 import { useDispatch } from 'react-redux';
+import { CircularProgress } from '@material-ui/core';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-            wahkee-fruitstore.com
+                wahkee-fruitstore.com
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -49,9 +50,10 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-}), {index: 1});
+}), { index: 1 });
 
 export default function SignIn() {
+    const [isLoading, setIsLoading] = useState(false)
     let history = useHistory();
     const dispatch = useDispatch()
     const classes = useStyles();
@@ -68,7 +70,7 @@ export default function SignIn() {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        setIsLoading(true)
         let payload = {
             email: user.email,
             password: user.password
@@ -93,6 +95,7 @@ export default function SignIn() {
             .then(res => {
                 console.log(res);
                 localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
+                setIsLoading(false)
                 dispatch(setSignInStatus(true))
                 history.push("/")
             })
@@ -146,8 +149,11 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        disabled={isLoading}
                     >
-                       登入
+                        {isLoading && <CircularProgress
+                            size={18} style={{ marginRight: "10px" }} />}
+                        登入
                     </Button>
                     <Grid container>
                         <Grid item xs>

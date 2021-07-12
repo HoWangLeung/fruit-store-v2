@@ -16,12 +16,13 @@ import { Link, useHistory } from 'react-router-dom';
 import { signup } from '../../utils/APIUtils';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants/index'
 import axios from 'axios'
+import { CircularProgress } from '@material-ui/core';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link to="/" color="inherit" href="https://material-ui.com/">
-            wahkee-fruitstore.com
+                wahkee-fruitstore.com
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -47,9 +48,10 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-}), {index: 1});
+}), { index: 1 });
 
 export default function SignUp() {
+    const [isLoading, setIsLoading] = useState(false)
     let history = useHistory();
     console.log(history);
     const [user, setUser] = useState({
@@ -60,7 +62,7 @@ export default function SignUp() {
     const classes = useStyles();
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        setIsLoading(true)
         let payload = {
             email: user.email,
             password: user.password_1
@@ -72,7 +74,7 @@ export default function SignUp() {
         if (localStorage.getItem(ACCESS_TOKEN)) {
             headers['Authorization'] = 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
         }
-  
+
         let config = {
             headers: headers,
             method: 'post',
@@ -82,6 +84,7 @@ export default function SignUp() {
         axios(config)
             .then(res => {
                 console.log(res);
+                setIsLoading(false)
                 history.push("/");
             })
             .catch(e => console.log(e.response))
@@ -146,17 +149,21 @@ export default function SignUp() {
                         onChange={handleChange}
                         value={user.password_2}
                     />
-                    <FormControlLabel
+                    {/* <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"
-                    />
+                    /> */}
                     <Button
+                      disabled={isLoading}
                         type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
                     >
+
+                        {isLoading && <CircularProgress
+                            size={18} style={{ marginRight: "10px" }} />}
                         Sign Up
                     </Button>
                     <Grid container>

@@ -15,7 +15,7 @@ export default function NavBar({ isAuthenticated }) {
         if (!isAuthenticated) {
             history.push("/auth/signin")
         } else {
-            localStorage.setItem(ACCESS_TOKEN, null);
+            localStorage.removeItem(ACCESS_TOKEN)
             dispatch(setSignInStatus(false))
         }
     }
@@ -40,7 +40,7 @@ export default function NavBar({ isAuthenticated }) {
                         }}>購物籃</p>
                     </Button>
                 </Link>
-                <Link to="/user/settings" style={{ textDecoration: "none" }}>
+                {isAuthenticated && <Link to="/user/settings" style={{ textDecoration: "none" }}>
                     <Button
                     >
                         <p style={{
@@ -49,10 +49,10 @@ export default function NavBar({ isAuthenticated }) {
 
                         }}>個人檔案</p>
                     </Button>
-                </Link>
+                </Link>}
                 <Button
                     onClick={handleClick}
-                        
+
                 >
                     <p style={{
                         fontFamily: "Noto Sans TC",

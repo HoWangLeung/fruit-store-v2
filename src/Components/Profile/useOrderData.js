@@ -20,11 +20,11 @@ export default function useProfileData() {
         let config = {
             headers: headers,
             method: 'get',
-            url: API_BASE_URL + "/api/user/profile"
+            url: API_BASE_URL + "/api/orders/order"
         }
         axios(config)
             .then(res => {
-                
+
                 setData(res.data)
             })
             .catch(e => {

@@ -7,9 +7,19 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Container, Grid, Paper, Button, Divider, Box, Chip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
+import { ReactComponent as NoDataSvg } from '../../Images/noData.svg'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload as download } from "@fortawesome/free-solid-svg-icons"
+function createData(id, createdDate, finalTotal, status, protein) {
+    return { id, createdDate, finalTotal, status, protein };
+}
+export default function OrderHistory({ orderData, classes }) {
+    console.log(orderData);
+    let rows = orderData.map(({ refId, createdDate, status, finalTotal }) => {
+        let row = createData(refId, createdDate, finalTotal, status, 4.0)
+        return row
+    })
 
-export default function OrderHistory({ rows, classes, data }) {
-    
     return (
 
 
@@ -29,8 +39,8 @@ export default function OrderHistory({ rows, classes, data }) {
                                 <TableCell align="center">下載</TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody>
-                            {rows && rows.map((row, i) => {
+                        {rows.length > 0 ? <TableBody>
+                            {rows.map((row, i) => {
                                 console.log(row);
                                 return (
                                     <TableRow key={i}>
@@ -39,11 +49,15 @@ export default function OrderHistory({ rows, classes, data }) {
                                         </TableCell>
                                         <TableCell align="center">{row.createdDate}</TableCell>
                                         <TableCell align="center">
-                                            <Chip label={row.status==="PAID" ?"已付款" :null}  style={{backgroundColor:"#4BB543",color:"white"}}/>
+                                            <Chip label={row.status === "PAID" ? "已付款" : null} style={{ backgroundColor: "#01BFA6", color: "white" }} />
 
                                         </TableCell>
                                         <TableCell align="center">$ {row.finalTotal}</TableCell>
-                                        <TableCell align="center">Download</TableCell>
+                                        <TableCell align="center">
+                                            <FontAwesomeIcon 
+                                            style={{cursor:"pointer"}}
+                                            icon={download} />
+                                        </TableCell>
 
                                     </TableRow>
                                 )
@@ -51,7 +65,22 @@ export default function OrderHistory({ rows, classes, data }) {
 
 
                             )}
-                        </TableBody>
+                        </TableBody> :
+                            <TableBody>
+                                <TableRow >
+                                    <TableCell align="center" colSpan={6}>
+
+                                        <div>
+                                            <NoDataSvg style={{ height: "100px", width: "100px" }} />
+                                            <p style={{ fontFamily: "Noto Sans TC", fontWeight: "600", color: "#E8D4BF" }} >
+                                                No Data
+                                            </p>
+                                        </div>
+
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        }
                     </Table>
                 </TableContainer>
             </Paper>

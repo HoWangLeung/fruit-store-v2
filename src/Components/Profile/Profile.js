@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Container, Grid, Paper, Button, Backdrop,CircularProgress } from '@material-ui/core'
+import { Container, Grid, Paper, Button, Backdrop, CircularProgress } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import './Profile.scss'
-import useProfileData from './useProfileData';
+import useOrderData from './useOrderData';
 import OrderHistory from './OrderHistory';
 import PersonalInfo from './PersonalInfo';
+import useProfileData from './useProfileData';
 
 
 const useStyles = makeStyles({
@@ -13,21 +14,22 @@ const useStyles = makeStyles({
     },
 }, { index: 1 });
 
-function createData(id, createdDate, finalTotal, status, protein) {
-    return { id, createdDate, finalTotal, status, protein };
-}
+
 export default function Profile() {
     const classes = useStyles();
-    let data = useProfileData()
-    if (data.length === 0) return <Backdrop open  style={{backgroundColor:"#fafafa"}} >
-        <CircularProgress  />
+
+ 
+   
+    let userData = useProfileData()
+   
+    let orderData = useOrderData()
+    console.log(orderData);
+    if (userData.length === 0) return <Backdrop open style={{ backgroundColor: "#fafafa" }} >
+        <CircularProgress />
     </Backdrop>
 
 
-    let rows = data.map(({ refId, createdDate, status, finalTotal }) => {
-        let row = createData(refId, createdDate, finalTotal, status, 4.0)
-        return row
-    })
+
 
 
 
@@ -43,7 +45,7 @@ export default function Profile() {
                 <Grid container item
                     justify="center"
                     alignItems="center">
-                    <PersonalInfo data={data} />
+                    <PersonalInfo user={userData}  />
                 </Grid>
                 <Grid container item
                     justify="center"
@@ -51,8 +53,8 @@ export default function Profile() {
 
                     <OrderHistory
                         classes={classes}
-                        rows={rows}
-                        data={data}
+                        orderData={orderData}
+
                     />
 
                 </Grid>

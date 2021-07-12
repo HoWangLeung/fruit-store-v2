@@ -1,9 +1,9 @@
 import { Box, Button, Divider, Paper } from '@material-ui/core'
 import React from 'react'
 
-export default function PersonalInfo({ data }) {
-    
-    let user = data[0].user
+export default function PersonalInfo({ user }) {
+   
+ console.log(user);
     return (
         <Box  style={{display:"flex" ,flexDirection:"column",width: '100%'}} className="profile_personalInfo">
             <h2 style={{alignSelf:"flex-start"}}>個人資料</h2>
