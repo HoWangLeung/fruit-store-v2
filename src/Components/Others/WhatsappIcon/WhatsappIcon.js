@@ -9,8 +9,6 @@ function WhatsappIcon() {
 
                 <FontAwesomeIcon icon={whatsapp} />
 
-
-
             </div>
         </a>
     )

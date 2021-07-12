@@ -203,7 +203,7 @@ function Cart() {
                                 <span>貨品: {item.name}</span>
 
                                 <span>產地: {item.country}</span>
-                                <span>價錢: ${item.price}</span>
+                                <span>價錢: $ {item.price}</span>
                             </div>
 
                             <div
