@@ -13,7 +13,9 @@ export default function useData() {
         axios.get(`${API_BASE_URL}/api/products/`)
             .then(res => {
                 let data = res.data
+                console.log(data);
                 data.map(d=>{
+                
                     d.quantity=0
                     return d
                 })

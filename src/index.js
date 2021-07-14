@@ -14,10 +14,10 @@ ReactDOM.render(
 
     <Provider store={store}>
       <StylesProvider injectFirst>
-        <Router>
- 
+
+        {/* <Router > */}
           <App />
-        </Router>
+        {/* </Router> */}
       </StylesProvider>
     </Provider>
 

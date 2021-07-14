@@ -10,6 +10,10 @@ import './Navbar.scss'
 
 export default function NavBar({ isAuthenticated }) {
     const history = useHistory()
+
+    console.log(history.location.pathname);
+    const locale = history.location.pathname.substring(1, 3)
+ 
     const dispatch = useDispatch()
     const handleClick = (e) => {
         if (!isAuthenticated) {
@@ -28,7 +32,20 @@ export default function NavBar({ isAuthenticated }) {
 
                 position: "absolute", right: "2%", top: "8px"
             }}>
-                <Link to="/cart" style={{ textDecoration: "none" }}>
+
+
+                <Button
+
+
+                >
+                    <p style={{
+                        fontFamily: "Noto Sans TC",
+                        fontWeight: "600",
+
+                    }}>English</p>
+                </Button>
+
+                <Link to={`/${locale}/cart`} style={{ textDecoration: "none" }}>
                     <Button
 
 
