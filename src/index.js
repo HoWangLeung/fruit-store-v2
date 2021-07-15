@@ -8,6 +8,18 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import store from './configureStore'
 import { Provider } from 'react-redux';
 import { StylesProvider } from '@material-ui/core/styles';
+import { IntlProvider } from 'react-intl';
+import en from './i18n/en';
+import zh from './i18n/zh';
+
+let locale = localStorage.getItem('locale') || navigator.language
+console.log('locale ', locale);
+let messages;
+if (locale.includes('zh')) {
+  messages = zh;
+} else {
+  messages = en;
+}
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,9 +27,9 @@ ReactDOM.render(
     <Provider store={store}>
       <StylesProvider injectFirst>
 
-        {/* <Router > */}
+        <IntlProvider locale={locale} key={locale} messages={messages}   >
           <App />
-        {/* </Router> */}
+        </IntlProvider>
       </StylesProvider>
     </Provider>
 

@@ -55,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
     const [isLoading, setIsLoading] = useState(false)
     let history = useHistory();
+    const locale = history.location.pathname.substring(1, 3)
+    console.log(locale);
     const dispatch = useDispatch()
     const classes = useStyles();
     const [user, setUser] = useState({
@@ -97,7 +99,7 @@ export default function SignIn() {
                 localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
                 setIsLoading(false)
                 dispatch(setSignInStatus(true))
-                history.push("/")
+                history.push(`/${locale}`)
             })
             .catch(e => console.log(e.response))
     }
@@ -157,12 +159,12 @@ export default function SignIn() {
                     </Button>
                     <Grid container>
                         <Grid item xs>
-                            <Link href="#" variant="body2">
+                            <Link  to="/" >
                                 Forgot password?
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link to="/auth/signup" variant="body2">
+                            <Link to={`/${locale}/auth/signup`} variant="body2">
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>

@@ -80,7 +80,8 @@ function StripeInput(props) {
 
 function CredentialDetail(props) {
     const {setFocus,setCardDetail,cardDetail,sum}=props
-   
+    let history = useHistory();
+    const locale = history.location.pathname.substring(1, 3)
     const dispatch = useDispatch()
     const [errorMessage, setErrorMessage] = useState(
         {
@@ -90,7 +91,7 @@ function CredentialDetail(props) {
         }
     );
     const [isLoading, setIsLoading] = useState(false)
-    let history = useHistory();
+ 
 
   
     const classes = useStyles();
@@ -125,7 +126,7 @@ function CredentialDetail(props) {
                     dispatch(setPaymentDetail(res.data))
                     localStorage.setItem("paymentInfo", JSON.stringify(res.data));
                     localStorage.removeItem("cart")
-                    history.push("/checkout/success")
+                    history.push(`/${locale}/checkout/success`)
                 }
 
             })

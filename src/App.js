@@ -18,6 +18,7 @@ import { SnackbarProvider } from 'notistack';
 import CheckoutSuccess from './Components/Store/Checkout/Result/CheckOutSuccess'
 import Profile from './Components/Profile/Profile';
 import { HashRouter as Router } from "react-router-dom";
+import { FormattedMessage } from 'react-intl';
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -32,15 +33,17 @@ const theme = createMuiTheme({
 function App() {
   const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
   console.log("isAuthenticated: ", isAuthenticated);
+  let locale = localStorage.getItem('locale') || 'en'
+  console.log(locale);
 
   return (
     <ThemeProvider theme={theme}>
       <Router  >
         <Switch>
-          <Route exact path="/user/settings" render={props => <Profile {...props} />} />
-          <Route exact path="/checkout" render={props => <Checkout {...props} />} />
-          <Route exact path="/checkout/success" render={props => <CheckoutSuccess {...props} />} />
-          <Route exact path="/auth/signup" render={props => <SignUp {...props} />} />
+          <Route exact path="/:lang/user/settings" render={props => <Profile {...props} />} />
+          <Route exact path="/:lang/checkout" render={props => <Checkout {...props} />} />
+          <Route exact path="/:lang/checkout/success" render={props => <CheckoutSuccess {...props} />} />
+          <Route exact path="/:lang/auth/signup" render={props => <SignUp {...props} />} />
           <Route exact path="/:lang/cart" render={props => <Cart {...props} />} />
           <Route exact path="/:lang/auth/signin" render={props => <LoginContainer {...props} />} />
           <Route exact path="/:lang" >
@@ -52,17 +55,17 @@ function App() {
             >
               <NavBar isAuthenticated={isAuthenticated} />
               <Banner />
-       
-                <SnackbarProvider maxSnack={6}>
-                  <Store   />
-                </SnackbarProvider>
-         
+             
+              <SnackbarProvider maxSnack={6}>
+                <Store />
+              </SnackbarProvider>
+
               <Footer />
               <WhatsappIcon />
             </Grid>
-        
+
           </Route>
-       
+          <Redirect from="/" to="/en" />
         </Switch>
       </Router>
     </ThemeProvider>

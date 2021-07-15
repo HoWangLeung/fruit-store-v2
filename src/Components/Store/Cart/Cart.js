@@ -40,6 +40,7 @@ function Cart() {
     nodes.current = []
     // const addToCart = useCartAnimation(cartItems)
     const history = useHistory()
+    const locale = history.location.pathname.substring(1, 3)
     const classes = useStyles();
     const [isLoading, setIsloading] = useState(false)
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || [])
@@ -150,7 +151,7 @@ function Cart() {
             .then(res => {
                 console.log(res);
                 setIsloading(false)
-                history.push("/checkout")
+                history.push(`/${locale}/checkout`)
 
             })
 

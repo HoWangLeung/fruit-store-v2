@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const [isLoading, setIsLoading] = useState(false)
     let history = useHistory();
+    const locale = history.location.pathname.substring(1, 3)
     console.log(history);
     const [user, setUser] = useState({
         email: "",
@@ -85,7 +86,7 @@ export default function SignUp() {
             .then(res => {
                 console.log(res);
                 setIsLoading(false)
-                history.push("/");
+                history.push(`/${locale}`);
             })
             .catch(e => console.log(e.response))
     }

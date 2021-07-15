@@ -7,11 +7,15 @@ import ItemFilter from './ItemFilter/ItemFilter'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useSnackbar } from 'notistack';
+import { useHistory } from 'react-router-dom'
 
-function Store() {
-
+function Store(props) {
+    let history = useHistory();
+    const locale = history.location.pathname.substring(1, 3)
+    let [data, isLoading] = useData(locale)
+    
     const { enqueueSnackbar } = useSnackbar();
-    let [data, isLoading] = useData()
+  
     let cart = []
 
     if (localStorage.getItem("cart")) {

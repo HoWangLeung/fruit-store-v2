@@ -10,17 +10,28 @@ import './Navbar.scss'
 
 export default function NavBar({ isAuthenticated }) {
     const history = useHistory()
-
-    console.log(history.location.pathname);
     const locale = history.location.pathname.substring(1, 3)
- 
+
     const dispatch = useDispatch()
     const handleClick = (e) => {
         if (!isAuthenticated) {
-            history.push("/auth/signin")
+            history.push(`${locale}/auth/signin`)
         } else {
             localStorage.removeItem(ACCESS_TOKEN)
             dispatch(setSignInStatus(false))
+        }
+    }
+
+    const handleLocale = e => {
+        let current = localStorage.getItem('locale');
+        if (locale === 'en') {
+            localStorage.setItem('locale', 'zh')
+            history.push(`/zh`)
+            window.location.reload(); 
+        } else {
+            localStorage.setItem('locale', 'en')
+            history.push(`/en`)
+            window.location.reload(); 
         }
     }
 
@@ -36,13 +47,13 @@ export default function NavBar({ isAuthenticated }) {
 
                 <Button
 
-
+                    onClick={handleLocale}
                 >
                     <p style={{
                         fontFamily: "Noto Sans TC",
                         fontWeight: "600",
 
-                    }}>English</p>
+                    }}>{locale === "en" ? "中文" : "English"}</p>
                 </Button>
 
                 <Link to={`/${locale}/cart`} style={{ textDecoration: "none" }}>
@@ -57,7 +68,7 @@ export default function NavBar({ isAuthenticated }) {
                         }}>購物籃</p>
                     </Button>
                 </Link>
-                {isAuthenticated && <Link to="/user/settings" style={{ textDecoration: "none" }}>
+                {isAuthenticated && <Link to={`${locale}/user/settings`} style={{ textDecoration: "none" }}>
                     <Button
                     >
                         <p style={{

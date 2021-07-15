@@ -1,5 +1,6 @@
 import { Button, Container, Grid } from '@material-ui/core'
 import React from 'react'
+import { FormattedMessage } from 'react-intl';
 import banner from '../../../Images/banner.jpg'
 import { ReactComponent as CoverSvg } from '../../../Images/cover.svg';
 
@@ -32,7 +33,8 @@ export default function Banner() {
             >
 
                 <Grid item   >
-                    <h1>點擊開始購物</h1>
+                    <h1><FormattedMessage id="banner.line1" /></h1>
+                  
                     <p style={{ color: "#646e73", fontSize: "1.5em" }}>販售各國水果,價廉物美 <br />
                         購物消費滿1000元, 港島區免費送貨</p>
 
