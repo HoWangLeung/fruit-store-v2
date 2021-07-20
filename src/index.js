@@ -12,7 +12,10 @@ import { IntlProvider } from 'react-intl';
 import en from './i18n/en';
 import zh from './i18n/zh';
 
-let locale = localStorage.getItem('locale') || navigator.language
+if (localStorage.getItem('locale') == null)
+  localStorage.setItem('locale', navigator.language)
+
+let locale = localStorage.getItem('locale')
 console.log('locale ', locale);
 let messages;
 if (locale.includes('zh')) {

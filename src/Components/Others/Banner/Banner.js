@@ -34,9 +34,14 @@ export default function Banner() {
 
                 <Grid item   >
                     <h1><FormattedMessage id="banner.line1" /></h1>
-                  
-                    <p style={{ color: "#646e73", fontSize: "1.5em" }}>販售各國水果,價廉物美 <br />
-                        購物消費滿1000元, 港島區免費送貨</p>
+
+                    <p style={{ color: "#646e73", fontSize: "1.5em" }}>
+
+                        <FormattedMessage id="banner.line2" />
+                        
+                        <br />
+                        <FormattedMessage id="banner.line3" />
+                    </p>
 
                 </Grid>
                 <Button onClick={handleClick} color="primary" size="large" variant="contained"  >開始</Button>
