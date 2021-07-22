@@ -5,6 +5,7 @@ import { Button, Paper } from "@material-ui/core";
 import { useState } from 'react';
 import FilterButton from './FilterButton';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { FormattedMessage } from 'react-intl';
 function ItemFilter({
     isLoading,
     selectedCategory,
@@ -14,7 +15,7 @@ function ItemFilter({
     categories,
     countries }) {
     //    console.log(JSON.stringify(data));
-  
+
     return (
 
         <Grid
@@ -23,7 +24,7 @@ function ItemFilter({
             direction="row"
             justify="center"
             alignItems="center">
-        
+
             <Grid
 
                 container direction="row"
@@ -31,9 +32,9 @@ function ItemFilter({
                 item
                 alignItems="center">
                 {isLoading ? (
-                    <Box   ml={.5} pt={.5} width="98.5%" height="60px" >
-            
-                        <Skeleton  height="30px"  />
+                    <Box ml={.5} pt={.5} width="98.5%" height="60px" >
+
+                        <Skeleton height="30px" />
                         <Skeleton width="60%" height="30px" />
                     </Box>
                 ) : (
@@ -41,13 +42,13 @@ function ItemFilter({
                     <table>
                         <tbody>
                             <tr>
-                                <td colSpan="1">種類:</td>
+                                <td colSpan="1">   <FormattedMessage id="store.category" />:</td>
                                 <td colSpan="1">
                                     <>
                                         <Button
                                             style={{ color: "#646e73" }}
                                             value="all" onClick={(e) => setSelectedCategory(null)}  >
-                                            全部
+                                            <FormattedMessage id="store.label.all" />
                                         </Button>
                                         {categories.map((category, i) => {
                                             return (
@@ -67,12 +68,12 @@ function ItemFilter({
 
                             </tr>
                             <tr>
-                                <td colSpan="1">國家:</td>
+                                <td colSpan="1"><FormattedMessage id="store.country" />:</td>
                                 <td colSpan="1">
                                     <Button
                                         style={{ color: "#646e73" }}
                                         value="all" onClick={(e) => setSelectedCountry(null)}   >
-                                        全部
+                                        <FormattedMessage id="store.label.all" />
                                     </Button>
                                     {countries.map((country, i) => {
                                         return (

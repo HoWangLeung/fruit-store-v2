@@ -4,6 +4,7 @@ import Divider from '@material-ui/core/Divider';
 import gsap from 'gsap'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 export default function CheckOutSuccess() {
     let path = useRef()
@@ -48,13 +49,13 @@ export default function CheckOutSuccess() {
                         direction="column"
                         justify="center"
                         alignItems="center">
-                        <h1>付款成功</h1>
-                        <p>感謝你的支持 !<br />
+                        <h1><FormattedMessage id="paySuccess.paymentComplete" /></h1>
+                        <p><FormattedMessage id="paySuccess.thankyou" /> !<br />
                            </p>
                     </Grid>
 
                     <Divider style={{ width: '50%' }} />
-                    <h1>訂單資料</h1>
+                    <h1><FormattedMessage id="paySuccess.orderDetail" /></h1>
                     <Grid container item
                         direction="column"
                         justify="center"
@@ -63,31 +64,31 @@ export default function CheckOutSuccess() {
                         <table>
                             <tbody>
                                 <tr>
-                                    <td style={{ whiteSpace: "nowrap" }} colSpan="1">訂單編號 : </td>
+                                    <td style={{ whiteSpace: "nowrap" }} colSpan="1"><FormattedMessage id="paySuccess.orderReference" /> : </td>
                                     <td colSpan="1">{data.id}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">持卡人 : </td>
+                                    <td colSpan="1"><FormattedMessage id="paySuccess.profile" /> : </td>
                                     <td colSpan="1">{data.source.name}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">信用卡 : </td>
+                                    <td colSpan="1"><FormattedMessage id="paySuccess.cardHoder" /> : </td>
                                     <td colSpan="1">{data.source.brand}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">最後4碼 : </td>
+                                    <td colSpan="1"><FormattedMessage id="paySuccess.cardType" /> : </td>
                                     <td colSpan="1">{data.source.last4}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">金額 : </td>
+                                    <td colSpan="1"><FormattedMessage id="paySuccess.las4" /> : </td>
                                     <td colSpan="1">$ {data.amount/100}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">貨幣 : </td>
+                                    <td colSpan="1"><FormattedMessage id="paySuccess.currency" /> : </td>
                                     <td colSpan="1">{data.currency}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan="1">建立日期 : </td>
+                                    <td colSpan="1"><FormattedMessage id="paySuccess.createdDate" /> : </td>
                                     <td colSpan="1">{data.created}</td>
                                 </tr>
                             </tbody>
@@ -95,7 +96,7 @@ export default function CheckOutSuccess() {
 
                         <Link to="/">
                             <Button style={{ marginTop: "15px", marginBottom: "5px" }} color="primary" variant="contained">
-                                回到主頁
+                            <FormattedMessage id="paySuccess.backHome" />
                             </Button>
                         </Link>
                     </Grid>

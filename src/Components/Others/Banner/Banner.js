@@ -44,7 +44,7 @@ export default function Banner() {
                     </p>
 
                 </Grid>
-                <Button onClick={handleClick} color="primary" size="large" variant="contained"  >開始</Button>
+                <Button onClick={handleClick} color="primary" size="large" variant="contained"  >  <FormattedMessage id="banner.startBtn" /></Button>
             </Grid>
             <Grid item lg={6} className="banner_container">
                 <CoverSvg className="cover_svg" />

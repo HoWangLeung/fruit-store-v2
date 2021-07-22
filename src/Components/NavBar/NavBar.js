@@ -7,6 +7,7 @@ import { ACCESS_TOKEN } from '../../constants'
 
 import Logo from './Logo/Logo'
 import './Navbar.scss'
+import { FormattedMessage } from 'react-intl'
 
 export default function NavBar({ isAuthenticated }) {
     const history = useHistory()
@@ -27,11 +28,11 @@ export default function NavBar({ isAuthenticated }) {
         if (locale === 'en') {
             localStorage.setItem('locale', 'zh')
             history.push(`/zh`)
-            window.location.reload(); 
+            window.location.reload();
         } else {
             localStorage.setItem('locale', 'en')
             history.push(`/en`)
-            window.location.reload(); 
+            window.location.reload();
         }
     }
 
@@ -65,7 +66,7 @@ export default function NavBar({ isAuthenticated }) {
                             fontFamily: "Noto Sans TC",
                             fontWeight: "600",
 
-                        }}>購物籃</p>
+                        }}><FormattedMessage id="navbar.basket" /></p>
                     </Button>
                 </Link>
                 {isAuthenticated && <Link to={`${locale}/user/settings`} style={{ textDecoration: "none" }}>
@@ -75,7 +76,7 @@ export default function NavBar({ isAuthenticated }) {
                             fontFamily: "Noto Sans TC",
                             fontWeight: "600",
 
-                        }}>個人檔案</p>
+                        }}><FormattedMessage id="navbar.profile" /></p>
                     </Button>
                 </Link>}
                 <Button
@@ -86,7 +87,16 @@ export default function NavBar({ isAuthenticated }) {
                         fontFamily: "Noto Sans TC",
                         fontWeight: "600",
 
-                    }}>{isAuthenticated ? "登出" : "登記/登入"}</p>
+                    }}>
+                        <FormattedMessage
+                            id="navbar.login"
+                            values={{
+                                message: isAuthenticated ? "登出" : "登記/登入"
+                            }}
+                        />
+
+
+                    </p>
                 </Button>
             </div>
         </Grid>

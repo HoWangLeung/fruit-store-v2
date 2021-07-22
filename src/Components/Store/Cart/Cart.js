@@ -15,6 +15,7 @@ import { ACCESS_TOKEN, API_BASE_URL } from '../../../constants';
 import axios from 'axios';
 import useCartAnimation from './useCartAnimation';
 import gsap from 'gsap'
+import { FormattedMessage } from 'react-intl';
 const useStyles = makeStyles((theme) => ({
     paper: {
         // marginTop: theme.spacing(8),
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-}), {index: 1});
+}), { index: 1 });
 function Cart() {
     const nodes = useRef([])
     nodes.current = []
@@ -174,7 +175,7 @@ function Cart() {
 
     return (
         <Container component="main"  >
-            <h1  >購物籃</h1>
+            <h1  > <FormattedMessage id="basket.heading" /></h1>
             <Divider />
             <Grid
                 style={{ margin: "20px 0px" }}
@@ -201,10 +202,11 @@ function Cart() {
                                 <img src={item.img} />
                             </div>
                             <div className="cart_container"  >
-                                <span>貨品: {item.name}</span>
+                                <span>
+                                    <FormattedMessage id="basket.item" />: {item.name}</span>
 
-                                <span>產地: {item.country}</span>
-                                <span>價錢: ${item.price}</span>
+                                <span><FormattedMessage id="basket.country" />: {item.country}</span>
+                                <span><FormattedMessage id="basket.price" />: ${item.price}</span>
                             </div>
 
                             <div
@@ -240,17 +242,17 @@ function Cart() {
             >
                 <div style={{ paddingBottom: "30px" }} >
                     <div>
-                        <h3>小計:$ {sum}</h3>
+                        <h3>        <FormattedMessage id="basket.subTotal" />:$ {sum}</h3>
                     </div>
 
                     <Button variant="contained" color="primary"
                         onClick={createPendingOrder}
                         disabled={isLoading}
-                        
+
                     >
                         {isLoading && <CircularProgress
                             size={18} style={{ marginRight: "10px" }} />}
-                        前往付款
+                        <FormattedMessage id="basket.checkout" />
                     </Button>
 
                 </div>

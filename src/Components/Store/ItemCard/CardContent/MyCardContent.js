@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
+import { FormattedMessage } from 'react-intl';
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
@@ -46,8 +47,8 @@ export default function MyCardContent({ data, page, quantity, setQuantity, setCa
                                     justify="space-between"
                                     alignItems="center"
                                 >
-                                    <span>價錢: ${item.price}</span>
-                                    <span>產地: {item.country} </span>
+                                    <span><FormattedMessage id="store.price" />: ${item.price}</span>
+                                    <span><FormattedMessage id="store.country" />: {item.country} </span>
                                 </Grid>
 
 
@@ -64,7 +65,7 @@ export default function MyCardContent({ data, page, quantity, setQuantity, setCa
                                     variant="outlined"
                                     className={classes.formControl}
                                 >
-                                    <InputLabel id={i}>Quantity</InputLabel>
+                                    <InputLabel id={i}><FormattedMessage id="store.quantity"/></InputLabel>
                                     <Select
                                         label="Quantity"
                                         labelId={item.name}
@@ -87,7 +88,7 @@ export default function MyCardContent({ data, page, quantity, setQuantity, setCa
                                 <Button
                                     value={item.name}
                                     onClick={() => setCart(item.name)}
-                                    variant="contained" color="primary" >加入</Button>
+                                    variant="contained" color="primary" ><FormattedMessage id="store.add" /></Button>
                             </Grid>
 
                         </CardContent>

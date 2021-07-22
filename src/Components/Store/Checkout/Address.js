@@ -14,18 +14,19 @@ import Container from '@material-ui/core/Container';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios'
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 const territories = [
     {
         value: 'HK',
-        label: '香港島',
+        label: <FormattedMessage id="checkout.address.terrority1" />,
     },
     {
         value: 'KT',
-        label: '九龍',
+        label: <FormattedMessage id="checkout.address.terrority2" />,
     },
     {
         value: 'NT',
-        label: '新界',
+        label: <FormattedMessage id="checkout.address.terrority3" />,
     },
 
 ];
@@ -81,7 +82,7 @@ export default function Address() {
         <Container maxWidth="xs" >
      
             <Typography component="h1" variant="h5">
-                送貨地址
+            <FormattedMessage id="checkout.address.heading" />
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit}>
                 <TextField
@@ -90,7 +91,7 @@ export default function Address() {
                     required
                     fullWidth
                     id="firstName"
-                    label="名字"
+                    label={ <FormattedMessage id="checkout.address.firstName" />}
                     name="firstName"
                     autoComplete="firstName"
                     onChange={handleChange}
@@ -103,7 +104,7 @@ export default function Address() {
                     required
                     fullWidth
                     id="lastName"
-                    label="姓氏"
+                    label={ <FormattedMessage id="checkout.address.lastName" />}
                     name="lastName"
                     autoComplete="lastName"
                     onChange={handleChange}
@@ -115,7 +116,7 @@ export default function Address() {
                     fullWidth
                     id="terrority"
                     select
-                    label="地區"
+                    label={ <FormattedMessage id="checkout.address.terrority" />}
                     name="terrority"
                     value={profile.terrority}
                     onChange={handleChange}
@@ -133,7 +134,7 @@ export default function Address() {
                     required
                     fullWidth
                     name="address"
-                    label="地址"
+                    label={ <FormattedMessage id="checkout.address.address" />}
                     type="address"
                     id="address"
                     onChange={handleChange}
@@ -147,7 +148,7 @@ export default function Address() {
                     required
                     fullWidth
                     name="phone"
-                    label="電話"
+                    label={ <FormattedMessage id="checkout.address.phone" />}
                     id="phone"
                     onChange={handleChange}
                     value={profile.phone}

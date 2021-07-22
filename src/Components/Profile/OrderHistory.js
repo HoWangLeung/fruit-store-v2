@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ReactComponent as NoDataSvg } from '../../Images/noData.svg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload as download } from "@fortawesome/free-solid-svg-icons"
+import { FormattedMessage } from 'react-intl';
 function createData(id, createdDate, finalTotal, status, protein) {
     return { id, createdDate, finalTotal, status, protein };
 }
@@ -24,7 +25,7 @@ export default function OrderHistory({ orderData, classes }) {
 
 
         <Box style={{ display: "flex", flexDirection: "column", width: '100%' }}>
-            <h2>購買紀錄</h2>
+            <h2><FormattedMessage id="profile.history.heading" /></h2>
             <Paper elevation={8} style={{ padding: "30px", width: '100%' }} >
 
 
@@ -32,11 +33,11 @@ export default function OrderHistory({ orderData, classes }) {
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>訂單編號 #</TableCell>
-                                <TableCell align="center">建立日期</TableCell>
-                                <TableCell align="center">狀態</TableCell>
-                                <TableCell align="center">金額</TableCell>
-                                <TableCell align="center">下載</TableCell>
+                                <TableCell><FormattedMessage id="profile.history.orderReference" />  #</TableCell>
+                                <TableCell align="center"><FormattedMessage id="profile.history.createdDate" /> </TableCell>
+                                <TableCell align="center"><FormattedMessage id="profile.history.status" /> </TableCell>
+                                <TableCell align="center"><FormattedMessage id="profile.history.finalTotal" /> </TableCell>
+                                <TableCell align="center"><FormattedMessage id="profile.history.download" /> </TableCell>
                             </TableRow>
                         </TableHead>
                         {rows.length > 0 ? <TableBody>
@@ -54,9 +55,9 @@ export default function OrderHistory({ orderData, classes }) {
                                         </TableCell>
                                         <TableCell align="center">$ {row.finalTotal}</TableCell>
                                         <TableCell align="center">
-                                            <FontAwesomeIcon 
-                                            style={{cursor:"pointer"}}
-                                            icon={download} />
+                                            <FontAwesomeIcon
+                                                style={{ cursor: "pointer" }}
+                                                icon={download} />
                                         </TableCell>
 
                                     </TableRow>
@@ -73,7 +74,7 @@ export default function OrderHistory({ orderData, classes }) {
                                         <div>
                                             <NoDataSvg style={{ height: "100px", width: "100px" }} />
                                             <p style={{ fontFamily: "Noto Sans TC", fontWeight: "600", color: "#E8D4BF" }} >
-                                                No Data
+                                                <FormattedMessage id="common.noData" />
                                             </p>
                                         </div>
 

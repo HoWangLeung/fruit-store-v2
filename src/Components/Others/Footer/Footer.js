@@ -1,5 +1,6 @@
 import { Divider, Grid } from '@material-ui/core'
 import React from 'react'
+import { FormattedMessage } from 'react-intl'
 import './Footer.scss'
 export default function Footer() {
     return (
@@ -11,26 +12,26 @@ export default function Footer() {
             container item
             className="Footer"
             xs={12}
-         
+
         >
-       
+
             <Grid item  >
-                <h1>聯絡我們</h1>
+                <h1><FormattedMessage id="footer.contactUs" /> </h1>
             </Grid>
             <Grid item  >
                 <table>
                     <tbody>
                         <tr>
-                            <td colSpan="1">實體店地址 : </td>
-                            <td colSpan="1">西區副食品批發市場, 豐物道8號, 西營盤</td>
+                            <td colSpan="1"><FormattedMessage id="footer.address.label" /> : </td>
+                            <td colSpan="1"><FormattedMessage id="footer.address.value" /></td>
                         </tr>
                         <tr>
-                            <td colSpan="1">聯絡電話 : </td>
+                            <td colSpan="1"><FormattedMessage id="footer.phone.label" /> : </td>
                             <td colSpan="1">9259 1883</td>
                         </tr>
                         <tr>
-                            <td colSpan="1">聯絡人 : </td>
-                            <td colSpan="1">梁先生</td>
+                            <td colSpan="1"><FormattedMessage id="footer.contact.label" /> : </td>
+                            <td colSpan="1"><FormattedMessage id="footer.contact.value" /></td>
                         </tr>
                     </tbody>
                 </table>

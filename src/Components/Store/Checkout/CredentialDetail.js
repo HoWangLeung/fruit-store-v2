@@ -22,6 +22,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setPaymentDetail } from './Actions/CheckoutActions';
 import { CircularProgress } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 const territories = [
     {
         value: 'HK',
@@ -62,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     //     minWidth: 120,
 
     // },
-}), {index: 1});
+}), { index: 1 });
 
 function StripeInput(props) {
 
@@ -79,7 +80,7 @@ function StripeInput(props) {
 }
 
 function CredentialDetail(props) {
-    const {setFocus,setCardDetail,cardDetail,sum}=props
+    const { setFocus, setCardDetail, cardDetail, sum } = props
     let history = useHistory();
     const locale = history.location.pathname.substring(1, 3)
     const dispatch = useDispatch()
@@ -91,9 +92,9 @@ function CredentialDetail(props) {
         }
     );
     const [isLoading, setIsLoading] = useState(false)
- 
 
-  
+
+
     const classes = useStyles();
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -135,7 +136,7 @@ function CredentialDetail(props) {
     }
 
     // const handleChange = (e) => {
-       
+
     //     setCardDetail(state => ({
     //         ...state,
     //         [e.target.name]: e.target.value
@@ -157,12 +158,12 @@ function CredentialDetail(props) {
             }));
         }
     }
- 
+
     const hasError = errorMessage !== null;
     return (
         <>
             <Typography component="h1" variant="h5">
-                付款資料
+                <FormattedMessage id="checkout.payment.heading" />
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit} >
                 <TextField
@@ -171,13 +172,13 @@ function CredentialDetail(props) {
                     required
                     fullWidth
                     id="cardHolder"
-                    label="持卡人"
+                    label={<FormattedMessage id="checkout.payment.cardHolder" />}
                     name="cardHolder"
                     autoComplete="cardHolder"
-                    onChange={(e)=>setCardDetail(e)}
+                    onChange={(e) => setCardDetail(e)}
                     value={cardDetail.cardHolder}
                     autoFocus
-                
+
                 />
                 <TextField
                     variant="outlined"
@@ -185,7 +186,7 @@ function CredentialDetail(props) {
                     required
                     fullWidth
                     id="cardNumber"
-                    label="信用卡號碼"
+                    label={<FormattedMessage id="checkout.payment.cardNumber" />}
                     name="cardNumber"
                     helperText={errorMessage.cardNumber}
                     error={errorMessage.cardNumber == null ? false : true}
@@ -197,13 +198,13 @@ function CredentialDetail(props) {
                     InputProps={{
                         inputProps: {
                             component: CardNumberElement,
-                            options:{
+                            options: {
                                 style: {
-                                  base: {
-                                    fontSize: '16px',
-                                  },
+                                    base: {
+                                        fontSize: '16px',
+                                    },
                                 },
-                              }
+                            }
                         },
                         inputComponent: StripeInput
                     }}
@@ -230,7 +231,7 @@ function CredentialDetail(props) {
                             margin="normal"
                             required
                             name="cardExpiry"
-                            label="Expiry Date"
+                            label={<FormattedMessage id="checkout.payment.expiryDate" />}
                             id="cardExpiry"
                             onChange={handleElementChange}
                             helperText={errorMessage.cardExpiry}
@@ -242,18 +243,18 @@ function CredentialDetail(props) {
                                 inputProps: {
 
                                     component: CardExpiryElement,
-                                    options:{
+                                    options: {
                                         style: {
-                                          base: {
-                                            fontSize: '16px',
-                                          },
+                                            base: {
+                                                fontSize: '16px',
+                                            },
                                         },
-                                      }
+                                    }
                                 },
                                 inputComponent: StripeInput,
-                           
+
                             }}
-                        
+
                         />
                     </Grid>
                     <Grid
@@ -265,35 +266,35 @@ function CredentialDetail(props) {
                         xs={5}
                     >
                         <TextField
-                     
+
                             fullWidth
                             variant="outlined"
                             margin="normal"
                             required
                             name="cardCvc"
-                            label="CVC"
+                            label={<FormattedMessage id="checkout.payment.cvc" />}
                             id="cardCvc"
                             helperText={errorMessage.cardCvc}
                             error={errorMessage.cardCvc == null ? false : true}
                             onChange={handleElementChange}
-                            onFocus={()=>setFocus(true)}
-                          onBlur={()=>setFocus(false)}
+                            onFocus={() => setFocus(true)}
+                            onBlur={() => setFocus(false)}
                             InputLabelProps={{
                                 shrink: true
                             }}
                             InputProps={{
 
-                             
+
                                 inputProps: {
-                                   
+
                                     component: CardCvcElement,
-                                    options:{
+                                    options: {
                                         style: {
-                                          base: {
-                                            fontSize: '16px',
-                                          },
+                                            base: {
+                                                fontSize: '16px',
+                                            },
                                         },
-                                      }
+                                    }
                                 },
                                 inputComponent: StripeInput,
 
@@ -310,7 +311,7 @@ function CredentialDetail(props) {
                         color="primary" size="large" variant="contained">
                         {isLoading && <CircularProgress
                             size={18} style={{ marginRight: "10px" }} />}
-                        付款
+                        <FormattedMessage id="checkout.payment.payButton" />
                     </Button>
                 </Grid>
 
@@ -320,17 +321,17 @@ function CredentialDetail(props) {
     )
 }
 
-export default function InjectedCheckoutForm({setFocus,cardDetail,setCardDetail,sum}) {
+export default function InjectedCheckoutForm({ setFocus, cardDetail, setCardDetail, sum }) {
     return (
         <ElementsConsumer>
             {({ stripe, elements }) => (
-                <CredentialDetail stripe={stripe} elements={elements} setFocus={setFocus} 
-                setCardDetail={setCardDetail}
-                cardDetail={cardDetail}
-                
-                sum={sum}
+                <CredentialDetail stripe={stripe} elements={elements} setFocus={setFocus}
+                    setCardDetail={setCardDetail}
+                    cardDetail={cardDetail}
+
+                    sum={sum}
                 />
-             
+
             )}
         </ElementsConsumer>
     );
