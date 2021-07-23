@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
 }), { index: 1 });
-function Cart() {
+function Cart({isAuthenticated}) {
     const nodes = useRef([])
     nodes.current = []
     // const addToCart = useCartAnimation(cartItems)
@@ -247,7 +247,7 @@ function Cart() {
 
                     <Button variant="contained" color="primary"
                         onClick={createPendingOrder}
-                        disabled={isLoading}
+                        disabled={isLoading || cart.length==0 }
 
                     >
                         {isLoading && <CircularProgress

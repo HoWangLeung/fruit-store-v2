@@ -21,7 +21,7 @@ import CreditCard from './CreditCard/CreditCard';
 
 const publishable_key = 'pk_test_oHDsyL0Wxhko6HIFRMrm7QXS00h1og1ziG'
 
-export default function Checkout(props) {
+export default function Checkout({isAuthenticated}) {
     const [focus, setFocus] = useState(false)
     const [cardDetail, setCardDetail] = useState({
         cardHolder: "Leung Ho Wang",

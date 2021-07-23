@@ -41,10 +41,10 @@ function App() {
       <Router  >
         <Switch>
           <Route exact path="/:lang/user/settings" render={props => <Profile {...props} />} />
-          <Route exact path="/:lang/checkout" render={props => <Checkout {...props} />} />
+          <Route exact path="/:lang/checkout" render={props => <Checkout isAuthenticated={isAuthenticated} {...props} />} />
           <Route exact path="/:lang/checkout/success" render={props => <CheckoutSuccess {...props} />} />
           <Route exact path="/:lang/auth/signup" render={props => <SignUp {...props} />} />
-          <Route exact path="/:lang/cart" render={props => <Cart {...props} />} />
+          <Route exact path="/:lang/cart" render={props => <Cart isAuthenticated={isAuthenticated} {...props} />} />
           <Route exact path="/:lang/auth/signin" render={props => <LoginContainer {...props} />} />
           <Route exact path="/:lang" >
             <Grid
@@ -57,7 +57,7 @@ function App() {
               <Banner />
              
               <SnackbarProvider maxSnack={6}>
-                <Store />
+                <Store isAuthenticated={isAuthenticated} />
               </SnackbarProvider>
 
               <Footer />

@@ -22,11 +22,12 @@ const en = {
     'footer.phone.value': '9259 1883',
     'footer.contact.label': 'Contact',
     'footer.contact.value': 'Mr Leung',
-    'signin.sigin': 'Sign In',
+    'signin.signin': 'Sign In',
     'signin.remember': 'Remember me',
     'signin.forgetPassword': 'Forgot password?',
     'signin.noAccount': `Don't have an account? Sign Up here`,
     'signup.signup': 'Sign Up',
+ 
     'signup.haveAccount': 'Already have an account? Sign In here',
     'basket.heading': 'Basket',
     'basket.item': 'Item',

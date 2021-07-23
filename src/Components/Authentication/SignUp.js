@@ -17,6 +17,7 @@ import { signup } from '../../utils/APIUtils';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants/index'
 import axios from 'axios'
 import { CircularProgress } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -117,7 +118,7 @@ export default function SignUp() {
                         required
                         fullWidth
                         id="email"
-                        label="Email Address"
+                        label={<FormattedMessage id="signup.email" />}
                         name="email"
                         autoComplete="email"
                         onChange={handleChange}
@@ -130,7 +131,7 @@ export default function SignUp() {
                         required
                         fullWidth
                         name="password_1"
-                        label="Password"
+                        label={<FormattedMessage id="signup.password" />}
                         type="password_1"
                         id="password_1"
                         onChange={handleChange}
@@ -143,7 +144,7 @@ export default function SignUp() {
                         required
                         fullWidth
                         name="password_2"
-                        label="confirm password"
+                        label={<FormattedMessage id="signup.confirmPassword" />}
                         type="password_2"
                         id="password_2"
                         autoComplete="current-password"
@@ -155,7 +156,7 @@ export default function SignUp() {
                         label="Remember me"
                     /> */}
                     <Button
-                      disabled={isLoading}
+                        disabled={isLoading}
                         type="submit"
                         fullWidth
                         variant="contained"
@@ -165,25 +166,21 @@ export default function SignUp() {
 
                         {isLoading && <CircularProgress
                             size={18} style={{ marginRight: "10px" }} />}
-                        Sign Up
+                        <FormattedMessage id="signup.signup" />
                     </Button>
                     <Grid container>
-                        <Grid item xs>
-                            <Link to="/" variant="body2">
-                                Forgot password?
-                            </Link>
-                        </Grid>
+                        
                         <Grid item>
                             <Link to="/auth/signup" variant="body2">
-                                {"Don't have an account? Sign Up"}
+                                <FormattedMessage id="signup.haveAccount" />
                             </Link>
                         </Grid>
                     </Grid>
                 </form>
             </div>
-            <Box mt={8}>
+            {/* <Box mt={8}>
                 <Copyright />
-            </Box>
+            </Box> */}
         </Container>
     );
 }

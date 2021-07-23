@@ -19,6 +19,7 @@ import axios from 'axios'
 import { setSignInStatus } from './Actions/AuthenticationAction';
 import { useDispatch } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -112,7 +113,7 @@ export default function SignIn() {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    登入
+                    <FormattedMessage id="signin.signin" />
                 </Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <TextField
@@ -121,7 +122,7 @@ export default function SignIn() {
                         required
                         fullWidth
                         id="email"
-                        label="Email Address"
+                        label={<FormattedMessage id="signin.email" />}
                         name="email"
                         autoComplete="email"
                         autoFocus
@@ -134,7 +135,7 @@ export default function SignIn() {
                         required
                         fullWidth
                         name="password"
-                        label="Password"
+                        label={<FormattedMessage id="signin.password" />}
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -143,7 +144,7 @@ export default function SignIn() {
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
+                        label={<FormattedMessage id="signin.remember" />}
                     />
                     <Button
                         type="submit"
@@ -155,25 +156,25 @@ export default function SignIn() {
                     >
                         {isLoading && <CircularProgress
                             size={18} style={{ marginRight: "10px" }} />}
-                        登入
+                        <FormattedMessage id="signin.signin" />
                     </Button>
                     <Grid container>
                         <Grid item xs>
-                            <Link  to="/" >
-                                Forgot password?
+                            <Link to="/" >
+                                <FormattedMessage id="signin.forgetPassword" />
                             </Link>
                         </Grid>
                         <Grid item>
                             <Link to={`/${locale}/auth/signup`} variant="body2">
-                                {"Don't have an account? Sign Up"}
+                                <FormattedMessage id="signin.noAccount" />
                             </Link>
                         </Grid>
                     </Grid>
                 </form>
             </div>
-            <Box mt={8}>
+            {/* <Box mt={8}>
                 <Copyright />
-            </Box>
+            </Box> */}
         </Container>
     );
 }

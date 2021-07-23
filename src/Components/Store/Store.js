@@ -9,7 +9,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { useSnackbar } from 'notistack';
 import { useHistory } from 'react-router-dom'
 
-function Store(props) {
+function Store({isAuthenticated}) {
     let history = useHistory();
     const locale = history.location.pathname.substring(1, 3)
     let [data, isLoading] = useData(locale)
