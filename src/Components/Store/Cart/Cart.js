@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Divider, Grid, Paper, TextField } from '@material-ui/core';
+import { Button, CircularProgress, Divider, Grid, Modal, Paper, TextField, Fade } from '@material-ui/core';
 import React, { useRef } from 'react'
 import './Cart.scss'
 import { Link, useHistory } from 'react-router-dom'
@@ -16,6 +16,8 @@ import axios from 'axios';
 import useCartAnimation from './useCartAnimation';
 import gsap from 'gsap'
 import { FormattedMessage } from 'react-intl';
+import { useSelector } from 'react-redux';
+import { ReactComponent as RequestLogin } from '../../../Images/requestLogin.svg';
 const useStyles = makeStyles((theme) => ({
     paper: {
         // marginTop: theme.spacing(8),
@@ -36,7 +38,9 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
 }), { index: 1 });
-function Cart({isAuthenticated}) {
+function Cart({ isAuthenticated }) {
+    const [open, setOpen] = useState(false);
+    // const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
     const nodes = useRef([])
     nodes.current = []
     // const addToCart = useCartAnimation(cartItems)
@@ -124,7 +128,14 @@ function Cart({isAuthenticated}) {
         localStorage.setItem("cart", JSON.stringify(newCart))
     }
 
-    const createPendingOrder = () => {
+    const createPendingOrder = (e) => {
+        if (!isAuthenticated) {
+
+            setOpen(!open)
+            return;
+        }
+
+
         setIsloading(true)
         let orderItems = cart.map(d => {
             let newItems = {
@@ -172,6 +183,10 @@ function Cart({isAuthenticated}) {
         }
 
     }, [nodes])
+
+    const handleClose = () => {
+        setOpen(!open)
+    }
 
     return (
         <Container component="main"  >
@@ -247,19 +262,45 @@ function Cart({isAuthenticated}) {
 
                     <Button variant="contained" color="primary"
                         onClick={createPendingOrder}
-                        disabled={isLoading || cart.length==0 }
+                        disabled={isLoading || cart.length == 0}
 
                     >
                         {isLoading && <CircularProgress
                             size={18} style={{ marginRight: "10px" }} />}
                         <FormattedMessage id="basket.checkout" />
                     </Button>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                        style={{
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+
+                        }}
+                        closeAfterTransition
+                    >
+                        <Fade in={open}>
+                            <Paper style={{
+                                height: "250px",
+                                minWidth: "350px",
+                                padding: "15px",
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: "column"
+                            }} >
+                                <span style={{ fontWeight: "600", fontSize: "20px", margin: "5px" }}>Please Login</span>
+                                <RequestLogin style={{ height: "100%", width: "100%" }} />
+                                <Link to={`/${locale}/auth/signin`}>
+                                    <Button variant="contained" color="primary">Login</Button>
+                                </Link>
+                            </Paper>
+                        </Fade>
+                    </Modal>
 
                 </div>
             </Grid>
 
 
-        </Container>
+        </Container >
     )
 }
 

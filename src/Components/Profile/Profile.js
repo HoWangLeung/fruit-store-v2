@@ -17,21 +17,25 @@ const useStyles = makeStyles({
 
 export default function Profile() {
     const classes = useStyles();
-
- 
-   
-    let userData = useProfileData()
-   
+    let { userData,
+        handleEditProfile,
+        handleClose,
+        open,
+        handleProfileChange,
+        profile,
+        setProfile,
+        handleSubmit,
+        openFeedBack
+    } = useProfileData()
     let orderData = useOrderData()
-    console.log(orderData);
+
     if (userData.length === 0) return <Backdrop open style={{ backgroundColor: "#fafafa" }} >
         <CircularProgress />
     </Backdrop>
 
 
 
-
-
+ 
 
     return (
         <Container maxWidth="md"   >
@@ -45,7 +49,16 @@ export default function Profile() {
                 <Grid container item
                     justify="center"
                     alignItems="center">
-                    <PersonalInfo user={userData}  />
+                    <PersonalInfo user={userData}
+                        open={open}
+                        handleClose={handleClose}
+                        handleEditProfile={handleEditProfile}
+                        handleSubmit={handleSubmit}
+                        handleProfileChange={handleProfileChange}
+                        profile={profile}
+                        setProfile={setProfile}
+                        openFeedBack={openFeedBack}
+                    />
                 </Grid>
                 <Grid container item
                     justify="center"

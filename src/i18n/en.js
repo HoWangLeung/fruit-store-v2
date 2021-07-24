@@ -1,13 +1,15 @@
 const en = {
     'app.learn': 'Learn {name}',
-    'banner.line1': 'Welcome to the shop',
-    'banner.line2': 'Selling fruits from all around the world at affordable prices',
+    'banner.line1': 'Welcome',
+    'banner.line2': 'Fruits from all around the world',
     'banner.line3': 'Free Delivery within HK Island for order over $1000',
     'banner.startBtn': 'Start',
     'common.noData': 'No Data',
     'navbar.basket': 'Basket',
     'navbar.profile': 'Profile',
-    'navbar.login': 'Login/Logout',
+    'navbar.loginTitle': '{message}',
+    'navbar.login': 'Login/SignUp',
+    'navbar.logout': 'Logout',
     'store.add': 'Add',
     'store.price': 'Price',
     'store.country': 'Country',
@@ -27,7 +29,7 @@ const en = {
     'signin.forgetPassword': 'Forgot password?',
     'signin.noAccount': `Don't have an account? Sign Up here`,
     'signup.signup': 'Sign Up',
- 
+
     'signup.haveAccount': 'Already have an account? Sign In here',
     'basket.heading': 'Basket',
     'basket.item': 'Item',

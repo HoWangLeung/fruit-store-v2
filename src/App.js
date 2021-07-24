@@ -32,10 +32,7 @@ const theme = createMuiTheme({
 
 function App() {
   const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
-  console.log("isAuthenticated: ", isAuthenticated);
-  let locale = localStorage.getItem('locale') || 'en'
-  console.log(locale);
-
+ 
   return (
     <ThemeProvider theme={theme}>
       <Router  >

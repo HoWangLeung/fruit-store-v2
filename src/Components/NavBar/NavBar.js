@@ -4,12 +4,12 @@ import { useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { setSignInStatus } from '../Authentication/Actions/AuthenticationAction'
 import { ACCESS_TOKEN } from '../../constants'
-
+import { injectIntl } from 'react-intl';
 import Logo from './Logo/Logo'
 import './Navbar.scss'
 import { FormattedMessage } from 'react-intl'
 
-export default function NavBar({ isAuthenticated }) {
+function NavBar({ isAuthenticated,intl }) {
     const history = useHistory()
     const locale = history.location.pathname.substring(1, 3)
 
@@ -89,9 +89,11 @@ export default function NavBar({ isAuthenticated }) {
 
                     }}>
                         <FormattedMessage
-                            id="navbar.login"
+                            id="navbar.loginTitle"
                             values={{
-                                message: isAuthenticated ? "登出" : "登記/登入"
+                                message: isAuthenticated ?
+                                    intl.formatMessage({ id: 'navbar.logout' }) :
+                                    intl.formatMessage({ id: 'navbar.login' })
                             }}
                         />
 
@@ -102,3 +104,4 @@ export default function NavBar({ isAuthenticated }) {
         </Grid>
     )
 }
+export default injectIntl(NavBar);
