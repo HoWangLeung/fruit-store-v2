@@ -8,7 +8,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useSnackbar } from 'notistack';
 import { useHistory } from 'react-router-dom'
-
+import {testData} from './Data/FruitItem'
 function Store({isAuthenticated}) {
     let history = useHistory();
     const locale = history.location.pathname.substring(1, 3)
@@ -22,7 +22,7 @@ function Store({isAuthenticated}) {
 
         cart = JSON.parse(localStorage.getItem("cart"))
     }
-
+console.log(JSON.stringify(testData));
     const [selectedCategory, setSelectedCategory] = useState()
     const [selectedCountry, setSelectedCountry] = useState()
     const [quantity, setQuantity] = useState({})
@@ -56,7 +56,7 @@ function Store({isAuthenticated}) {
         }))
     }
     const handleSetCart = (itemName) => {
-
+        console.log('setting item ', itemName);
         let selected = data
             .filter(d => d.name == itemName)
             .map(d => {

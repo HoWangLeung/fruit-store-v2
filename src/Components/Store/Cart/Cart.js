@@ -49,7 +49,7 @@ function Cart({ isAuthenticated }) {
     const classes = useStyles();
     const [isLoading, setIsloading] = useState(false)
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || [])
-    // console.log(JSON.stringify(cart));
+   // console.log(JSON.stringify(cart));
     let sum = 0;
     cart.map(d => {
         d.total = d.price * d.quantity
@@ -147,6 +147,9 @@ function Cart({ isAuthenticated }) {
         })
         const headers = {
             'Content-Type': 'application/json',
+        }
+        if (localStorage.getItem(ACCESS_TOKEN)) {
+            headers['Authorization'] = 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
         }
         let payload = {
             orderItems

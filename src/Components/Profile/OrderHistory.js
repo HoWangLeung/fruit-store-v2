@@ -11,6 +11,9 @@ import { ReactComponent as NoDataSvg } from '../../Images/noData.svg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload as download } from "@fortawesome/free-solid-svg-icons"
 import { FormattedMessage } from 'react-intl';
+import OrderPDF from './OrderHistory/OrderPDF';
+import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer'
+
 function createData(id, createdDate, finalTotal, status, protein) {
     return { id, createdDate, finalTotal, status, protein };
 }
@@ -55,9 +58,14 @@ export default function OrderHistory({ orderData, classes }) {
                                         </TableCell>
                                         <TableCell align="center">$ {row.finalTotal}</TableCell>
                                         <TableCell align="center">
-                                            <FontAwesomeIcon
+                                            {/* <FontAwesomeIcon
                                                 style={{ cursor: "pointer" }}
-                                                icon={download} />
+                                                icon={download} /> */}
+                                            <PDFDownloadLink document={<OrderPDF rows={rows} />} fileName="somename.pdf">
+                                                {({ blob, url, loading, error }) => (<FontAwesomeIcon
+                                                    style={{ cursor: "pointer" }}
+                                                    icon={download} />)}
+                                            </PDFDownloadLink>
                                         </TableCell>
 
                                     </TableRow>
@@ -84,6 +92,7 @@ export default function OrderHistory({ orderData, classes }) {
                         }
                     </Table>
                 </TableContainer>
+                {/* <OrderPDF /> */}
             </Paper>
         </Box>
 

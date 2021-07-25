@@ -10,7 +10,7 @@ import orange_1 from '../../../Images/orange_1.jpeg'
 import melon_1 from '../../../Images/melon_1.jpeg'
 import melon_2 from '../../../Images/melon_2.jpeg'
 let sample = "https://images.unsplash.com/photo-1591735179859-a049994205de?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"
-export const data =
+export const testData =
     [
         {
             id: "0",
