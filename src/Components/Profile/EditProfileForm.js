@@ -1,7 +1,10 @@
-import { Grid, Button, Container, Fade, Paper, TextField, CssBaseline } from '@material-ui/core'
+import { Grid, Button, Container, Fade, Paper, TextField, CssBaseline, CircularProgress } from '@material-ui/core'
 import React from 'react'
 
-export default function EditProfileForm({ open, handleSubmit, user, handleProfileChange, profile,handleClose }) {
+export default function EditProfileForm({
+    open, handleSubmit, user,
+    handleProfileChange, profile, handleClose,
+    isLoadingprofile }) {
     return (
         <Fade in={open}>
             <Container maxWidth="xs">
@@ -67,12 +70,13 @@ export default function EditProfileForm({ open, handleSubmit, user, handleProfil
 
 
                         </form>
-                        <div style={{marginTop:"8px"}}>
+                        <div style={{ marginTop: "8px" }}>
                             <Button
                                 onClick={handleClose}
                                 variant="contained"
                                 color="secondary"
-                                style={{marginRight:"15px"}}
+                                style={{ marginRight: "15px" }}
+                                disabled={isLoadingprofile}
                             >
                                 Cancel
                             </Button>
@@ -82,7 +86,10 @@ export default function EditProfileForm({ open, handleSubmit, user, handleProfil
                                 type="submit"
                                 variant="contained"
                                 color="primary"
+                                disabled={isLoadingprofile}
                             >
+                                {isLoadingprofile && <CircularProgress
+                                    size={18} style={{ marginRight: "10px" }} />}
                                 Confirm
                             </Button>
                         </div>

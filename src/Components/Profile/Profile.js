@@ -25,7 +25,8 @@ export default function Profile() {
         profile,
         setProfile,
         handleSubmit,
-        openFeedBack
+        openFeedBack,
+        isLoadingprofile
     } = useProfileData()
     let orderData = useOrderData()
 
@@ -58,6 +59,7 @@ export default function Profile() {
                         profile={profile}
                         setProfile={setProfile}
                         openFeedBack={openFeedBack}
+                        isLoadingprofile={isLoadingprofile}
                     />
                 </Grid>
                 <Grid container item

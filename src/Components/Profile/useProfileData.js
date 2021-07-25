@@ -9,6 +9,7 @@ export default function useProfileData() {
     const [data, setData] = useState([])
     const [open, setOpen] = useState(false)
     const [openFeedBack, setOpenFeedBack] = useState(false)
+    const [isLoadingprofile, setIsLoadingprofile] = useState(false)
     const [profile, setProfile] = useState({
         firstName: "Derek",
         lastName: "Leung",
@@ -61,6 +62,7 @@ export default function useProfileData() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsLoadingprofile(true)
         console.log(profile);
         const headers = {
             'Content-Type': 'application/json',
@@ -81,6 +83,7 @@ export default function useProfileData() {
                 setProfile(res.data)
                 setOpen(!open)
                 setOpenFeedBack(true)
+                setIsLoadingprofile(false)
             })
             // .then(() => {
             //     const headers = {
@@ -118,6 +121,7 @@ export default function useProfileData() {
         profile,
         setProfile,
         handleSubmit,
-        openFeedBack
+        openFeedBack,
+        isLoadingprofile
     }
 }

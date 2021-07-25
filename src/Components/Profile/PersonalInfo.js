@@ -11,7 +11,8 @@ export default function PersonalInfo({ user,
     handleProfileChange,
     profile,
     setProfile,
-    openFeedBack
+    openFeedBack,
+    isLoadingprofile
 
 }) {
     console.log(user);
@@ -52,15 +53,15 @@ export default function PersonalInfo({ user,
                         </tr>
                     </tbody>
                 </table>
-             
-                    <Button
-                        onClick={handleEditProfile}
-                        style={{ margin: "10px" }} color="primary" variant="contained">
-                        <FormattedMessage id="profile.editProfile" />
-                    </Button>
-                
-                <Modal
 
+                <Button
+                    onClick={handleEditProfile}
+                    style={{ margin: "10px" }} color="primary" variant="contained">
+                    <FormattedMessage id="profile.editProfile" />
+                </Button>
+
+                <Modal
+                    onBackdropClick="false"
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="simple-modal-title"
@@ -74,13 +75,14 @@ export default function PersonalInfo({ user,
 
                     <>
                         <EditProfileForm
-                        handleClose={handleClose}
+                            handleClose={handleClose}
                             open={open}
                             handleSubmit={handleSubmit}
                             user={user}
                             handleProfileChange={handleProfileChange}
                             profile={profile}
                             setProfile={setProfile}
+                            isLoadingprofile={isLoadingprofile}
                         />
                     </>
 
