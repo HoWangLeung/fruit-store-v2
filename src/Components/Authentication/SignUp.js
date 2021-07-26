@@ -56,6 +56,11 @@ export default function SignUp() {
     let history = useHistory();
     const locale = history.location.pathname.substring(1, 3)
     console.log(history);
+    const [errors, setErrors] = useState({
+        email: "",
+        password_1: "",
+        password_2: ""
+    });
     const [user, setUser] = useState({
         email: "",
         password_1: "",
