@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,6 +18,7 @@ import { API_BASE_URL, ACCESS_TOKEN } from '../../constants/index'
 import axios from 'axios'
 import { CircularProgress } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
+import { validator } from './AuthValidator';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -99,12 +100,39 @@ export default function SignUp() {
 
     const handleChange = (e) => {
 
+
+
         setUser(state => ({
             ...state,
             [e.target.name]: e.target.value
         }))
+
     }
 
+    const handleBlur = e => {
+        const { name: fieldName } = e.target;
+
+        const faildFiels = validator(user, fieldName);
+
+        setErrors((state) => ({
+            ...state,
+            [fieldName]: Object.values(faildFiels)[0]
+        }));
+    };
+
+    useEffect(() => {
+        const { password_1, password_2 } = user
+        if (password_2 && password_1 !== password_2) {
+            setErrors(state => ({ ...state, password_1: "", password_2: "password does not match" }))
+        }
+
+        if (password_1 == password_2) {
+            setErrors(state => ({ ...state, password_1: "", password_2: "" }))
+        }
+
+
+    }, [user.password_1, user.password_2])
+    console.log('errors ', errors);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -127,8 +155,11 @@ export default function SignUp() {
                         name="email"
                         autoComplete="email"
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={user.email}
                         autoFocus
+                        error={errors.email ? true : false}
+                        helperText={errors.email}
                     />
                     <TextField
                         variant="outlined"
@@ -141,7 +172,10 @@ export default function SignUp() {
                         id="password_1"
                         onChange={handleChange}
                         value={user.password_1}
+                        onBlur={handleBlur}
                         autoComplete="current-password"
+                        error={errors.password_1 ? true : false}
+                        helperText={errors.password_1}
                     />
                     <TextField
                         variant="outlined"
@@ -154,7 +188,10 @@ export default function SignUp() {
                         id="password_2"
                         autoComplete="current-password"
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={user.password_2}
+                        error={errors.password_2 ? true : false}
+                        helperText={errors.password_2}
                     />
                     {/* <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -174,7 +211,7 @@ export default function SignUp() {
                         <FormattedMessage id="signup.signup" />
                     </Button>
                     <Grid container>
-                        
+
                         <Grid item>
                             <Link to="/auth/signup" variant="body2">
                                 <FormattedMessage id="signup.haveAccount" />
