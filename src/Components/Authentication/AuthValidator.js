@@ -9,6 +9,9 @@ export const validator = (fields, fieldName) => {
         case "email":
             validateEmail(fields.email, errors);
             break;
+        case "password":
+            validatePassword(fields.password, errors);
+            break;
         case "password_1":
             validatePassword_1(fields.password_1, errors);
             break;
@@ -34,6 +37,18 @@ function validateEmail(email, errors) {
     return result;
 }
 // ******************************
+function validatePassword(password, errors) {
+
+    let result = true;
+    console.log('is password 1 empty ? ', password);
+    if (!password) {
+        errors.password = "*必須填寫此欄";
+        result = false;
+    }
+
+
+    return result;
+}
 function validatePassword_1(password_1, errors) {
 
     let result = true;

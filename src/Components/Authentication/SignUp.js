@@ -155,9 +155,10 @@ export default function SignUp() {
                         name="email"
                         autoComplete="email"
                         onChange={handleChange}
-                        onBlur={handleBlur}
+                
                         value={user.email}
                         autoFocus
+                        onBlur={handleBlur}
                         error={errors.email ? true : false}
                         helperText={errors.email}
                     />

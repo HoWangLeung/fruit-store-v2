@@ -20,6 +20,7 @@ import { setSignInStatus } from './Actions/AuthenticationAction';
 import { useDispatch } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
+import { validator } from './AuthValidator';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -60,6 +61,10 @@ export default function SignIn() {
     console.log(locale);
     const dispatch = useDispatch()
     const classes = useStyles();
+    const [errors, setErrors] = useState({
+        email: "",
+        password: "",
+    });
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -71,8 +76,25 @@ export default function SignIn() {
             [e.target.name]: e.target.value
         }))
     }
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        let isError = Object.values(errors).filter(d => {
+            console.log(d);
+          if(d!==undefined || d!==""){
+            console.log(d);
+              return d
+          }
+        }).length>0
+        console.log(isError);
+
+        if(isError){
+            return;
+        }
+
+
         setIsLoading(true)
         let payload = {
             email: user.email,
@@ -105,6 +127,17 @@ export default function SignIn() {
             .catch(e => console.log(e.response))
     }
 
+    const handleBlur = e => {
+        const { name: fieldName } = e.target;
+
+        const faildFiels = validator(user, fieldName);
+
+        setErrors((state) => ({
+            ...state,
+            [fieldName]: Object.values(faildFiels)[0]
+        }));
+    };
+
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -119,7 +152,7 @@ export default function SignIn() {
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required
+
                         fullWidth
                         id="email"
                         label={<FormattedMessage id="signin.email" />}
@@ -128,11 +161,14 @@ export default function SignIn() {
                         autoFocus
                         onChange={handleChange}
                         value={user.email}
+                        onBlur={handleBlur}
+                        error={errors.email ? true : false}
+                        helperText={errors.email}
                     />
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required
+
                         fullWidth
                         name="password"
                         label={<FormattedMessage id="signin.password" />}
@@ -141,6 +177,9 @@ export default function SignIn() {
                         autoComplete="current-password"
                         onChange={handleChange}
                         value={user.password}
+                        onBlur={handleBlur}
+                        error={errors.password ? true : false}
+                        helperText={errors.password}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
