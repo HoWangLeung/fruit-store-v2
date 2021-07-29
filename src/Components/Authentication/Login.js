@@ -18,9 +18,14 @@ import { API_BASE_URL, ACCESS_TOKEN } from '../../constants/index'
 import axios from 'axios'
 import { setSignInStatus } from './Actions/AuthenticationAction';
 import { useDispatch } from 'react-redux';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, DialogContentText } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 import { validator } from './AuthValidator';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import ErrorIcon from '@material-ui/icons/Error';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -58,7 +63,7 @@ export default function SignIn() {
     const [isLoading, setIsLoading] = useState(false)
     let history = useHistory();
     const locale = history.location.pathname.substring(1, 3)
-    console.log(locale);
+
     const dispatch = useDispatch()
     const classes = useStyles();
     const [errors, setErrors] = useState({
@@ -69,6 +74,8 @@ export default function SignIn() {
         email: "",
         password: ""
     })
+
+    const [openDialog, setOpenDialog] = useState(false)
 
     const handleChange = (e) => {
         setUser(state => ({
@@ -82,15 +89,15 @@ export default function SignIn() {
         e.preventDefault()
 
         let isError = Object.values(errors).filter(d => {
-            console.log(d);
-          if(d!==undefined || d!==""){
-            console.log(d);
-              return d
-          }
-        }).length>0
-        console.log(isError);
 
-        if(isError){
+            if (d !== undefined || d !== "") {
+
+                return d
+            }
+        }).length > 0
+
+
+        if (isError) {
             return;
         }
 
@@ -114,17 +121,24 @@ export default function SignIn() {
             url: API_BASE_URL + "/api/auth/signin",
             data: payload
         }
-        console.log(config);
+
 
         axios(config)
             .then(res => {
-                console.log(res);
+
                 localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
                 setIsLoading(false)
                 dispatch(setSignInStatus(true))
                 history.push(`/${locale}`)
             })
-            .catch(e => console.log(e.response))
+            .catch(e => {
+                console.log(e.message);
+                if (e.message === "Request failed with status code 401") {
+                    console.log('401 error !!!!');
+                    setOpenDialog(true)
+                    setIsLoading(false)
+                }
+            })
     }
 
     const handleBlur = e => {
@@ -211,9 +225,31 @@ export default function SignIn() {
                     </Grid>
                 </form>
             </div>
-            {/* <Box mt={8}>
-                <Copyright />
-            </Box> */}
+            <Dialog
+                open={openDialog}
+                onClose={() => setOpenDialog(false)}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                fullWidth
+                maxWidth="xs"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    <Grid container alignItems="center" justifyContent="center">
+                        <ErrorIcon style={{fill:'#ff7961',fontSize:"200%",marginRight:"10px"}} />
+                        <Typography variant="span" align="center">Error Message</Typography>
+                    </Grid>
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description" style={{ alignSelf: "center" }} >
+                        <Typography align="center">Invalid username or password</Typography>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenDialog(false)}   autoFocus>
+                        OK
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Container>
     );
 }
