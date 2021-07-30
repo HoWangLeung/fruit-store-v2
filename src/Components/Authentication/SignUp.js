@@ -148,16 +148,15 @@ export default function SignUp() {
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
                         id="email"
                         label={<FormattedMessage id="signup.email" />}
                         name="email"
                         autoComplete="email"
                         onChange={handleChange}
-                
+
                         value={user.email}
-                        autoFocus
+
                         onBlur={handleBlur}
                         error={errors.email ? true : false}
                         helperText={errors.email}
@@ -165,7 +164,6 @@ export default function SignUp() {
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
                         name="password_1"
                         label={<FormattedMessage id="signup.password" />}
@@ -181,7 +179,6 @@ export default function SignUp() {
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
                         name="password_2"
                         label={<FormattedMessage id="signup.confirmPassword" />}
@@ -214,7 +211,7 @@ export default function SignUp() {
                     <Grid container>
 
                         <Grid item>
-                            <Link to="/auth/signup" variant="body2">
+                            <Link to={`/${locale}/auth/signin`} variant="body2">
                                 <FormattedMessage id="signup.haveAccount" />
                             </Link>
                         </Grid>
