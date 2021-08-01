@@ -70,6 +70,10 @@ export default function SignUp() {
     const classes = useStyles();
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        let isValid = validateFields()
+        if (!isValid) return;
+
         setIsLoading(true)
         let payload = {
             email: user.email,
@@ -96,6 +100,31 @@ export default function SignUp() {
                 history.push(`/${locale}`);
             })
             .catch(e => console.log(e.response))
+    }
+
+
+    const validateFields = () => {
+        console.log('sdfsdf');
+        let isValid = true
+        Object.keys(user).forEach(fieldName => {
+            console.log(fieldName);
+            const faildFields = validator(user, fieldName);
+            console.log("faildFields ", faildFields);
+            Object.values(faildFields).forEach(d => {
+                if (d) {
+                    isValid = false
+                }
+            })
+           
+            setErrors((state) => ({
+                ...state,
+                [fieldName]: Object.values(faildFields)[0]
+            }));
+
+        })
+
+        console.log("isValid = ", isValid);
+        return isValid
     }
 
     const handleChange = (e) => {

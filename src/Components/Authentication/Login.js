@@ -75,7 +75,10 @@ export default function SignIn() {
         password: ""
     })
 
-    const [openDialog, setOpenDialog] = useState(false)
+    const [dialog, setDialog] = useState({
+        open: false,
+        message: "System Error"
+    })
 
     const handleChange = (e) => {
         setUser(state => ({
@@ -91,12 +94,9 @@ export default function SignIn() {
         let isError = Object.values(errors).filter(d => {
 
             if (d !== undefined || d !== "") {
-
                 return d
             }
         }).length > 0
-
-
         if (isError) {
             return;
         }
@@ -135,10 +135,26 @@ export default function SignIn() {
                 console.log(e.message);
                 if (e.message === "Request failed with status code 401") {
                     console.log('401 error !!!!');
-                    setOpenDialog(true)
+                    setDialog(state => ({
+                        ...state,
+                        open: true,
+                        message: "Invalid username or Password"
+                    }))
+                    setIsLoading(false)
+                } else {
+                    setDialog(state => ({
+                        ...state,
+                        open: true,
+                        message: "System Error"
+                    }))
                     setIsLoading(false)
                 }
+
+
+
             })
+
+
     }
 
     const handleBlur = e => {
@@ -226,8 +242,8 @@ export default function SignIn() {
                 </form>
             </div>
             <Dialog
-                open={openDialog}
-                onClose={() => setOpenDialog(false)}
+                open={dialog.open}
+                onClose={() => setDialog(state=>({...state,open:false}))}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
                 fullWidth
@@ -235,17 +251,17 @@ export default function SignIn() {
             >
                 <DialogTitle id="alert-dialog-title">
                     <Grid container alignItems="center" justifyContent="center">
-                        <ErrorIcon style={{fill:'#ff7961',fontSize:"200%",marginRight:"10px"}} />
+                        <ErrorIcon style={{ fill: '#ff7961', fontSize: "200%", marginRight: "10px" }} />
                         <Typography variant="span" align="center">Error Message</Typography>
                     </Grid>
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description" style={{ alignSelf: "center" }} >
-                        <Typography align="center">Invalid username or password</Typography>
+                        <Typography align="center">{dialog.message}</Typography>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => setOpenDialog(false)}   autoFocus>
+                    <Button onClick={() => setDialog(state=>({...state,open:false}))} autoFocus>
                         OK
                     </Button>
                 </DialogActions>
