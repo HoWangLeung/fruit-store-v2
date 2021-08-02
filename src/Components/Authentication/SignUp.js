@@ -11,14 +11,17 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
 import { Link, useHistory } from 'react-router-dom';
 import { signup } from '../../utils/APIUtils';
 import { API_BASE_URL, ACCESS_TOKEN } from '../../constants/index'
 import axios from 'axios'
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Dialog, DialogContentText } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 import { validator } from './AuthValidator';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import ErrorIcon from '@material-ui/icons/Error';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -67,6 +70,10 @@ export default function SignUp() {
         password_1: "",
         password_2: ""
     })
+    const [dialog, setDialog] = useState({
+        open: false,
+        message: "System Error"
+    })
     const classes = useStyles();
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -99,7 +106,27 @@ export default function SignUp() {
                 setIsLoading(false)
                 history.push(`/${locale}`);
             })
-            .catch(e => console.log(e.response))
+            .catch(e => {
+
+                console.log(e.response)
+                if (e.response.data.message === "Error: Email is already in use!") {
+                    console.log('401 error !!!!');
+                    setDialog(state => ({
+                        ...state,
+                        open: true,
+                        message: "Email is already in use!"
+                    }))
+                    setIsLoading(false)
+                } else {
+                    setDialog(state => ({
+                        ...state,
+                        open: true,
+                        message: "System Error"
+                    }))
+                    setIsLoading(false)
+                }
+
+            })
     }
 
 
@@ -115,7 +142,7 @@ export default function SignUp() {
                     isValid = false
                 }
             })
-           
+
             setErrors((state) => ({
                 ...state,
                 [fieldName]: Object.values(faildFields)[0]
@@ -247,9 +274,31 @@ export default function SignUp() {
                     </Grid>
                 </form>
             </div>
-            {/* <Box mt={8}>
-                <Copyright />
-            </Box> */}
+            <Dialog
+                open={dialog.open}
+                onClose={() => setDialog(state => ({ ...state, open: false }))}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                fullWidth
+                maxWidth="xs"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    <Grid container alignItems="center" justifyContent="center">
+                        <ErrorIcon style={{ fill: '#ff7961', fontSize: "200%", marginRight: "10px" }} />
+                        <Typography variant="span" align="center">Error Message</Typography>
+                    </Grid>
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description" style={{ alignSelf: "center" }} >
+                        <Typography align="center">{dialog.message}</Typography>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setDialog(state => ({ ...state, open: false }))} autoFocus>
+                        OK
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Container>
     );
 }
