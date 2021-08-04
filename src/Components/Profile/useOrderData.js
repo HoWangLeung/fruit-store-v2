@@ -24,7 +24,7 @@ export default function useProfileData() {
         }
         axios(config)
             .then(res => {
-
+                console.log(res.data);
                 setData(res.data)
             })
             .catch(e => {

@@ -1,26 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { Container, Grid, Paper, Button, Divider, Box, Chip } from '@material-ui/core'
+import { Container, Grid, Paper, Button, Divider, Box, Chip, Collapse, Typography, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { ReactComponent as NoDataSvg } from '../../Images/noData.svg'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload as download } from "@fortawesome/free-solid-svg-icons"
-import { FormattedMessage } from 'react-intl';
-import OrderPDF from './OrderHistory/OrderPDF';
-import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer'
 
-function createData(id, createdDate, finalTotal, status, protein) {
-    return { id, createdDate, finalTotal, status, protein };
+import { FormattedMessage } from 'react-intl';
+
+
+import SubTable from './SubTable';
+
+function createData(id, createdDate, finalTotal, status, orderItems) {
+    return { id, createdDate, finalTotal, status, orderItems };
 }
-export default function OrderHistory({ orderData, classes }) {
-    console.log(orderData);
-    let rows = orderData.map(({ refId, createdDate, status, finalTotal }) => {
-        let row = createData(refId, createdDate, finalTotal, status, 4.0)
+export default function OrderHistory({ orderData, classes, locale }) {
+
+
+    let rows = orderData.map(({ refId, createdDate, status, finalTotal, orderItems }) => {
+        let row = createData(refId, createdDate, finalTotal, status, orderItems)
         return row
     })
 
@@ -36,39 +37,22 @@ export default function OrderHistory({ orderData, classes }) {
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
                             <TableRow>
+
                                 <TableCell><FormattedMessage id="profile.history.orderReference" />  #</TableCell>
                                 <TableCell align="center"><FormattedMessage id="profile.history.createdDate" /> </TableCell>
                                 <TableCell align="center"><FormattedMessage id="profile.history.status" /> </TableCell>
                                 <TableCell align="center"><FormattedMessage id="profile.history.finalTotal" /> </TableCell>
                                 <TableCell align="center"><FormattedMessage id="profile.history.download" /> </TableCell>
+                                <TableCell />
                             </TableRow>
                         </TableHead>
                         {rows.length > 0 ? <TableBody>
                             {rows.map((row, i) => {
                                 console.log(row);
                                 return (
-                                    <TableRow key={i}>
-                                        <TableCell component="th" scope="row">
-                                            {row.id}
-                                        </TableCell>
-                                        <TableCell align="center">{row.createdDate}</TableCell>
-                                        <TableCell align="center">
-                                            <Chip label={row.status === "PAID" ? "已付款" : null} style={{ backgroundColor: "#01BFA6", color: "white" }} />
 
-                                        </TableCell>
-                                        <TableCell align="center">$ {row.finalTotal}</TableCell>
-                                        <TableCell align="center">
-                                            {/* <FontAwesomeIcon
-                                                style={{ cursor: "pointer" }}
-                                                icon={download} /> */}
-                                            <PDFDownloadLink document={<OrderPDF rows={rows} />} fileName="somename.pdf">
-                                                {({ blob, url, loading, error }) => (<FontAwesomeIcon
-                                                    style={{ cursor: "pointer" }}
-                                                    icon={download} />)}
-                                            </PDFDownloadLink>
-                                        </TableCell>
+                                    <SubTable key={row.id} rows={rows} row={row} locale={locale} />
 
-                                    </TableRow>
                                 )
                             }
 

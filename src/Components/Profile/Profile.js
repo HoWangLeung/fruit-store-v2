@@ -6,6 +6,7 @@ import useOrderData from './useOrderData';
 import OrderHistory from './OrderHistory';
 import PersonalInfo from './PersonalInfo';
 import useProfileData from './useProfileData';
+import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -16,6 +17,7 @@ const useStyles = makeStyles({
 
 
 export default function Profile() {
+    let history = useHistory();
     const classes = useStyles();
     let { userData,
         handleEditProfile,
@@ -29,7 +31,7 @@ export default function Profile() {
         isLoadingprofile
     } = useProfileData()
     let orderData = useOrderData()
-
+    const locale = history.location.pathname.substring(1, 3)
     if (userData.length === 0) return <Backdrop open style={{ backgroundColor: "#fafafa" }} >
         <CircularProgress />
     </Backdrop>
@@ -69,7 +71,7 @@ export default function Profile() {
                     <OrderHistory
                         classes={classes}
                         orderData={orderData}
-
+                        locale={locale}
                     />
 
                 </Grid>
