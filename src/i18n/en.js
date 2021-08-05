@@ -79,6 +79,11 @@ const en = {
     'profile.history.status': 'Status',
     'profile.history.finalTotal': 'Total',
     'profile.history.download': 'Download',
+    'profile.history.detail.header.main': 'Detail',
+    'profile.history.detail.header.item': 'Item',
+    'profile.history.detail.header.price': 'Price',
+    'profile.history.detail.header.quantity': 'Quantity',
+    'profile.history.detail.header.total': 'Total',
 
 
 }

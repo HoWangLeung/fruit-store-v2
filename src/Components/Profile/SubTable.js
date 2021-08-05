@@ -12,8 +12,9 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import OrderPDF from './OrderHistory/OrderPDF';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload as download } from "@fortawesome/free-solid-svg-icons"
-export default function SubTable({rows, row, locale }) {
- 
+import { FormattedMessage } from 'react-intl';
+export default function SubTable({ rows, row, locale }) {
+
 
     const [openOrderDetail, setOpenOrderDetail] = useState(false)
 
@@ -49,15 +50,15 @@ export default function SubTable({rows, row, locale }) {
                     <Collapse in={openOrderDetail} timeout="auto" unmountOnExit>
                         <Box margin={1}>
                             <Typography variant="h6" gutterBottom component="div">
-                                Details
+                                <FormattedMessage id="profile.history.detail.header.main" />
                             </Typography>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Item</TableCell>
-                                        <TableCell>price</TableCell>
-                                        <TableCell align="right">Quantity</TableCell>
-                                        <TableCell align="right">Total price ($)</TableCell>
+                                        <TableCell><FormattedMessage id="profile.history.detail.header.item" /></TableCell>
+                                        <TableCell><FormattedMessage id="profile.history.detail.header.price" /></TableCell>
+                                        <TableCell align="right"><FormattedMessage id="profile.history.detail.header.quantity" /></TableCell>
+                                        <TableCell align="right"><FormattedMessage id="profile.history.detail.header.total" /></TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
