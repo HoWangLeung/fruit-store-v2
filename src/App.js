@@ -25,6 +25,7 @@ const theme = createMuiTheme({
       main: "#01BFA6",
       contrastText: "#fff" //button text white instead of black
     },
+ 
 
   },
 
@@ -32,7 +33,7 @@ const theme = createMuiTheme({
 
 function App() {
   const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
- 
+
   return (
     <ThemeProvider theme={theme}>
       <Router  >
@@ -52,7 +53,7 @@ function App() {
             >
               <NavBar isAuthenticated={isAuthenticated} />
               <Banner />
-             
+
               <SnackbarProvider maxSnack={6}>
                 <Store isAuthenticated={isAuthenticated} />
               </SnackbarProvider>

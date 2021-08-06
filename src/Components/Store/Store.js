@@ -9,6 +9,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { useSnackbar } from 'notistack';
 import { useHistory } from 'react-router-dom'
 import {testData} from './Data/FruitItem'
+import { FormattedMessage } from 'react-intl'
 function Store({isAuthenticated}) {
     let history = useHistory();
     const locale = history.location.pathname.substring(1, 3)
@@ -28,13 +29,19 @@ console.log(JSON.stringify(testData));
     const [quantity, setQuantity] = useState({})
 
 
-    data = data.filter(d => {
 
+    let categorySet = new Set(data.map((d) => d.category));
+    let countrySet = new Set(data.map((d) => d.country));
+    let categories = Array.from(categorySet).sort();
+    let countries = Array.from(countrySet).sort();
+    data = data.filter(d => {
+            
         if (selectedCategory && selectedCountry) {
             return d.category === selectedCategory && d.country === selectedCountry
         }
 
         if (selectedCategory) {
+
             return d.category === selectedCategory
         }
         if (selectedCountry) {
@@ -43,11 +50,8 @@ console.log(JSON.stringify(testData));
         }
         return d
     })
-    let categorySet = new Set(data.map((d) => d.category));
-    let countrySet = new Set(data.map((d) => d.country));
-    let categories = Array.from(categorySet).sort();
-    let countries = Array.from(countrySet).sort();
 
+    console.log(data);
     const handleSetQuantity = (target) => {
 
         setQuantity(state => ({
@@ -76,16 +80,20 @@ console.log(JSON.stringify(testData));
         if (!isExist)
             cart.push(selected)
         localStorage.setItem('cart', JSON.stringify(cart))
-        enqueueSnackbar('已成功加入購物籃 !', { variant: 'success', autoHideDuration: 2000, });
+        enqueueSnackbar(
+            <FormattedMessage id="store.successAdd" />
+            ,
+         { variant: 'success', autoHideDuration: 2000, });
     }
 
 
-
+console.log(countrySet);
     return (
 
         <Container     className="store_container">
            
                     <ItemFilter
+                        data={data}
                         isLoading={isLoading}
                         selectedCategory={selectedCategory}
                         setSelectedCategory={setSelectedCategory}

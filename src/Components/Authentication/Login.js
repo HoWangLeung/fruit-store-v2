@@ -211,10 +211,10 @@ export default function SignIn() {
                         error={errors.password ? true : false}
                         helperText={errors.password}
                     />
-                    <FormControlLabel
+                    {/* <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label={<FormattedMessage id="signin.remember" />}
-                    />
+                    /> */}
                     <Button
                         type="submit"
                         fullWidth

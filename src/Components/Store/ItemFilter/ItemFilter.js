@@ -7,6 +7,7 @@ import FilterButton from './FilterButton';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { FormattedMessage } from 'react-intl';
 function ItemFilter({
+    data,
     isLoading,
     selectedCategory,
     setSelectedCategory,
@@ -15,6 +16,10 @@ function ItemFilter({
     categories,
     countries }) {
     //    console.log(JSON.stringify(data));
+
+    const colorCategory = () => {
+        return 'primary'
+    }
 
     return (
 
@@ -54,9 +59,14 @@ function ItemFilter({
                                             return (
                                                 <Button
                                                     key={i}
-                                                    style={{ color: `${selectedCategory === category ? "white" : "#646e73"}` }}
+                                                    style={{
+                                                         color: `${selectedCategory === category ? "white" : "#646e73"}`,
+
+                                                        
+                                                        }}
                                                     color={`${selectedCategory === category ? "primary" : "default"}`}
-                                                    variant={`${selectedCategory === category ? "contained" : "text"}`}
+                                                    variant={`${(selectedCategory === category) || (selectedCountry && data.some(d => d.category === category))
+                                                        ? "contained" : "text"}`}
                                                     value={category} key={i} onClick={(e) => setSelectedCategory(e.currentTarget.value)}
                                                 >
                                                     {category}
@@ -81,7 +91,8 @@ function ItemFilter({
                                                 key={i}
                                                 style={{ color: `${selectedCountry === country ? "white" : "#646e73"}` }}
                                                 color={`${selectedCountry === country ? "primary" : "default"}`}
-                                                variant={`${selectedCountry === country ? "contained" : "text"}`}
+                                                variant={`${(selectedCountry === country) || (selectedCategory && data.some(d => d.country === country))
+                                                    ? "contained" : "text"}`}
                                                 value={country} key={i} onClick={(e) => setSelectedCountry(e.currentTarget.value)}
                                             >
                                                 {country}

@@ -16,6 +16,8 @@ const zh = {
     'store.country': '產地',
     'store.quantity': '數量',
     'store.category': '種類',
+    'store.noCombination':'沒有結果',
+    'store.successAdd': '已加入購物籃!',
     'footer.contactUs': '聯絡我們',
     'footer.address.label': '地址',
     'footer.address.value': '西區副食品批發市場, 豐物道8號, 西營盤',
