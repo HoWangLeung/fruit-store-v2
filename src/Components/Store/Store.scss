@@ -5,7 +5,7 @@ $card-height:450px;
      
     position: sticky;
     top: 0;
-background-color: #FFFFFF;
+background-color: transparent !important;
 z-index: 50;
  
    
@@ -15,10 +15,11 @@ z-index: 50;
      }
 }
 .store_container{
- 
+    background-color: transparent !important;
      max-width: 1150px;
      @media only screen and (max-width: 1276px) {
         max-width: 60.9%;
+
   }
    
   
