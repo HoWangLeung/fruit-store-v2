@@ -17,7 +17,9 @@ z-index: 50;
 .store_container{
  
      max-width: 1150px;
-  
+     @media only screen and (max-width: 1276px) {
+        max-width: 60.9%;
+  }
    
   
 }
@@ -38,10 +40,10 @@ z-index: 50;
 }
 
 .itemCard_card{
- 
+ margin: 0px 5px;
   height: $card-height;
    width: $card-width;
-   
+   border-radius: 8px;
     img{
         width: 100%;
         height: 250px;
