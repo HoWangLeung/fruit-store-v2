@@ -1,4 +1,5 @@
 const en = {
+    'app.title': 'Fruit Shop',
     'app.learn': 'Learn {name}',
     'banner.line1': 'Welcome',
     'banner.line2': 'Fruits from all around the world',
@@ -17,7 +18,7 @@ const en = {
     'store.successAdd': 'Added To Basket !',
     "store.label.all": "All",
     'store.category': 'Category',
-    'store.noCombination':'No such combination yet',
+    'store.noCombination': 'No such combination yet',
     'footer.contactUs': 'Contact Us',
     'footer.address.label': 'Address',
     'footer.address.value': 'somewhere',

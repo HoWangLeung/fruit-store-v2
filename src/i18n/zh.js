@@ -1,4 +1,5 @@
 const zh = {
+    'app.title':'水果店',
     'app.learn': '學習 {name}',
     'banner.line1': '歡迎光臨',
     'banner.line2': ' 販售各國水果,價廉物美',
