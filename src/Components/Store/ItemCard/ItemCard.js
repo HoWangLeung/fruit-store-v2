@@ -1,4 +1,4 @@
-import { Grid, Card, CardActions, CardContent, Button, CardMedia, Box } from '@material-ui/core'
+import { Grid, Card, CardActions, CardContent, Button, CardMedia, Box, Container } from '@material-ui/core'
 import React, { useState } from 'react'
 import MyCardContent from './CardContent/MyCardContent'
 import Pagination from '@material-ui/lab/Pagination';
@@ -41,69 +41,71 @@ function ItemCard({
     }, [data])
 
     return (
-        <Grid
-
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-            className="itemCard_container"
-
-        >
-
-
-            <Grid container item xs={12} className="ItemCard_innerContainer"      >
-
-                {isLoading ?
-                    (
-                        Array.from(new Array(6)).map((item,i) => (
-                            <Grid
-                                key={i}
-                                direction="row"
-                                justify="center"
-                                alignItems="center"
-                                className="itemCard_inner_container"
-                                container
-                                item
-                                xs={12} md={6} lg={4}
-
-                            >
-                                <Box key={item}  >
-                                    <Skeleton variant="rect" width={350} height={250} />
-                                    <Skeleton />
-                                    <Skeleton width="60%" />
-                                </Box>
-                            </Grid>
-                        ))
-                    ) : ( 
-                        <MyCardContent
-
-                            cart={cart}
-                            setCart={setCart}
-                            quantity={quantity}
-                            setQuantity={setQuantity}
-                            page={page} data={_DATA.currentData()} />
-                    )}
-
-
-            </Grid>
-
-
-
+        <Container style={{maxWidth:"1100px"}} >
             <Grid
 
+                container
+                direction="row"
                 justify="center"
                 alignItems="center"
-                container item xs={12} style={{ padding: "50px 0px" }}>
-                <Pagination
-                    size="large"
-                    count={count}
-                    onChange={handlePaginationChange}
-                />
+                className="itemCard_container"
+
+            >
+
+
+                <Grid container item xs={12} className="ItemCard_innerContainer"      >
+
+                    {isLoading ?
+                        (
+                            Array.from(new Array(6)).map((item, i) => (
+                                <Grid
+                                    key={i}
+                                    direction="row"
+                                    justify="center"
+                                    alignItems="center"
+                                    className="itemCard_inner_container"
+                                    container
+                                    item
+                                    xs={12} md={6} lg={4}
+
+                                >
+                                    <Box key={item}  >
+                                        <Skeleton variant="rect" width={350} height={250} />
+                                        <Skeleton />
+                                        <Skeleton width="60%" />
+                                    </Box>
+                                </Grid>
+                            ))
+                        ) : (
+                            <MyCardContent
+
+                                cart={cart}
+                                setCart={setCart}
+                                quantity={quantity}
+                                setQuantity={setQuantity}
+                                page={page} data={_DATA.currentData()} />
+                        )}
+
+
+                </Grid>
+
+
+
+                <Grid
+
+                    justify="center"
+                    alignItems="center"
+                    container item xs={12} style={{ padding: "50px 0px" }}>
+                    <Pagination
+                        size="large"
+                        count={count}
+                        onChange={handlePaginationChange}
+                    />
+                </Grid>
+
+
             </Grid>
-
-
-        </Grid>
+        </Container>
     )
 }
 

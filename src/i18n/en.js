@@ -39,6 +39,7 @@ const en = {
     'basket.checkout': 'Checkout',
     'basket.subTotal': 'Price',
     'checkout.title.checkoutSummary': 'Checkout Summary',
+    'checkout.label.deliveryFee': 'Delivery Fee',
     'checkout.label.subTotal': 'Sub Total',
     'checkout.label.finalTotal': 'Total',
     'checkout.address.heading': 'Delivery Detail',

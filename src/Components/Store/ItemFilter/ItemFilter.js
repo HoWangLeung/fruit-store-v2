@@ -33,7 +33,7 @@ function ItemFilter({
             <Grid
 
                 container direction="row"
-                justify="flex-start"
+                justify="center"
                 item
                 alignItems="center">
                 {isLoading ? (

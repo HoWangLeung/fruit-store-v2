@@ -90,7 +90,7 @@ console.log(JSON.stringify(testData));
 console.log(countrySet);
     return (
 
-        <Container     className="store_container">
+        <Container     className="store_container" maxWidth={false}>
            
                     <ItemFilter
                         data={data}

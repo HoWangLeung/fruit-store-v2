@@ -1,11 +1,12 @@
 $card-width: 350px;
-$card-height:450px;
+$card-height:500px;
 
 .itemFilter{
-     
-    position: sticky;
-    top: 0;
-background-color: transparent !important;
+min-width: 100%;
+position: sticky;
+top: 0;
+
+background-color: white !important;
 z-index: 50;
  
    
@@ -15,13 +16,9 @@ z-index: 50;
      }
 }
 .store_container{
-    background-color: transparent !important;
-     max-width: 1150px;
-     @media only screen and (max-width: 1276px) {
-        max-width: 60.9%;
-
-  }
-   
+    background-color: white !important;
+    width: 100vw;
+    padding: 0px;
   
 }
 
@@ -37,13 +34,14 @@ z-index: 50;
 
     // max-width: $card-width;
     max-height: $card-height;
-   margin-top: 18px !important;
+   margin-top: 10px !important;
 }
 
 .itemCard_card{
  margin: 0px 5px;
   height: $card-height;
-   width: $card-width;
+width: $card-width;
+   min-width: 300px;
    border-radius: 8px;
     img{
         width: 100%;

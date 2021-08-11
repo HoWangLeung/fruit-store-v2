@@ -17,7 +17,7 @@ export default function OrderSummary({ sum }) {
                         </tr>
                         <tr>
                             <td colSpan="1"><FormattedMessage id="checkout.label.deliveryFee" /> : </td>
-                            <td colSpan="1">$50</td>
+                            <td colSpan="1">$0</td>
                         </tr>
 
                     </tbody>
