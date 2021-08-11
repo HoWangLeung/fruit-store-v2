@@ -228,11 +228,11 @@ export default function SignIn() {
                         <FormattedMessage id="signin.signin" />
                     </Button>
                     <Grid container>
-                        <Grid item xs>
+                        {/* <Grid item xs>
                             <Link to="/" >
                                 <FormattedMessage id="signin.forgetPassword" />
                             </Link>
-                        </Grid>
+                        </Grid> */}
                         <Grid item>
                             <Link to={`/${locale}/auth/signup`} variant="body2">
                                 <FormattedMessage id="signin.noAccount" />
