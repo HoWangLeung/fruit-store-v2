@@ -26,6 +26,8 @@ const en = {
     'footer.phone.value': '9259 1883',
     'footer.contact.label': 'Contact',
     'footer.contact.value': 'Mr Leung',
+    'signin.email': 'Email',
+    'signin.password': 'Password',
     'signin.signin': 'Sign In',
     'signin.remember': 'Remember me',
     'signin.forgetPassword': 'Forgot password?',

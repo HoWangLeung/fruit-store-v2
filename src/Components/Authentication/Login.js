@@ -26,6 +26,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ErrorIcon from '@material-ui/icons/Error';
+import StandardLogin from './StandardLogin/StandardLogin';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -170,80 +171,21 @@ export default function SignIn() {
 
     return (
         <Container component="main" maxWidth="xs">
-            {/* <CssBaseline /> */}
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar} >
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    <FormattedMessage id="signin.signin" />
-                </Typography>
-                <form className={classes.form} onSubmit={handleSubmit}>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
 
-                        fullWidth
-                        id="email"
-                        label={<FormattedMessage id="signin.email" />}
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                        onChange={handleChange}
-                        value={user.email}
-                        onBlur={handleBlur}
-                        error={errors.email ? true : false}
-                        helperText={errors.email}
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
+            <StandardLogin
+                classes={classes}
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                user={user}
+                errors={errors}
+                isLoading={isLoading}
+                locale={locale}
+            />
 
-                        fullWidth
-                        name="password"
-                        label={<FormattedMessage id="signin.password" />}
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        onChange={handleChange}
-                        value={user.password}
-                        onBlur={handleBlur}
-                        error={errors.password ? true : false}
-                        helperText={errors.password}
-                    />
-                    {/* <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label={<FormattedMessage id="signin.remember" />}
-                    /> */}
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        disabled={isLoading}
-                    >
-                        {isLoading && <CircularProgress
-                            size={18} style={{ marginRight: "10px" }} />}
-                        <FormattedMessage id="signin.signin" />
-                    </Button>
-                    <Grid container>
-                        {/* <Grid item xs>
-                            <Link to="/" >
-                                <FormattedMessage id="signin.forgetPassword" />
-                            </Link>
-                        </Grid> */}
-                        <Grid item>
-                            <Link to={`/${locale}/auth/signup`} variant="body2">
-                                <FormattedMessage id="signin.noAccount" />
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </form>
-            </div>
             <Dialog
                 open={dialog.open}
-                onClose={() => setDialog(state=>({...state,open:false}))}
+                onClose={() => setDialog(state => ({ ...state, open: false }))}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
                 fullWidth
@@ -261,7 +203,7 @@ export default function SignIn() {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => setDialog(state=>({...state,open:false}))} autoFocus>
+                    <Button onClick={() => setDialog(state => ({ ...state, open: false }))} autoFocus>
                         OK
                     </Button>
                 </DialogActions>

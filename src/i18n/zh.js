@@ -33,7 +33,6 @@ const zh = {
     'signin.forgetPassword': '忘記密碼?',
     'signin.noAccount': `沒有帳號? 按此註冊`,
     'signup.signup': '註冊',
-    'signin.email': '帳號',
     'signup.email': '帳號',
     'signup.password': '密碼',
     'signup.confirmPassword': '確認密碼',
