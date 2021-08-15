@@ -11,13 +11,13 @@ import Typography from '@material-ui/core/Typography';
 
 import { Link, useHistory } from 'react-router-dom';
 
-import { CircularProgress,  } from '@material-ui/core';
+import { CircularProgress, Container, } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 
 
-export default function StandardLogin({classes,handleChange,handleSubmit,handleBlur,user,errors,isLoading,locale}) {
+export default function StandardLogin({ classes, handleChange, handleSubmit, handleBlur, user, errors, isLoading, locale }) {
     return (
-        <div className={classes.paper}>
+        <Container className={classes.paper} maxWidth="xs">
             <Avatar className={classes.avatar} >
                 <LockOutlinedIcon />
             </Avatar>
@@ -57,7 +57,7 @@ export default function StandardLogin({classes,handleChange,handleSubmit,handleB
                     error={errors.password ? true : false}
                     helperText={errors.password}
                 />
-          
+
                 <Button
                     type="submit"
                     fullWidth
@@ -83,6 +83,6 @@ export default function StandardLogin({classes,handleChange,handleSubmit,handleB
                     </Grid>
                 </Grid>
             </form>
-        </div>
+        </Container>
     )
 }

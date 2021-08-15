@@ -18,7 +18,7 @@ import { API_BASE_URL, ACCESS_TOKEN } from '../../constants/index'
 import axios from 'axios'
 import { setSignInStatus } from './Actions/AuthenticationAction';
 import { useDispatch } from 'react-redux';
-import { CircularProgress, DialogContentText } from '@material-ui/core';
+import { CircularProgress, DialogContentText, Divider } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 import { validator } from './AuthValidator';
 import Dialog from '@material-ui/core/Dialog';
@@ -27,26 +27,33 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ErrorIcon from '@material-ui/icons/Error';
 import StandardLogin from './StandardLogin/StandardLogin';
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                wahkee-fruitstore.com
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import SocialLogin from './SocialLogin/SocialLogin';
+import './Login.scss'
 
 const useStyles = makeStyles((theme) => ({
+    outerContainer: {
+
+    },
     paper: {
-        marginTop: theme.spacing(8),
+        minHeight: "100vh",
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'center',
+
     },
+    paper_social_login: {
+        minHeight: "100vh",
+        height: '100%',
+        display: 'flex',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+
+    },
+
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.primary.main,
@@ -58,6 +65,9 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+
+
+
 }), { index: 1 });
 
 export default function SignIn() {
@@ -157,7 +167,6 @@ export default function SignIn() {
 
 
     }
-
     const handleBlur = e => {
         const { name: fieldName } = e.target;
 
@@ -168,22 +177,58 @@ export default function SignIn() {
             [fieldName]: Object.values(faildFiels)[0]
         }));
     };
-
     return (
-        <Container component="main" maxWidth="xs">
 
-            <StandardLogin
-                classes={classes}
-                handleSubmit={handleSubmit}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                user={user}
-                errors={errors}
-                isLoading={isLoading}
-                locale={locale}
-            />
+        <Container >
+            <Grid container direction="row" justifycontent="center" alignItems="center" >
+                <Grid item lg={2}>
+                    {/* Intentionally Empty */}
+                </Grid>
+                <Grid item lg={12} justifycontent="center" alignItems="center">
 
-            <Dialog
+                    <StandardLogin
+                        classes={classes}
+                        handleSubmit={handleSubmit}
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        user={user}
+                        errors={errors}
+                        isLoading={isLoading}
+                        locale={locale}
+                    />
+
+
+                </Grid>
+             
+
+                {/* <Grid item lg={4} justifycontent="flex-end" alignItems="center">
+
+                    <SocialLogin
+                        classes={classes}
+                        handleSubmit={handleSubmit}
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        user={user}
+                        errors={errors}
+                        isLoading={isLoading}
+                        locale={locale}
+                    />
+
+
+                </Grid> */}
+                <Grid item lg={2}>
+                    {/* Intentionally Empty */}
+                </Grid>
+            </Grid>
+        </Container>
+
+
+
+
+
+    );
+}
+{/* <Dialog
                 open={dialog.open}
                 onClose={() => setDialog(state => ({ ...state, open: false }))}
                 aria-labelledby="alert-dialog-title"
@@ -207,7 +252,4 @@ export default function SignIn() {
                         OK
                     </Button>
                 </DialogActions>
-            </Dialog>
-        </Container>
-    );
-}
+            </Dialog> */}

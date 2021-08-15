@@ -14,18 +14,13 @@ function LoginContainer() {
     return (
         <>
 
-            <Grid container
-                direction="row"
-                justify="center"
-                alignItems="center"
-            >
-
+           
 
                 {/* <Route exact path="/" render={() => <Redirect to="/auth/sigin" />} /> */}
                 {/* <Route exact path="/auth/signup" component={SignUp} /> */}
                 <Login />
 
-            </Grid>
+            
 
         </>
     )

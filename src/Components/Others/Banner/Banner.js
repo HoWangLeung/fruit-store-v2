@@ -38,7 +38,7 @@ export default function Banner() {
                     <p style={{ color: "#646e73", fontSize: "1.5em" }}>
 
                         <FormattedMessage id="banner.line2" />
-                        
+
                         <br />
                         <FormattedMessage id="banner.line3" />
                     </p>

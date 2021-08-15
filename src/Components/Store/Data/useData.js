@@ -14,12 +14,17 @@ export default function useData(locale) {
             .then(res => {
                 let data = res.data
                 console.log(data);
-                data.map(d => {
+                  data.map(d => {
+                
+                    console.log(d);
+                
                     d.name = d.localizations[`${locale}`].name
                     d.category = d.localizations[`${locale}`].category
                     d.country = d.localizations[`${locale}`].country
                     d.unit = d.localizations[`${locale}`].unit
                     d.quantity = 0
+
+                    console.log(d);
                     return d
                 })
 
