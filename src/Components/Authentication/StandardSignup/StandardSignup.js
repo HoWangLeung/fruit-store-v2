@@ -14,30 +14,28 @@ import { Link, useHistory } from 'react-router-dom';
 import { CircularProgress, Container, } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 
-
-export default function StandardLogin({ 
-    classes, handleChange, handleSubmit, handleBlur, user, errors, isLoading, locale }) {
+export default function StandardSignup({classes,handleChange,handleBlur,errors,user, isLoading,locale,handleSubmit}) {
     return (
-        <Container className={classes.paper} maxWidth="xs">
-            <Avatar className={classes.avatar} >
+        <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-                <FormattedMessage id="signin.signin" />
+                Sign Up
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit}>
                 <TextField
                     variant="outlined"
                     margin="normal"
-
                     fullWidth
                     id="email"
-                    label={<FormattedMessage id="signin.email" />}
+                    label={<FormattedMessage id="signup.email" />}
                     name="email"
                     autoComplete="email"
-                    autoFocus
                     onChange={handleChange}
+
                     value={user.email}
+
                     onBlur={handleBlur}
                     error={errors.email ? true : false}
                     helperText={errors.email}
@@ -45,45 +43,59 @@ export default function StandardLogin({
                 <TextField
                     variant="outlined"
                     margin="normal"
-
                     fullWidth
-                    name="password"
-                    label={<FormattedMessage id="signin.password" />}
-                    type="password"
-                    id="password"
+                    name="password_1"
+                    label={<FormattedMessage id="signup.password" />}
+                    type="password_1"
+                    id="password_1"
+                    onChange={handleChange}
+                    value={user.password_1}
+                    onBlur={handleBlur}
+                    autoComplete="current-password"
+                    error={errors.password_1 ? true : false}
+                    helperText={errors.password_1}
+                />
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    name="password_2"
+                    label={<FormattedMessage id="signup.confirmPassword" />}
+                    type="password_2"
+                    id="password_2"
                     autoComplete="current-password"
                     onChange={handleChange}
-                    value={user.password}
                     onBlur={handleBlur}
-                    error={errors.password ? true : false}
-                    helperText={errors.password}
+                    value={user.password_2}
+                    error={errors.password_2 ? true : false}
+                    helperText={errors.password_2}
                 />
-
+                {/* <FormControlLabel
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Remember me"
+                    /> */}
                 <Button
+                    disabled={isLoading}
                     type="submit"
                     fullWidth
                     variant="contained"
                     color="primary"
                     className={classes.submit}
-                    disabled={isLoading}
                 >
+
                     {isLoading && <CircularProgress
                         size={18} style={{ marginRight: "10px" }} />}
-                    <FormattedMessage id="signin.signin" />
+                    <FormattedMessage id="signup.signup" />
                 </Button>
                 <Grid container>
-                    {/* <Grid item xs>
-                    <Link to="/" >
-                        <FormattedMessage id="signin.forgetPassword" />
-                    </Link>
-                </Grid> */}
+
                     <Grid item>
-                        <Link to={`/${locale}/auth/signup`} variant="body2">
-                            <FormattedMessage id="signin.noAccount" />
+                        <Link to={`/${locale}/auth/signin`} variant="body2">
+                            <FormattedMessage id="signup.haveAccount" />
                         </Link>
                     </Grid>
                 </Grid>
             </form>
-        </Container>
+        </div>
     )
 }

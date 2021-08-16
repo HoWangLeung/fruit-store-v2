@@ -22,6 +22,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ErrorIcon from '@material-ui/icons/Error';
+import StandardSignup from './StandardSignup/StandardSignup';
+import SocialLogin from './SocialLogin/SocialLogin';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -192,113 +194,61 @@ export default function SignUp() {
 
     return (
         <Container component="main" maxWidth="xs">
-            {/* <CssBaseline /> */}
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign Up
-                </Typography>
-                <form className={classes.form} onSubmit={handleSubmit}>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        fullWidth
-                        id="email"
-                        label={<FormattedMessage id="signup.email" />}
-                        name="email"
-                        autoComplete="email"
-                        onChange={handleChange}
-
-                        value={user.email}
-
-                        onBlur={handleBlur}
-                        error={errors.email ? true : false}
-                        helperText={errors.email}
+            <Grid container direction="row" justifycontent="center" alignItems="center" >
+                <Grid item xs={12} lg={12}  >
+                    <StandardSignup
+                        classes={classes}
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        errors={errors}
+                        user={user}
+                        handleSubmit={handleSubmit}
+                        isLoading={isLoading}
+                        locale={locale}
                     />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        fullWidth
-                        name="password_1"
-                        label={<FormattedMessage id="signup.password" />}
-                        type="password_1"
-                        id="password_1"
-                        onChange={handleChange}
-                        value={user.password_1}
-                        onBlur={handleBlur}
-                        autoComplete="current-password"
-                        error={errors.password_1 ? true : false}
-                        helperText={errors.password_1}
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        fullWidth
-                        name="password_2"
-                        label={<FormattedMessage id="signup.confirmPassword" />}
-                        type="password_2"
-                        id="password_2"
-                        autoComplete="current-password"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={user.password_2}
-                        error={errors.password_2 ? true : false}
-                        helperText={errors.password_2}
-                    />
-                    {/* <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    /> */}
-                    <Button
-                        disabled={isLoading}
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
+                </Grid>
+                <Grid xs={12} item lg={12} >
 
-                        {isLoading && <CircularProgress
-                            size={18} style={{ marginRight: "10px" }} />}
-                        <FormattedMessage id="signup.signup" />
-                    </Button>
-                    <Grid container>
+                    <SocialLogin
+                        history={history}
+                        classes={classes}
+                        handleSubmit={handleSubmit}
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        user={user}
+                        errors={errors}
+                        isLoading={isLoading}
+                        locale={locale}
+                    />
 
-                        <Grid item>
-                            <Link to={`/${locale}/auth/signin`} variant="body2">
-                                <FormattedMessage id="signup.haveAccount" />
-                            </Link>
+
+                </Grid>
+                <Dialog
+                    open={dialog.open}
+                    onClose={() => setDialog(state => ({ ...state, open: false }))}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                    fullWidth
+                    maxWidth="xs"
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        <Grid container alignItems="center" justifyContent="center">
+                            <ErrorIcon style={{ fill: '#ff7961', fontSize: "200%", marginRight: "10px" }} />
+                            <Typography variant="span" align="center">Error Message</Typography>
                         </Grid>
-                    </Grid>
-                </form>
-            </div>
-            <Dialog
-                open={dialog.open}
-                onClose={() => setDialog(state => ({ ...state, open: false }))}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-                fullWidth
-                maxWidth="xs"
-            >
-                <DialogTitle id="alert-dialog-title">
-                    <Grid container alignItems="center" justifyContent="center">
-                        <ErrorIcon style={{ fill: '#ff7961', fontSize: "200%", marginRight: "10px" }} />
-                        <Typography variant="span" align="center">Error Message</Typography>
-                    </Grid>
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description" style={{ alignSelf: "center" }} >
-                        <Typography align="center">{dialog.message}</Typography>
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => setDialog(state => ({ ...state, open: false }))} autoFocus>
-                        OK
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description" style={{ alignSelf: "center" }} >
+                            <Typography align="center">{dialog.message}</Typography>
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => setDialog(state => ({ ...state, open: false }))} autoFocus>
+                            OK
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </Grid>
         </Container>
     );
 }

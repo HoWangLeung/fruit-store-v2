@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
 
     },
     paper: {
-        minHeight: "100vh",
+        marginBottom: "25px",
+        width: "100%",
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -181,10 +182,8 @@ export default function SignIn() {
 
         <Container >
             <Grid container direction="row" justifycontent="center" alignItems="center" >
-                <Grid item lg={2}>
-                    {/* Intentionally Empty */}
-                </Grid>
-                <Grid item lg={12} justifycontent="center" alignItems="center">
+
+                <Grid item xs={12} lg={12}  >
 
                     <StandardLogin
                         classes={classes}
@@ -199,11 +198,12 @@ export default function SignIn() {
 
 
                 </Grid>
-             
 
-                {/* <Grid item lg={4} justifycontent="flex-end" alignItems="center">
+
+                <Grid xs={12} item lg={12} >
 
                     <SocialLogin
+                        history={history}
                         classes={classes}
                         handleSubmit={handleSubmit}
                         handleChange={handleChange}
@@ -215,20 +215,10 @@ export default function SignIn() {
                     />
 
 
-                </Grid> */}
-                <Grid item lg={2}>
-                    {/* Intentionally Empty */}
                 </Grid>
+
             </Grid>
-        </Container>
-
-
-
-
-
-    );
-}
-{/* <Dialog
+            <Dialog
                 open={dialog.open}
                 onClose={() => setDialog(state => ({ ...state, open: false }))}
                 aria-labelledby="alert-dialog-title"
@@ -252,4 +242,12 @@ export default function SignIn() {
                         OK
                     </Button>
                 </DialogActions>
-            </Dialog> */}
+            </Dialog>
+        </Container>
+
+
+
+
+
+    );
+}

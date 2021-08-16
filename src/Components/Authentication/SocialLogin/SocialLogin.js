@@ -19,26 +19,29 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function SocialLogin({
+    history,
     classes, handleChange, handleSubmit, handleBlur, user, errors, isLoading, locale, }) {
+    console.log();
+    console.log(history);
+    const isSignupPage = history.location.pathname.includes("signup")
+
 
     return (
-        <Container className={classes.paper_social_login} maxWidth={false}>
+        <Container className={classes.paper} maxWidth="xs">
 
 
-            <Grid container  direction="column" justifycontent="center" alignItems="center" spacing={3} >
+            <Grid container direction="column" justifycontent="center" alignItems="center" spacing={3} >
                 <Grid>
-                    <Typography variant="h6" >Social Login</Typography>
+                    <Typography   >OR</Typography>
                 </Grid>
 
                 <Grid container item direction="column" justifycontent="center" alignItems="center" spacing={3} >
                     <Grid item>
                         <a href={FACEBOOK_AUTH_URL}>
                             <div
-
                                 className="facebook-btn" >
                                 <div className="facebook-icon-wrapper"><FacebookIcon /></div>
-                                <span className="social_icon_text">Sign in with Facebook</span>
-
+                                <span className="social_icon_text">    <FormattedMessage id={isSignupPage ? 'signup.facebook' : 'signin.facebook'} /></span>
                             </div>
                         </a>
                     </Grid>
@@ -48,7 +51,11 @@ export default function SocialLogin({
                                 <div className="google-icon-wrapper">
                                     <img className="google-icon-svg" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
                                 </div>
-                                <p className="btn-text"><b>Sign in with Google</b></p>
+
+                                <p className="btn-text"><b>
+                                    <FormattedMessage id={isSignupPage ? 'signup.google' : 'signin.google'} />
+                                </b></p>
+
                             </div>
                         </a>
                     </Grid>
@@ -60,7 +67,7 @@ export default function SocialLogin({
                                 <div className="github-icon-wrapper">
                                     <GitHubIcon style={{ height: "18px", width: "18px" }} />
                                 </div>
-                                <span className="social_icon_text">Sign in with Github</span>
+                                <span className="social_icon_text">    <FormattedMessage id={isSignupPage ? 'signup.github' : 'signin.github'} /></span>
 
                             </div>
                         </a>
