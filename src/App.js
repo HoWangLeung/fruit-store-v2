@@ -45,13 +45,12 @@ function App() {
           <Route exact path="/:lang/checkout/success" render={props => <CheckoutSuccess {...props} />} />
           <Route exact path="/:lang/auth/signup" render={props => <SignUp {...props} />} />
           <Route exact path="/:lang/cart" render={props => <Cart isAuthenticated={isAuthenticated} {...props} />} />
-          <Route exact path="/auth/signin" render={props => <LoginContainer {...props} />} />
+          <Route exact path="/:lang/auth/signin" render={props => <LoginContainer {...props} />} />
           <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
-        
 
-          <Route exact path="/" >
-            
-           
+          <Route exact path="/:lang" >
+            <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
+            <Route path="/oauth2/redirect/#/:lang" component={OAuth2RedirectHandler}></Route>
             <Grid
               container
               direction="row"
@@ -70,7 +69,7 @@ function App() {
             </Grid>
 
           </Route>
-          {/* <Redirect from="/" to="/en" /> */}
+          <Redirect from="/" to="/en" />
         </Switch>
       </Router>
     </ThemeProvider>
