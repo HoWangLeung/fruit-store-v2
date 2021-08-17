@@ -15,7 +15,7 @@ class OAuth2RedirectHandler extends Component {
     };
 
     render() {
-        console.log('sdfsdfdssdfdsfdsf');
+        console.log('sdfsdfdssdfdsfdsf   = OAuth2RedirectHandler ');
         const token = this.getUrlParameter('token');
         const error = this.getUrlParameter('error');
 

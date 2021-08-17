@@ -33,7 +33,7 @@ const theme = createMuiTheme({
 })
 
 function App() {
-  const history= useHistory()
+  const history = useHistory()
   const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
   console.log(history);
   return (
@@ -46,10 +46,12 @@ function App() {
           <Route exact path="/:lang/auth/signup" render={props => <SignUp {...props} />} />
           <Route exact path="/:lang/cart" render={props => <Cart isAuthenticated={isAuthenticated} {...props} />} />
           <Route exact path="/:lang/auth/signin" render={props => <LoginContainer {...props} />} />
-          <Route path="/oauth2/redirect/:lang" component={OAuth2RedirectHandler}></Route>
+          <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
+          <Route path="/:lang/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
 
           <Route exact path="/:lang" >
-            
+            <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
+            <Route path="/:lang/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
             <Grid
               container
               direction="row"
