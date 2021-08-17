@@ -90,7 +90,7 @@ export default function StandardSignup({classes,handleChange,handleBlur,errors,u
                 <Grid container>
 
                     <Grid item>
-                        <Link to={`/${locale}/auth/signin`} variant="body2">
+                        <Link to={`/auth/signin`} variant="body2">
                             <FormattedMessage id="signup.haveAccount" />
                         </Link>
                     </Grid>

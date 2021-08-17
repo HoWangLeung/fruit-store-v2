@@ -15,9 +15,7 @@ function LoginContainer() {
         <>
 
            
-
-                {/* <Route exact path="/" render={() => <Redirect to="/auth/sigin" />} /> */}
-                {/* <Route exact path="/auth/signup" component={SignUp} /> */}
+ 
                 <Login />
 
             
