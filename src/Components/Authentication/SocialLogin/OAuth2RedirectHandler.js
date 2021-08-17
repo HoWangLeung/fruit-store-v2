@@ -6,7 +6,7 @@ import { ACCESS_TOKEN } from '../../../constants';
 class OAuth2RedirectHandler extends Component {
 
     getUrlParameter(name) {
-        alert("yo")
+        console.log("yo")
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
 
