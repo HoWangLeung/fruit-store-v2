@@ -61,7 +61,7 @@ export default function SignUp() {
     const [isLoading, setIsLoading] = useState(false)
     let history = useHistory();
     const locale = history.location.pathname.substring(1, 3)
-    console.log(history);
+    
     const [errors, setErrors] = useState({
         email: "",
         password_1: "",
@@ -104,15 +104,15 @@ export default function SignUp() {
         }
         axios(config)
             .then(res => {
-                console.log(res);
+                
                 setIsLoading(false)
                 history.push(`/${locale}`);
             })
             .catch(e => {
 
-                console.log(e.response)
+                
                 if (e.response.data.message === "Error: Email is already in use!") {
-                    console.log('401 error !!!!');
+                    
                     setDialog(state => ({
                         ...state,
                         open: true,
@@ -133,12 +133,12 @@ export default function SignUp() {
 
 
     const validateFields = () => {
-        console.log('sdfsdf');
+        
         let isValid = true
         Object.keys(user).forEach(fieldName => {
-            console.log(fieldName);
+            
             const faildFields = validator(user, fieldName);
-            console.log("faildFields ", faildFields);
+            
             Object.values(faildFields).forEach(d => {
                 if (d) {
                     isValid = false
@@ -152,7 +152,7 @@ export default function SignUp() {
 
         })
 
-        console.log("isValid = ", isValid);
+        
         return isValid
     }
 
@@ -190,7 +190,7 @@ export default function SignUp() {
 
 
     }, [user.password_1, user.password_2])
-    console.log('errors ', errors);
+    
 
     return (
         <Container component="main" maxWidth="xs">

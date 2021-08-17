@@ -38,7 +38,7 @@ export default function Profile() {
 
 
 
- console.log(orderData);
+ 
 
     return (
         <Container maxWidth="md"   >

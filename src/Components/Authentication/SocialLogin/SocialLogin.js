@@ -17,12 +17,14 @@ import { FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL } from '../../../co
 import { ReactComponent as GoogleSVG } from '../../../Images/googleAuth.svg';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import CommonDialog from '../../Common/Dialog/CommonDialog';
 
 export default function SocialLogin({
     history,
     classes, handleChange, handleSubmit, handleBlur, user, errors, isLoading, locale, }) {
-    console.log();
-    console.log(history);
+
+ 
+
     const isSignupPage = history.location.pathname.includes("signup")
 
 
@@ -78,7 +80,7 @@ export default function SocialLogin({
             </Grid>
 
 
-
+        
 
 
 

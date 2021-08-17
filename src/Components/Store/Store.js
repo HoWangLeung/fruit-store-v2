@@ -7,23 +7,34 @@ import ItemFilter from './ItemFilter/ItemFilter'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useSnackbar } from 'notistack';
-import { useHistory } from 'react-router-dom'
-import {testData} from './Data/FruitItem'
+import { Redirect, useHistory, useLocation } from 'react-router-dom'
+import { testData } from './Data/FruitItem'
 import { FormattedMessage } from 'react-intl'
-function Store({isAuthenticated}) {
+import { ACCESS_TOKEN } from '../../constants'
+import CommonDialog from '../Common/Dialog/CommonDialog'
+
+
+function Store({ isAuthenticated }) {
+    const [redirctTo, setRedirctTo] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [dialog, setDialog] = useState({
+        open: false,
+        message: "system error"
+    })
+    const location = useLocation();
     let history = useHistory();
     const locale = history.location.pathname.substring(1, 3)
     let [data, isLoading] = useData(locale)
-    
+
     const { enqueueSnackbar } = useSnackbar();
-  
+
     let cart = []
 
     if (localStorage.getItem("cart")) {
 
         cart = JSON.parse(localStorage.getItem("cart"))
     }
-console.log(JSON.stringify(testData));
+
     const [selectedCategory, setSelectedCategory] = useState()
     const [selectedCountry, setSelectedCountry] = useState()
     const [quantity, setQuantity] = useState({})
@@ -35,7 +46,7 @@ console.log(JSON.stringify(testData));
     let categories = Array.from(categorySet).sort();
     let countries = Array.from(countrySet).sort();
     data = data.filter(d => {
-            
+
         if (selectedCategory && selectedCountry) {
             return d.category === selectedCategory && d.country === selectedCountry
         }
@@ -51,7 +62,7 @@ console.log(JSON.stringify(testData));
         return d
     })
 
-    console.log(data);
+
     const handleSetQuantity = (target) => {
 
         setQuantity(state => ({
@@ -60,7 +71,7 @@ console.log(JSON.stringify(testData));
         }))
     }
     const handleSetCart = (itemName) => {
-        console.log('setting item ', itemName);
+
         let selected = data
             .filter(d => d.name == itemName)
             .map(d => {
@@ -83,39 +94,75 @@ console.log(JSON.stringify(testData));
         enqueueSnackbar(
             <FormattedMessage id="store.successAdd" />
             ,
-         { variant: 'success', autoHideDuration: 2000, });
+            { variant: 'success', autoHideDuration: 2000, });
+    }
+    const getUrlParameter = (name) => {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+
+        var results = regex.exec(window.location.href);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    useEffect(() => {
+
+        const token = getUrlParameter('token');
+        const error = getUrlParameter('error');
+
+        console.log(error);
+
+        if (token) {
+            localStorage.setItem(ACCESS_TOKEN, token);
+            setRedirctTo(true)
+            window.location.href = "/"
+        } else if (error) {
+         
+        
+            setDialog(state => ({
+                ...state,
+                open: true,
+                message: error
+            }))
+        }
+
+
+
+
+    }, [])
+
+    if (redirctTo) {
+        console.log('redirecting...');
+        return <Redirect to={`/${locale}/profile`} />
     }
 
-
-console.log(countrySet);
     return (
 
-        <Container     className="store_container" maxWidth={false}>
-           
-                    <ItemFilter
-                        data={data}
-                        isLoading={isLoading}
-                        selectedCategory={selectedCategory}
-                        setSelectedCategory={setSelectedCategory}
-                        selectedCountry={selectedCountry}
-                        setSelectedCountry={setSelectedCountry}
-                        categories={categories}
-                        countries={countries}
-                    />
-             
-                    <ItemCard
-                        isLoading={isLoading}
-                        cart={cart}
-                        data={data}
-                        selectedCountry={selectedCountry}
-                        selectedCategory={selectedCategory}
-                        quantity={quantity}
-                        setQuantity={handleSetQuantity}
-                        setCart={handleSetCart}
+        <Container className="store_container" maxWidth={false}>
 
-                    />
-        
+            <ItemFilter
+                data={data}
+                isLoading={isLoading}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                selectedCountry={selectedCountry}
+                setSelectedCountry={setSelectedCountry}
+                categories={categories}
+                countries={countries}
+            />
 
+            <ItemCard
+                isLoading={isLoading}
+                cart={cart}
+                data={data}
+                selectedCountry={selectedCountry}
+                selectedCategory={selectedCategory}
+                quantity={quantity}
+                setQuantity={handleSetQuantity}
+                setCart={handleSetCart}
+
+            />
+
+            <CommonDialog dialog={dialog} setDialog={setDialog} />
 
         </Container>
 

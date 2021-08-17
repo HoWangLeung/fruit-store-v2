@@ -7,16 +7,16 @@ import { API_BASE_URL } from '../../../constants'
 export default function useData(locale) {
     const [isLoading, setIsLoading] = useState(true)
     const [data, setData] = useState([])
-    console.log(locale);
+    
     useEffect(() => {
 
         axios.get(`${API_BASE_URL}/api/products/`)
             .then(res => {
                 let data = res.data
-                console.log(data);
+                
                   data.map(d => {
                 
-                    console.log(d);
+                    
                 
                     d.name = d.localizations[`${locale}`].name
                     d.category = d.localizations[`${locale}`].category
@@ -24,7 +24,7 @@ export default function useData(locale) {
                     d.unit = d.localizations[`${locale}`].unit
                     d.quantity = 0
 
-                    console.log(d);
+                    
                     return d
                 })
 

@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.scss';
 import Store from './Components/Store/Store';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import WhatsappIcon from './Components/Others/WhatsappIcon/WhatsappIcon';
 import NavBar from './Components/NavBar/NavBar';
 import Banner from './Components/Others/Banner/Banner'
@@ -19,21 +19,23 @@ import CheckoutSuccess from './Components/Store/Checkout/Result/CheckOutSuccess'
 import Profile from './Components/Profile/Profile';
 import { HashRouter as Router } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
+import OAuth2RedirectHandler from './Components/Authentication/SocialLogin/OAuth2RedirectHandler';
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#01BFA6",
       contrastText: "#fff" //button text white instead of black
     },
- 
+
 
   },
 
 })
 
 function App() {
+  const history= useHistory()
   const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
-
+  console.log(history);
   return (
     <ThemeProvider theme={theme}>
       <Router  >
@@ -44,7 +46,10 @@ function App() {
           <Route exact path="/:lang/auth/signup" render={props => <SignUp {...props} />} />
           <Route exact path="/:lang/cart" render={props => <Cart isAuthenticated={isAuthenticated} {...props} />} />
           <Route exact path="/:lang/auth/signin" render={props => <LoginContainer {...props} />} />
+          <Route path="/oauth2/redirect/:lang" component={OAuth2RedirectHandler}></Route>
+
           <Route exact path="/:lang" >
+            
             <Grid
               container
               direction="row"
