@@ -1,8 +1,9 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Fade, Grid, Modal, Paper } from '@material-ui/core'
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Fade, Grid, Modal, Paper, Typography } from '@material-ui/core'
 import React from 'react'
 import { FormattedMessage } from 'react-intl';
 import EditProfileForm from './EditProfileForm';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
 export default function PersonalInfo({ user,
     handleSubmit,
     handleEditProfile,
@@ -15,12 +16,18 @@ export default function PersonalInfo({ user,
     isLoadingprofile
 
 }) {
-    console.log(user);
-
     return (
         <Box style={{ display: "flex", flexDirection: "column", width: '100%' }} className="profile_personalInfo">
-            <h2 style={{ alignSelf: "flex-start" }}><FormattedMessage id="profile.personalInformation.heading" /></h2>
-            <Paper elevation={8} style={{ padding: "30px", width: '100%' }}  >
+            <Grid container
+                direction="column"
+                justify="flex-start"
+                alignItems="flex-start" >
+                <Typography noWrap variant="h5" style={{ alignSelf: "flex-start" }}><FormattedMessage id="profile.personalInformation.heading" /></Typography>
+                <Typography noWrap style={{ color: "#2E3C42", opacity: ".6", marginTop: "5px", marginBottom: "15px" }} >Your personal information</Typography>
+
+            </Grid>
+
+            <Paper elevation={8} style={{ padding: "30px", width: '100%',borderRadius:"8px" }}  >
                 <table style={{ width: "100%" }} rules="none">
                     <tbody>
                         <tr>

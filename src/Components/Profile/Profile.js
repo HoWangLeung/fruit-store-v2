@@ -1,12 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Container, Grid, Paper, Button, Backdrop, CircularProgress } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import './Profile.scss'
-import useOrderData from './useOrderData';
-import OrderHistory from './OrderHistory';
-import PersonalInfo from './PersonalInfo';
-import useProfileData from './useProfileData';
+import './Personal/Profile.scss'
+import useOrderData from './OrderHistory/useOrderData';
+import OrderHistory from './OrderHistory/OrderHistory';
+import PersonalInfo from './Personal/PersonalInfo';
+import useProfileData from './Personal/useProfileData';
 import { useHistory } from 'react-router-dom';
+import ProfileNavigation from './ProfileNavigation/ProfileNavigation';
+import ProfileOverview from './ProfileOverview/ProfileOverview';
+import NavBar from '../NavBar/NavBar';
+import Credential from './Credential/Credentail';
+
 
 
 const useStyles = makeStyles({
@@ -16,7 +21,9 @@ const useStyles = makeStyles({
 }, { index: 1 });
 
 
-export default function Profile() {
+
+export default function Profile({ isAuthenticated }) {
+    const [active, setActive] = useState('general')
     let history = useHistory();
     const classes = useStyles();
     let { userData,
@@ -36,23 +43,54 @@ export default function Profile() {
         <CircularProgress />
     </Backdrop>
 
+    const handleSetActive = (e) => {
+        let section = e.currentTarget.getAttribute("name").toLowerCase().replace(/ /g, '')
+        setActive(section)
+    }
 
 
- 
 
     return (
-        <Container maxWidth="md"   >
-            <Grid container
+        <Container maxWidth="lg"   >
+            <Grid
+                container
                 direction="row"
-                style={{ height: "100vh", }}
-                justify="center"
-                alignItems="center"
+                justify="flex-start"
+                alignItems="flex-start"
             >
 
-                <Grid container item
+                <NavBar isAuthenticated={isAuthenticated} />
+                <Grid
+                    style={{ marginBottom: '50px' }}
+                    xs={12}
+
+                    container item
                     justify="center"
-                    alignItems="center">
-                    <PersonalInfo user={userData}
+                    alignItems="center"
+                >
+                    <Grid xs={12} md={6} lg={6} >  <ProfileOverview /> </Grid>
+                    <Grid xs={12} md={6} lg={6} />
+                </Grid>
+
+
+                <Grid
+                    lg={3}
+                    container item
+                    justify="center"
+                    alignItems="center"
+                >
+                    <ProfileNavigation active={active} handleSetActive={handleSetActive} />
+                </Grid>
+
+                <Grid
+                    lg={9}
+                    container item
+                    justify="center"
+                    alignItems="center"
+                >
+
+                    {active === "general" && <PersonalInfo
+                        user={userData}
                         open={open}
                         handleClose={handleClose}
                         handleEditProfile={handleEditProfile}
@@ -62,19 +100,18 @@ export default function Profile() {
                         setProfile={setProfile}
                         openFeedBack={openFeedBack}
                         isLoadingprofile={isLoadingprofile}
-                    />
-                </Grid>
-                <Grid container item
-                    justify="center"
-                    alignItems="center">
-
-                    <OrderHistory
+                    />}
+                    {active === "order" && <OrderHistory
                         classes={classes}
                         orderData={orderData}
                         locale={locale}
-                    />
+                    />}
+                    {active === "credential" && <Credential
+                       
+                    />}
 
                 </Grid>
+
             </Grid>
         </Container>
     )

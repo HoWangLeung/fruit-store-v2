@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
-import { ACCESS_TOKEN, API_BASE_URL } from '../../constants'
+import { ACCESS_TOKEN, API_BASE_URL } from '../../../constants'
 
 export default function useProfileData() {
 

@@ -9,7 +9,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { Box, Collapse, Typography, IconButton, Chip } from '@material-ui/core'
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import OrderPDF from './OrderHistory/OrderPDF';
+import OrderPDF from '../OrderHistory/OrderPDF';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload as download } from "@fortawesome/free-solid-svg-icons"
 import { FormattedMessage } from 'react-intl';
