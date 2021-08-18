@@ -41,7 +41,7 @@ function ItemCard({
     }, [data])
 
     return (
-        <Container style={{maxWidth:"1100px"}} >
+        <Container maxWidth="md" style={{padding:"0px"}} >
             <Grid
 
                 container

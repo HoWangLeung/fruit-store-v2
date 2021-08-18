@@ -1,5 +1,5 @@
 const en = {
-    'app.title': 'Fruit Shop',
+    'app.title': 'Fruit',
     'app.learn': 'Learn {name}',
     'banner.line1': 'Welcome',
     'banner.line2': 'Fruits from all around the world',

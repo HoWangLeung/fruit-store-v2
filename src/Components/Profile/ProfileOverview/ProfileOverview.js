@@ -34,12 +34,17 @@ const useStyles = makeStyles((theme) => ({
     accountCircleIcon: {
         height: "100px",
         width: "100px"
+    },
+    profileText: {
+        margin: "8px 0px",
+        color:"#646e73",
+        fontFamily:"Segoe UI"
     }
 
 }));
 
 
-export default function ProfileOverview() {
+export default function ProfileOverview({ user }) {
 
     const classes = useStyles();
 
@@ -50,10 +55,10 @@ export default function ProfileOverview() {
 
 
                 <div >
-                    <Typography variant="h4">Welcome</Typography>
-                    <Typography>hkz88i00123@gmail.com</Typography>
-                    <Typography>Joined on </Typography>
-                    <Typography>Last logged in on</Typography>
+                    <Typography  variant="h4">Welcome</Typography>
+                    <Typography className={classes.profileText}>hkz88i00123@gmail.com</Typography>
+                    <Typography className={classes.profileText}>Joined on {user.createdDate}</Typography>
+                    <Typography className={classes.profileText}>Last logged in on {user.lastLoginDate} </Typography>
                 </div>
                 <div  >
                     <AccountCircleIcon className={classes.accountCircleIcon} />

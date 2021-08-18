@@ -39,7 +39,7 @@ export default function Profile({ isAuthenticated }) {
         isLoadingprofile,
         password,
         setPassword
-        
+
     } = useProfileData()
     let orderData = useOrderData()
     const locale = history.location.pathname.substring(1, 3)
@@ -56,7 +56,7 @@ export default function Profile({ isAuthenticated }) {
 
         let value = e.currentTarget.value
         let fieldName = e.currentTarget.name
-        
+
         setPassword(state => ({
             ...state,
             [fieldName]: value
@@ -66,16 +66,19 @@ export default function Profile({ isAuthenticated }) {
 
 
     return (
-        <Container maxWidth="lg"   >
+        <Container maxWidth="lg"  style={{paddingBottom:"30px"}} >
+            <NavBar isAuthenticated={isAuthenticated} />
             <Grid
+                style={{ marginTop: "30px" }}
                 container
                 direction="row"
                 justify="flex-start"
                 alignItems="flex-start"
             >
 
-                <NavBar isAuthenticated={isAuthenticated} />
+
                 <Grid
+
                     style={{ marginBottom: '50px' }}
                     xs={12}
 
@@ -83,7 +86,7 @@ export default function Profile({ isAuthenticated }) {
                     justify="center"
                     alignItems="center"
                 >
-                    <Grid xs={12} md={6} lg={6} >  <ProfileOverview /> </Grid>
+                    <Grid xs={12} md={6} lg={6} >  <ProfileOverview user={userData} /> </Grid>
                     <Grid xs={12} md={6} lg={6} />
                 </Grid>
 

@@ -16,7 +16,7 @@ import styled from 'styled-components';
 
 const useStyles = makeStyles((theme) => ({
     container: {
-
+        marginBottom: "40px"
     },
     list: {
         width: '100%',

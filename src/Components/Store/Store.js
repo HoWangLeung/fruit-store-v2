@@ -116,8 +116,8 @@ function Store({ isAuthenticated }) {
             setRedirctTo(true)
             window.location.href = "/"
         } else if (error) {
-         
-        
+
+
             setDialog(state => ({
                 ...state,
                 open: true,
@@ -137,7 +137,8 @@ function Store({ isAuthenticated }) {
 
     return (
 
-        <Container className="store_container" maxWidth={false}>
+        <Container className="store_container" maxWidth="md">
+
 
             <ItemFilter
                 data={data}
@@ -149,6 +150,7 @@ function Store({ isAuthenticated }) {
                 categories={categories}
                 countries={countries}
             />
+
 
             <ItemCard
                 isLoading={isLoading}

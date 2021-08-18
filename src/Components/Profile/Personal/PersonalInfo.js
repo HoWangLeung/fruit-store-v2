@@ -27,35 +27,35 @@ export default function PersonalInfo({ user,
 
             </Grid>
 
-            <Paper elevation={8} style={{ padding: "30px", width: '100%',borderRadius:"8px" }}  >
+            <Paper elevation={8} style={{ padding: "30px", width: '100%', borderRadius: "8px" }}  >
                 <table style={{ width: "100%" }} rules="none">
                     <tbody>
                         <tr>
                             <td > <FormattedMessage id="profile.firstName.label" /> : </td>
                             <td  >
                                 {/* <FormattedMessage id="profile.unset" /> */}
-                                {user.firstName}
+                                {user.firstName ? user.firstName : "unset"}
                             </td>
                         </tr>
 
                         <tr  >
                             <td > <FormattedMessage id="profile.lastName.label" /> : </td>
                             <td >
-                                {user.lastName}
+                                {user.lastName ? user.lastName : "unset"}
 
                             </td>
                         </tr>
                         <tr>
                             <td > <FormattedMessage id="profile.email.label" /> : </td>
-                            <td >{user.email}</td>
+                            <td >{user.email ? user.email : "unset"}</td>
                         </tr>
                         <tr>
                             <td > <FormattedMessage id="profile.address.label" /> : </td>
-                            <td >{user.address}</td>
+                            <td >{user.address ? user.address : "unset"}</td>
                         </tr>
                         <tr>
                             <td > <FormattedMessage id="profile.phone.label" /> : </td>
-                            <td >{user.phone}</td>
+                            <td >{user.phone ? user.phone : "unset"}</td>
                             {/* <td ><FormattedMessage id="profile.unset" /></td> */}
                         </tr>
                     </tbody>
