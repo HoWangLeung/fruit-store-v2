@@ -15,7 +15,12 @@ export default function useProfileData() {
         lastName: "Leung",
         address: "ABCDEFG",
         phone: "23456789",
+    })
 
+    const [password, setPassword] = useState({
+        currentPassword: "",
+        newPassword1: "",
+        newPassword2: "",
     })
 
     useEffect(() => {
@@ -39,7 +44,7 @@ export default function useProfileData() {
                 setData(res.data)
             })
             .catch(e => {
-                console.log(e.response)
+
             })
 
 
@@ -62,8 +67,6 @@ export default function useProfileData() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIsLoadingprofile(true)
-        console.log(profile);
         const headers = {
             'Content-Type': 'application/json',
         }
@@ -71,45 +74,46 @@ export default function useProfileData() {
             headers['Authorization'] = 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
         }
 
+        let form_channel = e.target.name
+
         let config = {
             headers: headers,
             method: 'put',
-            url: API_BASE_URL + "/api/user/profile/update",
-            data: profile
+            url: "",
+            data: ""
         }
-        axios(config)
-            .then(res => {
-                setData(res.data)
-                setProfile(res.data)
-                setOpen(!open)
-                setOpenFeedBack(true)
-                setIsLoadingprofile(false)
-            })
-            // .then(() => {
-            //     const headers = {
-            //         'Content-Type': 'application/json',
-            //     }
-            //     if (localStorage.getItem(ACCESS_TOKEN)) {
-            //         headers['Authorization'] = 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
-            //     }
 
-            //     let config = {
-            //         headers: headers,
-            //         method: 'get',
-            //         url: API_BASE_URL + "/api/user/profile"
-            //     }
-            //     axios(config)
-            //         .then(res => {
+        if (form_channel == "credential") {
+            config.url = API_BASE_URL + "/api/auth/updatePassword"
+            config.data = password
+            axios(config)
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(e => {
 
-            //             setData(res.data)
-            //         })
-            //         .catch(e => {
-            //             console.log(e.response)
-            //         })
-            // })
-            .catch(e => {
-                console.log(e.response)
-            })
+                })
+        } else if (form_channel == "personalInfo") {
+            setIsLoadingprofile(true)
+            config.url = API_BASE_URL + "/api/user/profile/update"
+            config.data = profile
+
+            axios(config)
+                .then(res => {
+                    console.log(res);
+                    setData(res.data)
+                    setProfile(res.data)
+                    setOpen(!open)
+                    setOpenFeedBack(true)
+                    setIsLoadingprofile(false)
+                })
+                .catch(e => {
+
+                })
+        }
+
+
+
     }
 
 
@@ -122,6 +126,8 @@ export default function useProfileData() {
         setProfile,
         handleSubmit,
         openFeedBack,
-        isLoadingprofile
+        isLoadingprofile,
+        password,
+        setPassword
     }
 }

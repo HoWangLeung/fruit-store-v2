@@ -13,7 +13,6 @@ import NavBar from '../NavBar/NavBar';
 import Credential from './Credential/Credentail';
 
 
-
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
@@ -21,9 +20,11 @@ const useStyles = makeStyles({
 }, { index: 1 });
 
 
-
 export default function Profile({ isAuthenticated }) {
     const [active, setActive] = useState('general')
+
+
+
     let history = useHistory();
     const classes = useStyles();
     let { userData,
@@ -35,7 +36,10 @@ export default function Profile({ isAuthenticated }) {
         setProfile,
         handleSubmit,
         openFeedBack,
-        isLoadingprofile
+        isLoadingprofile,
+        password,
+        setPassword
+        
     } = useProfileData()
     let orderData = useOrderData()
     const locale = history.location.pathname.substring(1, 3)
@@ -46,6 +50,17 @@ export default function Profile({ isAuthenticated }) {
     const handleSetActive = (e) => {
         let section = e.currentTarget.getAttribute("name").toLowerCase().replace(/ /g, '')
         setActive(section)
+    }
+
+    const handleChange = (e) => {
+
+        let value = e.currentTarget.value
+        let fieldName = e.currentTarget.name
+        
+        setPassword(state => ({
+            ...state,
+            [fieldName]: value
+        }))
     }
 
 
@@ -107,7 +122,9 @@ export default function Profile({ isAuthenticated }) {
                         locale={locale}
                     />}
                     {active === "credential" && <Credential
-                       
+                        password={password}
+                        handleChange={handleChange}
+                        handleSubmit={handleSubmit}
                     />}
 
                 </Grid>

@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 
-import { Container, Grid, Paper, Button, Divider, Box, Chip, Collapse, Typography, IconButton } from '@material-ui/core'
+import { Container, Grid, Paper, Button, Divider, Box, Chip, Collapse, Typography, IconButton, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
 
 
 import SubTable from '../Personal/SubTable';
 
-function createData(id, createdDate, finalTotal, status, orderItems) {
-    return { id, createdDate, finalTotal, status, orderItems };
-}
-export default function Credential({ orderData, classes, locale }) {
 
+const useStyles = makeStyles({
+    form: {
 
+    },
+}, { index: 1 });
+export default function Credential({ locale, password, handleBlur, handleChange, handleSubmit, errors, }) {
+    const classes = useStyles();
 
 
     return (
@@ -32,7 +34,81 @@ export default function Credential({ orderData, classes, locale }) {
             </Grid>
             <Paper elevation={3} style={{ padding: "30px", width: '100%', borderRadius: "8px" }} >
 
-                <h1>PLACEHOLDER</h1>
+                <form className={classes.form} onSubmit={handleSubmit} name="credential">
+                    <TextField
+                        onBlur={handleBlur}
+                        // error={errors.title ? true : false}
+                        // helperText={errors.title}
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        id="currentPassword"
+                        label="Current Password"
+                        name="currentPassword"
+                        autoComplete="title"
+                        onChange={handleChange}
+                        value={password.currentPassword}
+                        InputLabelProps={{
+                            shrink: true
+                        }}
+                        placeholder="Current Passowrd"
+                    />
+                    <TextField
+                        onBlur={handleBlur}
+                        // error={errors.title ? true : false}
+                        // helperText={errors.title}
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        id="newPassword"
+                        label="New Password"
+                        name="newPassword1"
+
+                        onChange={handleChange}
+                        value={password.newPassword1}
+                        InputLabelProps={{
+                            shrink: true
+                        }}
+                        placeholder="New Passowrd"
+                    />
+                    <TextField
+                        onBlur={handleBlur}
+                        // error={errors.title ? true : false}
+                        // helperText={errors.title}
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        id="currentPassword"
+                        label="Confirm New Password"
+                        name="newPassword2"
+
+                        onChange={handleChange}
+                        value={password.newPassword2}
+                        InputLabelProps={{
+                            shrink: true
+                        }}
+                        placeholder="Confirm New Password"
+                    />
+
+
+
+                    <Grid
+                        container
+                        justifyContent="center"
+                    >
+                        <Button
+                            color="primary"
+                            variant="contained"
+                            size="large"
+                            type="submit" style={{
+                                margin: "20px 0px",
+                            }}
+                        >
+                            Confirm
+                        </Button>
+                    </Grid>
+
+                </form>
 
             </Paper>
         </Box>

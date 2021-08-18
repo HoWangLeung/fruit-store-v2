@@ -55,7 +55,7 @@ export default function OrderHistory({ orderData, classes, locale }) {
                         </TableHead>
                         {rows.length > 0 ? <TableBody>
                             {rows.map((row, i) => {
-                                console.log(row);
+                                
                                 return (
 
                                     <SubTable key={row.id} rows={rows} row={row} locale={locale} />

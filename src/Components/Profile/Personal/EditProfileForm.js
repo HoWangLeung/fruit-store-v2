@@ -18,7 +18,7 @@ export default function EditProfileForm({
                         justifycontent="center"
                     >
 
-                        <form onSubmit={handleSubmit} id="editProfile">
+                        <form onSubmit={handleSubmit} id="editProfile" name="personalInfo">
 
                             <TextField
                                 fullWidth
