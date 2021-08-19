@@ -153,6 +153,7 @@ function Store({ isAuthenticated }) {
 
 
             <ItemCard
+                locale={locale}
                 isLoading={isLoading}
                 cart={cart}
                 data={data}

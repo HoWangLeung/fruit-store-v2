@@ -47,30 +47,10 @@ function App() {
           <Route exact path="/:lang/cart" render={props => <Cart isAuthenticated={isAuthenticated} {...props} />} />
           <Route exact path="/:lang/auth/signin" render={props => <LoginContainer {...props} />} />
           <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
-
           <Route exact path="/:lang/user/settings" render={props => <Profile isAuthenticated={isAuthenticated} {...props} />} />
+          <Route render={props => <DefaultContainer isAuthenticated={isAuthenticated}  />} />
 
-          <Route exact path="/:lang" >
-            <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
-            <Route path="/oauth2/redirect/#/:lang" component={OAuth2RedirectHandler}></Route>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-            >
-              <NavBar isAuthenticated={isAuthenticated} />
-              <Banner />
 
-              <SnackbarProvider maxSnack={6}>
-                <Store isAuthenticated={isAuthenticated} />
-              </SnackbarProvider>
-
-              <Footer />
-              <WhatsappIcon />
-            </Grid>
-
-          </Route>
           <Redirect from="/" to="/en" />
         </Switch>
       </Router>

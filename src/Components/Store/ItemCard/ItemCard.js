@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 function ItemCard({
+    locale,
     isLoading,
     data, selectedCountry, selectedCategory,
     quantity,
@@ -41,7 +42,7 @@ function ItemCard({
     }, [data])
 
     return (
-        <Container maxWidth="md" style={{padding:"0px"}} >
+        <Container maxWidth="md" style={{ padding: "0px" }} >
             <Grid
 
                 container
@@ -70,7 +71,7 @@ function ItemCard({
 
                                 >
                                     <Box key={item}  >
-                                        <Skeleton variant="rect" width={350} height={250} />
+                                        <Skeleton variant="rect" width={310} height={250} />
                                         <Skeleton />
                                         <Skeleton width="60%" />
                                     </Box>
@@ -78,7 +79,7 @@ function ItemCard({
                             ))
                         ) : (
                             <MyCardContent
-
+                                locale={locale}
                                 cart={cart}
                                 setCart={setCart}
                                 quantity={quantity}

@@ -7,6 +7,10 @@ import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
 import { ReactComponent as LostSvg } from '../../../../Images/Lost.svg';
+import {
+
+    Link
+} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -21,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: 300
     }
 }), { index: 1 });
-export default function MyCardContent({ data, page, quantity, setQuantity, setCart, cart }) {
+export default function MyCardContent({ locale, data, page, quantity, setQuantity, setCart, cart }) {
     const classes = useStyles()
     return <>
 
@@ -43,7 +47,9 @@ export default function MyCardContent({ data, page, quantity, setQuantity, setCa
                             <CardContent style={{ padding: "0px" }}  >
                                 <img src={item.img} alt="pic" />
                                 <div style={{ padding: "0px 10px 10px 10px" }} >
-                                    <h3 style={{ fontWeight: 600 }} >{item.name}</h3>
+                                    {/* <Link to={`/${locale}/product/${item.id}`} > */}
+                                        <h3 style={{ fontWeight: 600 }} >{item.name}</h3>
+                                    {/* </Link> */}
                                     <Grid
                                         container
                                         direction="row"
