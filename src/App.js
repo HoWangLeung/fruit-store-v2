@@ -51,7 +51,7 @@ function App() {
           <Route render={props => <DefaultContainer isAuthenticated={isAuthenticated}  />} />
 
 
-          <Redirect from="/" to="/en" />
+        
         </Switch>
       </Router>
     </ThemeProvider>

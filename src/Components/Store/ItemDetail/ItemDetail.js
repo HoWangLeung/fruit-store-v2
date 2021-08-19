@@ -4,11 +4,10 @@ import { useHistory } from 'react-router-dom';
 import useData from '../Data/useData';
 const useStyles = makeStyles((theme) => ({
     img: {
-        display: "block",
-        maxWidth: "600px",
-        maxHeight: "600px",
-        width: "auto",
-        height: "auto",
+        width: "450px",
+        height: "450px", 
+        objectFit: "cover",
+        borderRadius:"8px"
 
     },
 
