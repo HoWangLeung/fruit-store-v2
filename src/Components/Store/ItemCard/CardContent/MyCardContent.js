@@ -45,11 +45,13 @@ export default function MyCardContent({ locale, data, page, quantity, setQuantit
                     >
                         <Card className="itemCard_card" variant="outlined" key={i} elevation={8}    >
                             <CardContent style={{ padding: "0px" }}  >
-                                <img src={item.img} alt="pic" />
+                                <Link to={`/${locale}/product/${item.id}`} >
+                                    <img src={item.img} alt="pic" />
+                                </Link>
                                 <div style={{ padding: "0px 10px 10px 10px" }} >
-                                    {/* <Link to={`/${locale}/product/${item.id}`} > */}
+                                    <Link to={`/${locale}/product/${item.id}`} >
                                         <h3 style={{ fontWeight: 600 }} >{item.name}</h3>
-                                    {/* </Link> */}
+                                    </Link>
                                     <Grid
                                         container
                                         direction="row"

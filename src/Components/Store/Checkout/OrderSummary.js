@@ -6,7 +6,7 @@ export default function OrderSummary({ sum }) {
 
     return (
         <Container maxWidth="xs" style={{ paddingBottom: "50px", paddingTop: "50px" }}>
-            <Paper elevation={3} style={{ padding: "30px" }}>
+            <Paper elevation={3} style={{ padding: "30px",borderRadius:"8px" }}>
                 <h2>      <FormattedMessage id="checkout.title.checkoutSummary" /></h2>
                 <Divider />
                 <table>

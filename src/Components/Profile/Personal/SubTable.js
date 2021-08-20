@@ -22,7 +22,7 @@ export default function SubTable({ rows, row, locale }) {
         <>
             <TableRow key={row.id}>
 
-                <TableCell component="th" scope="row">
+                <TableCell  component="th" scope="row">
                     {row.id}
                 </TableCell>
                 <TableCell align="center">{row.createdDate}</TableCell>
@@ -64,12 +64,12 @@ export default function SubTable({ rows, row, locale }) {
                                 <TableBody>
                                     {row.orderItems.map((r) => (
                                         <TableRow  >
-                                            <TableCell component="th" scope="row">
+                                            <TableCell style={{ borderBottom: "none" }} component="th" scope="row" >
                                                 {r.product.localizations[`${locale}`].name}
                                             </TableCell>
-                                            <TableCell>{r.price}</TableCell>
-                                            <TableCell align="right">  {r.quantity}</TableCell>
-                                            <TableCell align="right">
+                                            <TableCell style={{ borderBottom: "none" }}>{r.price}</TableCell>
+                                            <TableCell style={{ borderBottom: "none" }} align="right">  {r.quantity}</TableCell>
+                                            <TableCell style={{ borderBottom: "none" }} align="right">
                                                 {r.price * r.quantity}
                                             </TableCell>
                                         </TableRow>

@@ -1,4 +1,5 @@
 import { Grid } from '@material-ui/core'
+import { SnackbarProvider } from 'notistack'
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import NavBar from '../../NavBar/NavBar'
@@ -12,13 +13,16 @@ import WhatsappIcon from '../WhatsappIcon/WhatsappIcon'
 import StoreContainer from './StoreContainer'
 
 function DefaultContainer({ isAuthenticated }) {
+    let locale = localStorage.getItem('locale')
     return (
         <>
             <NavBar isAuthenticated={isAuthenticated} />
             <Route exact path="/:lang" render={props => <StoreContainer isAuthenticated={isAuthenticated} />} />
-            <Route exact path="/:lang/product/:id" render={props => <ItemDetail isAuthenticated={isAuthenticated} {...props} />} />
-          
-            <Redirect from="/" to="/en" />
+            <Route exact path="/:lang/product/:id" render={props => <SnackbarProvider maxSnack={3}>
+                <ItemDetail isAuthenticated={isAuthenticated} {...props} />
+            </SnackbarProvider>} />
+
+            <Redirect from="/" to={`/${locale}`} />
 
         </>
     )

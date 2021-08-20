@@ -21,11 +21,11 @@ import CreditCard from './CreditCard/CreditCard';
 
 const publishable_key = 'pk_test_oHDsyL0Wxhko6HIFRMrm7QXS00h1og1ziG'
 
-export default function Checkout({isAuthenticated}) {
+export default function Checkout({ isAuthenticated }) {
     const [focus, setFocus] = useState(false)
     const [cardDetail, setCardDetail] = useState({
         cardHolder: "Leung Ho Wang",
-        
+
     })
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     let sum = 0;
@@ -33,15 +33,15 @@ export default function Checkout({isAuthenticated}) {
         sum += (d.quantity * d.price)
     });
 
-   
-  const handleChange = (e) => {
-       
+
+    const handleChange = (e) => {
+
         setCardDetail(state => ({
             ...state,
             [e.target.name]: e.target.value
         }))
     }
-console.log(cardDetail);
+    console.log(cardDetail);
     return (
 
         <Grid
@@ -51,8 +51,9 @@ console.log(cardDetail);
             justify="center"
             alignItems="center"
         >
+    
             <Grid
-                container item lg={6}
+                container item lg={4}
                 direction="column"
 
             >
@@ -61,18 +62,18 @@ console.log(cardDetail);
 
             </Grid>
             <Grid
-                container item lg={6}
+                container item lg={4}
                 direction="column"
                 justify="center"
                 alignItems="center"
             >
 
-                <CreditCard focus={focus} cardDetail={cardDetail}/>
-                <Payment 
-                sum={sum}
-                cardDetail={cardDetail}
-                setCardDetail={handleChange}
-                setFocus={setFocus} />
+                <CreditCard focus={focus} cardDetail={cardDetail} />
+                <Payment
+                    sum={sum}
+                    cardDetail={cardDetail}
+                    setCardDetail={handleChange}
+                    setFocus={setFocus} />
 
             </Grid>
         </Grid>

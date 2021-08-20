@@ -35,7 +35,7 @@ const theme = createMuiTheme({
 function App() {
   const history = useHistory()
   const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
-  console.log(history);
+ 
   return (
     <ThemeProvider theme={theme}>
       <Router  >
@@ -48,10 +48,10 @@ function App() {
           <Route exact path="/:lang/auth/signin" render={props => <LoginContainer {...props} />} />
           <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
           <Route exact path="/:lang/user/settings" render={props => <Profile isAuthenticated={isAuthenticated} {...props} />} />
-          <Route render={props => <DefaultContainer isAuthenticated={isAuthenticated}  />} />
+          <Route render={props => <DefaultContainer isAuthenticated={isAuthenticated} />} />
 
+     
 
-        
         </Switch>
       </Router>
     </ThemeProvider>
