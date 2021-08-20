@@ -56,7 +56,7 @@ export default function ProfileOverview({ user }) {
 
                 <div >
                     <Typography  variant="h4">Welcome</Typography>
-                    <Typography className={classes.profileText}>hkz88i00123@gmail.com</Typography>
+                    <Typography className={classes.profileText}>{user.email}</Typography>
                     <Typography className={classes.profileText}>Joined on {user.createdDate}</Typography>
                     <Typography className={classes.profileText}>Last logged in on {user.lastLoginDate} </Typography>
                 </div>
