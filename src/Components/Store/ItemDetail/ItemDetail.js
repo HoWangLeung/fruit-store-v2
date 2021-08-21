@@ -16,8 +16,10 @@ const useStyles = makeStyles((theme) => ({
         position: "relative"
     },
     img: {
-        width: "450px",
+       width: "450px",
         height: "450px",
+        minWidth:"280px",
+        minHeight: "200px",
         objectFit: "cover",
         borderRadius: "8px"
 

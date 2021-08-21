@@ -14,7 +14,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { CircularProgress, Container, } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 
-export default function StandardSignup({classes,handleChange,handleBlur,errors,user, isLoading,locale,handleSubmit}) {
+export default function StandardSignup({ classes, handleChange, handleBlur, errors, user, isLoading, locale, handleSubmit }) {
     return (
         <div className={classes.paper}>
             <Avatar className={classes.avatar}>
@@ -87,14 +87,11 @@ export default function StandardSignup({classes,handleChange,handleBlur,errors,u
                         size={18} style={{ marginRight: "10px" }} />}
                     <FormattedMessage id="signup.signup" />
                 </Button>
-                <Grid container>
 
-                    <Grid item>
-                        <Link to={`${locale}/auth/signin`} variant="body2">
-                            <FormattedMessage id="signup.haveAccount" />
-                        </Link>
-                    </Grid>
-                </Grid>
+                <Link to={`/${locale}/auth/signin`} variant="body2">
+                    <FormattedMessage id="signup.haveAccount" />
+                </Link>
+
             </form>
         </div>
     )

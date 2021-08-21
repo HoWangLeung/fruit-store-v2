@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core'
+import { Grid, useTheme } from '@material-ui/core'
 import { SnackbarProvider } from 'notistack'
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
@@ -14,11 +14,14 @@ import StoreContainer from './StoreContainer'
 
 function DefaultContainer({ isAuthenticated }) {
     let locale = localStorage.getItem('locale')
+    const theme = useTheme();
     return (
         <>
             <NavBar isAuthenticated={isAuthenticated} />
-            <Route exact path="/:lang" render={props => <StoreContainer isAuthenticated={isAuthenticated} />} />
-            <Route exact path="/:lang/product/:id" render={props => <SnackbarProvider maxSnack={3}>
+            <Route exact path="/:lang" render={props => <StoreContainer  theme={theme} isAuthenticated={isAuthenticated} />} />
+            <Route exact path="/:lang/product/:id" render={props => <SnackbarProvider
+                style={{ backgroundColor: theme.palette.primary.main }}
+                maxSnack={3}>
                 <ItemDetail isAuthenticated={isAuthenticated} {...props} />
             </SnackbarProvider>} />
 

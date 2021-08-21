@@ -10,7 +10,7 @@ import './Navbar.scss'
 import { FormattedMessage } from 'react-intl'
 
 function NavBar({ isAuthenticated, intl }) {
-    const cart = JSON.parse(localStorage.getItem("cart")) || []
+
     const history = useHistory()
     const locale = history.location.pathname.substring(1, 3)
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -41,6 +41,7 @@ function NavBar({ isAuthenticated, intl }) {
     }
 
     const handleCartRedirect = (e) => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || []
         if (cart.length > 0) {
             history.push(`/${locale}/cart`)
             return

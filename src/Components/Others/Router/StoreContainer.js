@@ -8,7 +8,7 @@ import Banner from '../Banner/Banner'
 import Footer from '../Footer/Footer'
 import WhatsappIcon from '../WhatsappIcon/WhatsappIcon'
 
-export default function StoreContainer({isAuthenticated}) {
+export default function StoreContainer({theme,isAuthenticated}) {
     return (<>
         <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
         <Route path="/oauth2/redirect/#/:lang" component={OAuth2RedirectHandler}></Route>
@@ -21,7 +21,7 @@ export default function StoreContainer({isAuthenticated}) {
 
             <Banner />
 
-            <SnackbarProvider maxSnack={6}>
+            <SnackbarProvider maxSnack={6}  style={{ backgroundColor: theme.palette.primary.main }}>
                 <Store isAuthenticated={isAuthenticated} />
             </SnackbarProvider>
 

@@ -83,8 +83,8 @@ export default function SignIn() {
         password: "",
     });
     const [user, setUser] = useState({
-        email: "",
-        password: ""
+        email: "test@test.com",
+        password: "123"
     })
 
     const [dialog, setDialog] = useState({
@@ -227,9 +227,9 @@ export default function SignIn() {
                 maxWidth="xs"
             >
                 <DialogTitle id="alert-dialog-title">
-                    <Grid container alignItems="center" justifyContent="center">
+                    <Grid container alignItems="center" justify="flex-start">
                         <ErrorIcon style={{ fill: '#ff7961', fontSize: "200%", marginRight: "10px" }} />
-                        <Typography variant="span" align="center">Error Message</Typography>
+                        <Typography variant="span" >Error Message</Typography>
                     </Grid>
                 </DialogTitle>
                 <DialogContent>
