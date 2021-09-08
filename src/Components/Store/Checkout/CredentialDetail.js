@@ -21,7 +21,7 @@ import { ACCESS_TOKEN, API_BASE_URL } from '../../../constants';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setPaymentDetail } from './Actions/CheckoutActions';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Paper } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 const territories = [
     {
@@ -135,13 +135,7 @@ function CredentialDetail(props) {
 
     }
 
-    // const handleChange = (e) => {
-
-    //     setCardDetail(state => ({
-    //         ...state,
-    //         [e.target.name]: e.target.value
-    //     }))
-    // }
+ 
 
     const handleElementChange = (prop) => {
         console.log(prop);
@@ -162,9 +156,29 @@ function CredentialDetail(props) {
     const hasError = errorMessage !== null;
     return (
         <>
-            <Typography component="h1" variant="h5">
-                <FormattedMessage id="checkout.payment.heading" />
-            </Typography>
+            <Grid container justify="space-between">
+                <Typography component="h1" variant="h5">
+                    <FormattedMessage id="checkout.payment.heading" />
+                </Typography>
+
+                {/* <Button color="secondary" variant="contained" >USE TEST CARD FOR DEMO</Button> */}
+            </Grid>
+            {/* <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+            >
+                <Typography className={classes.typography}>The content of the Popover.</Typography>
+            </Popover> */}
             <form className={classes.form} onSubmit={handleSubmit} >
                 <TextField
                     variant="outlined"
@@ -301,7 +315,9 @@ function CredentialDetail(props) {
                             }}
                         />
                     </Grid>
+
                 </Grid>
+
                 <Grid container
                     justify="center"
                     alignItems="center" style={{ padding: '50px' }}>
@@ -317,6 +333,7 @@ function CredentialDetail(props) {
 
 
             </form>
+
         </>
     )
 }
