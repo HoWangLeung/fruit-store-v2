@@ -38,7 +38,7 @@ export default function SocialLogin({
                 </Grid>
 
                 <Grid container item direction="column" justifycontent="center" alignItems="center" spacing={3} >
-                    <Grid item>
+                    {/* <Grid item>
                         <a href={FACEBOOK_AUTH_URL}>
                             <div
                                 className="facebook-btn" >
@@ -46,7 +46,7 @@ export default function SocialLogin({
                                 <span className="social_icon_text">    <FormattedMessage id={isSignupPage ? 'signup.facebook' : 'signin.facebook'} /></span>
                             </div>
                         </a>
-                    </Grid>
+                    </Grid> */}
                     <Grid item>
                         <a href={GOOGLE_AUTH_URL}>
                             <div className="google-btn">

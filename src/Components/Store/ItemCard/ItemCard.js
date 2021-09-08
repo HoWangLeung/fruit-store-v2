@@ -19,6 +19,7 @@ function ItemCard({
     const PER_PAGE = 6;
     let [page, setPage] = useState(1);
     const [dataLength, setDataLength] = useState(data.length);
+    const [loadedImg, setLoadedImg] = useState(false)
     let count = Math.ceil(dataLength / PER_PAGE)
 
 
@@ -40,7 +41,7 @@ function ItemCard({
 
 
     }, [data])
-
+console.log(loadedImg);
     return (
         <Container maxWidth="md" style={{ padding: "0px" }} >
             <Grid
@@ -56,7 +57,7 @@ function ItemCard({
 
                 <Grid container item xs={12} className="ItemCard_innerContainer"      >
 
-                    {isLoading ?
+                    {isLoading  ?
                         (
                             Array.from(new Array(6)).map((item, i) => (
                                 <Grid
@@ -79,6 +80,7 @@ function ItemCard({
                             ))
                         ) : (
                             <MyCardContent
+                                setLoadedImg={setLoadedImg}
                                 locale={locale}
                                 cart={cart}
                                 setCart={setCart}

@@ -11,6 +11,7 @@ import {
 
     Link
 } from "react-router-dom";
+import MyCardItem from './MyCardItem';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: 300
     }
 }), { index: 1 });
-export default function MyCardContent({ locale, data, page, quantity, setQuantity, setCart, cart }) {
+export default function MyCardContent({ locale, data, page, quantity, setQuantity, setCart, cart, setLoadedImg }) {
     const classes = useStyles()
     return <>
 
@@ -43,67 +44,13 @@ export default function MyCardContent({ locale, data, page, quantity, setQuantit
                         xs={12} md={6} lg={4}
 
                     >
-                        <Card className="itemCard_card" variant="outlined" key={i} elevation={8}    >
-                            <CardContent style={{ padding: "0px" }}  >
-                                <Link to={`/${locale}/product/${item.id}`} >
-                                    <img src={item.img} alt="pic" />
-                                </Link>
-                                <div style={{ padding: "0px 10px 10px 10px" }} >
-                                    <Link to={`/${locale}/product/${item.id}`} >
-                                        <h3 style={{ fontWeight: 600 }} >{item.name}</h3>
-                                    </Link>
-                                    <Grid
-                                        container
-                                        direction="row"
-                                        justify="space-between"
-                                        alignItems="center"
-                                    >
-                                        <span><FormattedMessage id="store.price" />: ${item.price}</span>
-                                        <span><FormattedMessage id="store.country" />: {item.country} </span>
-                                    </Grid>
-
-
-                                </div>
-                                <Grid
-                                    style={{ padding: "10px" }}
-                                    container
-                                    direction="row"
-                                    justify="space-between"
-                                    alignItems="center"
-                                >
-                                    <FormControl
-                                        size="small"
-                                        variant="outlined"
-                                        className={classes.formControl}
-                                    >
-                                        <InputLabel id={i}><FormattedMessage id="store.quantity" /></InputLabel>
-                                        <Select
-                                            label="Quantity"
-                                            labelId={item.name}
-                                            id={item.name}
-                                            name={item.name}
-
-                                            value={quantity.name}
-                                            defaultValue={1}
-                                            onChange={(e) => setQuantity(e.target)}
-                                            MenuProps={{ classes: { paper: classes.menuPaper } }}
-                                        >
-                                            {Array.from(Array(50).keys()).map((value, i) => (
-                                                <MenuItem key={i} value={value + 1}>
-                                                    {value + 1}
-                                                </MenuItem>
-                                            ))}
-
-                                        </Select>
-                                    </FormControl>
-                                    <Button
-                                        value={item.name}
-                                        onClick={() => setCart(item.name)}
-                                        variant="contained" color="primary" ><FormattedMessage id="store.add" /></Button>
-                                </Grid>
-
-                            </CardContent>
-                        </Card>
+                        <MyCardItem i={i} item={item} locale={locale}
+                            setCart={setCart}
+                            classes={classes}
+                            quantity={quantity}
+                            setLoadedImg={setLoadedImg}
+                            setQuantity={setQuantity}
+                        />
                     </Grid>
                 )
             })}

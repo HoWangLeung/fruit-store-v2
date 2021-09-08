@@ -24,6 +24,8 @@ if (locale.includes('zh')) {
   messages = en;
 }
 
+console.log(locale);
+
 ReactDOM.render(
   <React.StrictMode>
 
