@@ -97,6 +97,7 @@ const zh = {
     'profile.history.detail.header.price': '價錢',
     'profile.history.detail.header.quantity': '數量',
     'profile.history.detail.header.total': '總金額',
+    'profile.products.heading': '產品管理',
 
 };
 export default zh;

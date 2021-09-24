@@ -97,6 +97,7 @@ const en = {
     'profile.history.detail.header.price': 'Price',
     'profile.history.detail.header.quantity': 'Quantity',
     'profile.history.detail.header.total': 'Total',
+    'profile.products.heading': 'Products Management',
 
 
 }

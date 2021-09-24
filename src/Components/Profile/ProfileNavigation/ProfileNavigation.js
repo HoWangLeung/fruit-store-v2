@@ -13,6 +13,7 @@ import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import styled from 'styled-components';
+import ShopIcon from '@material-ui/icons/Shop';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -50,11 +51,15 @@ const sections = [
     },
     {
         name: "Order",
-        icon: <StorefrontIcon />
+        icon: <ShopIcon/> 
     },
     {
         name: "Credential",
         icon: <VpnKeyIcon />
+    },
+    {
+        name: "Products",
+        icon: <StorefrontIcon />
     },
 ]
 export default function ProfileNavigation({ active, handleSetActive }) {
