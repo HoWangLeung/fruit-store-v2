@@ -98,6 +98,13 @@ const en = {
     'profile.history.detail.header.quantity': 'Quantity',
     'profile.history.detail.header.total': 'Total',
     'profile.products.heading': 'Products Management',
+    'newProduct.uploader.localImage':'Local Image',
+    'newProduct.uploader.or':'OR',
+    'newProduct.imageURL.label':'IMAGE URL',
+    'newProduct.uploader.back.label':'Back',
+    'newProduct.uploader.next.label':'Next',
+    'newProduct.upload.label':'Upload',
+    'newProduct.imageURL.Zoom':'Zoom',
 
 
 }

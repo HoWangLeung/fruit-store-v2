@@ -98,6 +98,13 @@ const zh = {
     'profile.history.detail.header.quantity': '數量',
     'profile.history.detail.header.total': '總金額',
     'profile.products.heading': '產品管理',
+    'newProduct.uploader.localImage':'本地圖片',
+    'newProduct.uploader.or':'或',
+    'newProduct.imageURL.label':'圖片網址',
+    'newProduct.uploader.back.label':'返回',
+    'newProduct.uploader.next.label':'下一步',
+    'newProduct.upload.label':'下載',
+    'newProduct.imageURL.Zoom':'縮放',
 
 };
 export default zh;

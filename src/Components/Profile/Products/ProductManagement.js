@@ -2,6 +2,7 @@ import { Box, Paper, Grid, Typography, Button } from "@material-ui/core";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import ExistingProducts from "./ExistingProducts";
+import NewProduct from "./NewProduct/NewProduct";
 
 export default function ProductManagement() {
   return (
@@ -38,9 +39,7 @@ export default function ProductManagement() {
       >
         <Grid container direction="column" alignItems="flex-start" justify="flex-start" >
           <h3>Add New Product</h3>
-          <Button variant="contained" color="primary">
-            Add New Product
-          </Button>
+          <NewProduct/>
         </Grid>
       </Paper>
 
