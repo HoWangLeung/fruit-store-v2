@@ -11,6 +11,7 @@ import EasyCrop from "./SelectCategory/EasyCrop";
 import getCroppedImg from "./SelectCategory/ImageUtility";
 import { CircularProgress, Container, Grid } from "@material-ui/core";
 import { FormattedMessage } from "react-intl";
+import ProductDetail from "./ProductDetail/ProductDetail";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +35,7 @@ export default function AddProductStepper() {
   const classes = useStyles();
   const [uploading,setUploading]=useState(false)
   const [cropper, setCropper] = useState({
-    imageSrc: "",
+    imageSrc: "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
     crop: { x: 0, y: 0 },
     zoom: minZoom,
     aspect: 4 / 3,
@@ -47,6 +48,12 @@ export default function AddProductStepper() {
   const steps = getSteps();
 
   const handleNext = () => {
+    
+    if (activeStep == 2) {
+      handleCroppedImage();
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      return;
+    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -73,6 +80,7 @@ export default function AddProductStepper() {
   };
 
   const handleCroppedImage = async () => {
+    console.log("handling cropped image")
     const croppedImage = await getCroppedImg(
       cropper.imageSrc,
       cropper.croppedAreaPixels
@@ -107,6 +115,11 @@ export default function AddProductStepper() {
             setCropper={setCropper}
           />
         );
+        case 3:
+          return (
+            <ProductDetail     cropper={cropper}
+            setCropper={setCropper}  />
+          );
       default:
         return "Unknown stepIndex";
     }

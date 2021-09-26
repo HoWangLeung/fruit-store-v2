@@ -105,6 +105,11 @@ const en = {
     'newProduct.uploader.next.label':'Next',
     'newProduct.upload.label':'Upload',
     'newProduct.imageURL.Zoom':'Zoom',
+    'newProduct.name.label':'Product Name',
+    'newProduct.price.label':'Price',
+    'newProduct.country.label':'Country',
+    'newProduct.description.label':'Description',
+    'newProduct.submit.label':'Submit',
 
 
 }

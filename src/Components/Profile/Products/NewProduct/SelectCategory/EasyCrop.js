@@ -18,7 +18,7 @@ export default function EasyCrop({ cropper, setCropper, handleCroppedImage }) {
       croppedAreaPixels,
     }));
   };
-
+  
   const onZoomChange = (zoom) => {
     setCropper((state) => ({
       ...state,

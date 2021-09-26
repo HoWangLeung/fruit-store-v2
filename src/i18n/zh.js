@@ -105,6 +105,11 @@ const zh = {
     'newProduct.uploader.next.label':'下一步',
     'newProduct.upload.label':'下載',
     'newProduct.imageURL.Zoom':'縮放',
+    'newProduct.name.label':'產品名稱',
+    'newProduct.price.label':'價錢',
+    'newProduct.country.label':'產地',
+    'newProduct.description.label':'描述',
+    'newProduct.submit.label':'提交',
 
 };
 export default zh;

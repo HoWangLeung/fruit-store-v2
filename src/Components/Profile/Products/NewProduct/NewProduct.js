@@ -23,6 +23,7 @@ export default function NewProduct() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          height:"auto"
         }}
         open={open}
         onClose={handleClose}
@@ -32,6 +33,7 @@ export default function NewProduct() {
         <Paper
           style={{
             height: "90%",
+          
             width: "90%",
             padding: "15px",
           }}
