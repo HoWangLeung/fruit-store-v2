@@ -20,7 +20,7 @@ function NavBar({ isAuthenticated, intl }) {
     const dispatch = useDispatch()
     const handleClick = (e) => {
         if (!isAuthenticated) {
-            history.push(`${locale}/auth/signin`)
+            history.push(`/${locale}/auth/signin`)
         } else {
             localStorage.removeItem(ACCESS_TOKEN)
             dispatch(setSignInStatus(false))
