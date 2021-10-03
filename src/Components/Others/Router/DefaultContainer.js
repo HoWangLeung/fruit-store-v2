@@ -41,7 +41,7 @@ function DefaultContainer({ isAuthenticated }) {
         />
    
 
-      {/* <Redirect from="/" to={`/${locale}`} /> */}
+      <Redirect from="/" to={`/${locale}`} />
     </>
   );
 }
