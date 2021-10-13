@@ -60,7 +60,7 @@ export default function Address() {
     let history = useHistory();
     console.log(history);
     const [profile, setProfile] = useState({
-        firstName: "Derek",
+        firstName: "Ho Wang",
         lastName:"Leung",
         terrority:"HK",
         address: "ABC Building, DEF Road, HK",
