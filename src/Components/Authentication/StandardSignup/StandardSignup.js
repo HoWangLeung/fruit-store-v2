@@ -33,7 +33,7 @@ export default function StandardSignup({ classes, handleChange, handleBlur, erro
                     name="email"
                     autoComplete="email"
                     onChange={handleChange}
-
+                    type="email"
                     value={user.email}
 
                     onBlur={handleBlur}
