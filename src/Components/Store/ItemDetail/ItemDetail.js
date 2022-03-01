@@ -97,7 +97,7 @@ export default function ItemDetail({ isAuthenticated, match }) {
         }
 
 
-        console.log(cart);
+        
         localStorage.setItem('cart', JSON.stringify(cart))
         enqueueSnackbar(
             <FormattedMessage id="store.successAdd" />
@@ -105,7 +105,7 @@ export default function ItemDetail({ isAuthenticated, match }) {
             { variant: 'success', autoHideDuration: 2000, });
     }
 
-
+    console.log(data);
 
     return (
         <Container maxWidth="lg" className={classes.container}>
@@ -117,7 +117,7 @@ export default function ItemDetail({ isAuthenticated, match }) {
 
                     <Typography variant="h4">{data.category}</Typography>
 
-                    <img className={classes.flagImg} src={`https://www.countryflags.io/${data.countryCode}/shiny/64.png`}></img>
+                    <img className={classes.flagImg} src={`https://flagcdn.com/48x36/${data.countryCode.toLowerCase()}.png`}></img>
 
                     <Typography variant="h6">{data.name}</Typography>
                     <Typography>HK$ {data.price}</Typography>
