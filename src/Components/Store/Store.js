@@ -12,9 +12,12 @@ import { testData } from './Data/FruitItem'
 import { FormattedMessage } from 'react-intl'
 import { ACCESS_TOKEN } from '../../constants'
 import CommonDialog from '../Common/Dialog/CommonDialog'
+import { useDispatch } from 'react-redux'
+import { updateStore } from './Actions/StoreActions'
 
 
 function Store({ isAuthenticated }) {
+    const dispatch = useDispatch()
     const [redirctTo, setRedirctTo] = useState(false);
     const [errors, setErrors] = useState({});
     const [dialog, setDialog] = useState({
@@ -71,7 +74,7 @@ function Store({ isAuthenticated }) {
         }))
     }
     const handleSetCart = (itemName) => {
-
+       
         let selected = data
             .filter(d => d.name == itemName)
             .map(d => {
@@ -91,6 +94,7 @@ function Store({ isAuthenticated }) {
         if (!isExist)
             cart.push(selected)
         localStorage.setItem('cart', JSON.stringify(cart))
+        dispatch(updateStore(cart))
         enqueueSnackbar(
             <FormattedMessage id="store.successAdd" />
             ,

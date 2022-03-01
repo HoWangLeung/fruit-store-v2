@@ -16,8 +16,9 @@ import axios from 'axios';
 import useCartAnimation from './useCartAnimation';
 import gsap from 'gsap'
 import { FormattedMessage } from 'react-intl';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as RequestLogin } from '../../../Images/requestLogin.svg';
+import { updateStore } from '../Actions/StoreActions';
 const useStyles = makeStyles((theme) => ({
     paper: {
         // marginTop: theme.spacing(8),
@@ -39,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }), { index: 1 });
 function Cart({ isAuthenticated }) {
+
+    const dispatch = useDispatch()
     const [open, setOpen] = useState(false);
     // const isAuthenticated = useSelector(state => state.AuthenticationReducer.isAuthenticated)
     const nodes = useRef([])
@@ -74,6 +77,8 @@ function Cart({ isAuthenticated }) {
         })
         setCart(newCart)
         localStorage.setItem("cart", JSON.stringify(newCart))
+        
+      
     }
     const minusOne = (itemName) => {
 
@@ -126,6 +131,7 @@ function Cart({ isAuthenticated }) {
         console.log(newCart);
         setCart(newCart)
         localStorage.setItem("cart", JSON.stringify(newCart))
+        dispatch(updateStore(newCart))
     }
 
     const createPendingOrder = (e) => {
