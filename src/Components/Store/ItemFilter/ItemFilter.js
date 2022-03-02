@@ -37,7 +37,8 @@ function ItemFilter({
                 container direction="row"
                 justify="flex-start"
                 item
-                alignItems="center">
+                alignItems="center"
+                >
                 {isLoading ? (
                     <Box ml={.5} pt={.5} width="98.5%" height="60px" >
 

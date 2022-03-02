@@ -14,6 +14,7 @@ import { ACCESS_TOKEN } from '../../constants'
 import CommonDialog from '../Common/Dialog/CommonDialog'
 import { useDispatch } from 'react-redux'
 import { updateStore } from './Actions/StoreActions'
+import KeepInTouch from '../KeepInTouch/KeepInTouch'
 
 
 function Store({ isAuthenticated }) {
@@ -164,8 +165,9 @@ function Store({ isAuthenticated }) {
                 setCart={handleSetCart}
 
             />
-
             <CommonDialog dialog={dialog} setDialog={setDialog} />
+
+            <KeepInTouch/>
 
         </Container>
 
