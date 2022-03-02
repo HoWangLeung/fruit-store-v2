@@ -11,11 +11,13 @@ import {
     Link
 } from "react-router-dom";
 
+//import image from '../../../../Images/apple_1.jpg'
+
 export default function MyCardItem({ locale, item, i, setCart, classes, quantity,
       setLoadedImg,
     setQuantity }) {
    
-
+        console.log(item,"ITEM<",process.env.PUBLIC_URL)
     return (
         <Card className="itemCard_card" variant="outlined" key={i} elevation={8}    >
             <CardContent style={{ padding: "0px" }}  >
@@ -24,7 +26,7 @@ export default function MyCardItem({ locale, item, i, setCart, classes, quantity
                     <img
                         onLoad={() => setLoadedImg(true)}
                 
-                   src={item.img}
+                        src={`${process.env.PUBLIC_URL}/assets/images/${item.img}`} 
                          alt="pic" />
                 </Link>
                 <div style={{ padding: "0px 10px 10px 10px" }} >
