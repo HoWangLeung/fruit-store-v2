@@ -106,7 +106,7 @@ export default function ItemDetail({ isAuthenticated, match }) {
     }
 
     console.log(data);
-
+    
     return (
         <Container maxWidth="lg" className={classes.container}>
             <Grid container direction="row" >
