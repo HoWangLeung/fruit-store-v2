@@ -142,8 +142,6 @@ function Store({ isAuthenticated }) {
     return (
 
         <Container className="store_container" maxWidth="md">
-
-
             <ItemFilter
                 data={data}
                 isLoading={isLoading}
@@ -154,8 +152,6 @@ function Store({ isAuthenticated }) {
                 categories={categories}
                 countries={countries}
             />
-
-
             <ItemCard
                 locale={locale}
                 isLoading={isLoading}

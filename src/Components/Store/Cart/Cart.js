@@ -223,7 +223,7 @@ function Cart({ isAuthenticated }) {
                             justify="center"
                             alignItems="center"   >
                             <div className="cart_img_container ">
-                                <img src={item.img} />
+                                <img  src={`${process.env.PUBLIC_URL}/assets/images/${item.img}`}  />
                             </div>
                             <div className="cart_container"  >
                                 <span>

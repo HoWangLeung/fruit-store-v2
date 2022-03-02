@@ -6,6 +6,8 @@ import { useState } from 'react';
 import FilterButton from './FilterButton';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { FormattedMessage } from 'react-intl';
+import CategoryIcon from '@material-ui/icons/Category';
+import PublicIcon from '@material-ui/icons/Public';
 function ItemFilter({
     data,
     isLoading,
@@ -47,8 +49,10 @@ function ItemFilter({
                     <table>
                         <tbody>
                             <tr>
-                                <td colSpan="1">   <FormattedMessage id="store.category" />:</td>
-                                <td colSpan="1">
+                                <td colSpan="1">  
+                                <CategoryIcon style={{fontSize:"1rem",marginRight:"5px"}} />
+                                 <FormattedMessage id="store.category" />:</td>
+                                <td colSpan="2">
                                     <>
                                         <Button
                                             style={{ color: "#646e73" }}
@@ -56,8 +60,11 @@ function ItemFilter({
                                             <FormattedMessage id="store.label.all" />
                                         </Button>
                                         {categories.map((category, i) => {
+                                           //if(category.toLowerCase()=="grapes") { category="grape"}
+
                                             return (
                                                 <Button
+
                                                     key={i}
                                                     style={{
                                                          color: `${selectedCategory === category ? "white" : "#646e73"}`,
@@ -78,7 +85,9 @@ function ItemFilter({
 
                             </tr>
                             <tr>
-                                <td colSpan="1"><FormattedMessage id="store.country" />:</td>
+                                <td colSpan="1">
+                                    <PublicIcon style={{fontSize:"1rem",marginRight:"5px"}}/>
+                                    <FormattedMessage id="store.country" />:</td>
                                 <td colSpan="1">
                                     <Button
                                         style={{ color: "#646e73" }}
