@@ -111,7 +111,7 @@ export default function ItemDetail({ isAuthenticated, match }) {
         <Container maxWidth="lg" className={classes.container}>
             <Grid container direction="row" >
                 <Grid lg={6} container item direction="row">
-                    <img src={data.img} alt="2" className={classes.img} />
+                    <img src={`${process.env.PUBLIC_URL}/assets/images/${data.img}`} alt="2" className={classes.img} />
                 </Grid>
                 <Grid lg={6} container item direction="column" justify="space-between" className={classes.itemContainer}>
 
