@@ -39,8 +39,8 @@ const useStyles = makeStyles((theme) => ({
 
 const StyledListItem = styled(ListItem)`
      border-left: ${({ active, name, theme }) => active === name ? `2px solid #01BFA6` : "unset"};
-     border-top-left-radius:${({ active, name, theme, firstSection }) => firstSection === name ? `8px` : "unset"};;
-     border-bottom-left-radius:${({ active, name, theme, lastSection }) => lastSection === name ? `8px` : "unset"};;
+     border-top-left-radius:${({ active, name, theme, firstsection }) => firstsection === name ? `8px` : "unset"};;
+     border-bottom-left-radius:${({ active, name, theme, lastsection }) => lastsection === name ? `8px` : "unset"};;
   
 `
 
@@ -68,17 +68,17 @@ export default function ProfileNavigation({ active, handleSetActive }) {
         active: active
     };
     const classes = useStyles(styleProps);
-    let firstSection = sections[0].name.toLowerCase().replace(/ /g, '')
-    let lastSection = sections[sections.length - 1].name.toLowerCase().replace(/ /g, '')
-    console.log(lastSection);
+    let firstsection = sections[0].name.toLowerCase().replace(/ /g, '')
+    let lastsection = sections[sections.length - 1].name.toLowerCase().replace(/ /g, '')
+    console.log(lastsection);
     return (
         <Container className={classes.container}>
             <Paper elevation={3} className={classes.paper}>
 
                 <List className={classes.list}>
-                    {sections.map(s => (
-                        <>
-                            <StyledListItem firstSection={firstSection} lastSection={lastSection} theme={theme} active={active} name={s.name.toLowerCase().replace(/ /g, '')} button onClick={handleSetActive} className={classes.listItem}  >
+                    {sections.map((s,i) => (
+                        <React.Fragment key={i}>
+                            <StyledListItem firstsection={firstsection} lastsection={lastsection} theme={theme} active={active} name={s.name.toLowerCase().replace(/ /g, '')} button onClick={handleSetActive} className={classes.listItem}  >
                                 <ListItemAvatar>
                                     <Avatar>
                                         {s.icon}
@@ -87,7 +87,7 @@ export default function ProfileNavigation({ active, handleSetActive }) {
                                 <ListItemText primary={s.name} />
                             </StyledListItem>
                             <Divider />
-                        </>
+                        </React.Fragment>
                     ))}
 
 

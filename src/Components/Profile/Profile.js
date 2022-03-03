@@ -93,11 +93,11 @@ export default function Profile({ isAuthenticated }) {
           justify="center"
           alignItems="center"
         >
-          <Grid xs={12} md={6} lg={6}>
+          <Grid item xs={12} md={6} lg={6}>
             {" "}
             <ProfileOverview user={userData} />{" "}
           </Grid>
-          <Grid xs={12} md={6} lg={6} />
+          <Grid item xs={12} md={6} lg={6} />
         </Grid>
 
         <Grid lg={3} container item justify="center" alignItems="center">

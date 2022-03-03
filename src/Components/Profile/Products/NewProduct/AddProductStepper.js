@@ -33,9 +33,32 @@ function getSteps() {
 const minZoom = 0.4;
 export default function AddProductStepper() {
   const classes = useStyles();
-  const [uploading,setUploading]=useState(false)
+  const [category, setCategory] = useState({
+    en: {},
+    zh: {},
+  });
+  console.log("categ", category);
+  const [uploading, setUploading] = useState(false);
+  const [newProduct, setNewProduct] = useState({
+    price: "",
+    img: "",
+    localizations: {
+      en: {
+        name: "",
+        category: "",
+        unit: null,
+      },
+      zh: {
+        name: "",
+        category: "",
+        unit: null,
+      },
+    },
+  });
+  console.log(">>>", newProduct);
   const [cropper, setCropper] = useState({
-    imageSrc: "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    imageSrc:
+      "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
     crop: { x: 0, y: 0 },
     zoom: minZoom,
     aspect: 4 / 3,
@@ -48,7 +71,6 @@ export default function AddProductStepper() {
   const steps = getSteps();
 
   const handleNext = () => {
-    
     if (activeStep == 2) {
       handleCroppedImage();
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -80,7 +102,7 @@ export default function AddProductStepper() {
   };
 
   const handleCroppedImage = async () => {
-    console.log("handling cropped image")
+    console.log("handling cropped image");
     const croppedImage = await getCroppedImg(
       cropper.imageSrc,
       cropper.croppedAreaPixels
@@ -95,7 +117,9 @@ export default function AddProductStepper() {
   const getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
-        return <CategorySelector />;
+        return (
+          <CategorySelector category={category} setCategory={setCategory} />
+        );
       case 1:
         return (
           <ImageSelector
@@ -115,20 +139,30 @@ export default function AddProductStepper() {
             setCropper={setCropper}
           />
         );
-        case 3:
-          return (
-            <ProductDetail     cropper={cropper}
-            setCropper={setCropper}  />
-          );
+      case 3:
+        return (
+          <ProductDetail
+            newProduct={newProduct}
+            setNewProduct={setNewProduct}
+            handleSubmitNewProduct={handleSubmitNewProduct}
+            cropper={cropper}
+            setCropper={setCropper}
+          />
+        );
       default:
         return "Unknown stepIndex";
     }
   };
 
+  const handleSubmitNewProduct = (e) => {
+    e.preventDefault();
+    console.log("submitting...");
+  };
+
   return (
     <Container
       maxWidth={false}
-      style={{ position: "relative", height: "100%"}}
+      style={{ position: "relative", height: "100%" }}
     >
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
@@ -138,7 +172,7 @@ export default function AddProductStepper() {
         ))}
       </Stepper>
 
-      <Container style={{ height: "100%", }}>
+      <Container style={{ height: "100%" }}>
         {getStepContent(activeStep)}
         <Grid
           container
@@ -151,7 +185,6 @@ export default function AddProductStepper() {
             color="inherit"
             disabled={activeStep === 0}
             onClick={handleBack}
-           
           >
             <FormattedMessage id="newProduct.uploader.back.label" />
           </Button>

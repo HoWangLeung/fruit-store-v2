@@ -68,7 +68,7 @@ export default function PersonalInfo({ user,
                 </Button>
 
                 <Modal
-                    onBackdropClick="false"
+                   // onBackdropClick="false"
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="simple-modal-title"
@@ -96,7 +96,7 @@ export default function PersonalInfo({ user,
                 </Modal>
 
                 <Dialog
-                    onBackdropClick="false"
+                   // onBackdropClick={false}
                     open={openFeedBack}
                     onClose={handleClose}
                     aria-labelledby="alert-dialog-title"

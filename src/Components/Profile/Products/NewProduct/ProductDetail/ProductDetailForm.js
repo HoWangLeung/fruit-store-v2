@@ -1,67 +1,204 @@
-import { Button, TextField } from "@material-ui/core";
-import React from "react";
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@material-ui/core";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { FormattedMessage } from "react-intl";
+import { countries } from "./Countries";
 
-export default function ProductDetailForm({ handleSubmitNewProduct }) {
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    marginTop: theme.spacing(1),
+    // margin: theme.spacing(1),
+    minWidth: "100%",
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
+export default function ProductDetailForm({
+  handleSubmitNewProduct,
+  newProduct,
+  setNewProduct,
+}) {
+  const classes = useStyles();
+  console.log(countries);
+  const handleChange = (e) => {
+ 
+    let name = e.target.name;
+    let value = e.target.value;
+  
+    if (name === "country") {
+
+      console.log("country", name, value);
+      setNewProduct((state) => ({
+        ...state,
+        localizations: {
+          ...state.localizations,
+          en: {
+            ...state.localizations.en,
+            country:value.English,
+            countryCode:value.ISO2
+          },
+          zh:{
+            ...state.localizations.en,
+            country:value.Hongkong,
+            countryCode:value.ISO2
+
+          }
+        },
+      }));
+     
+    }else{
+      let id = e.target.id;
+    console.log("handling", id, name, value);
+    if (id !== "price" || name !== "img") {
+      if (id.includes("_en")) {
+        console.log("HELLO");
+        setNewProduct((state) => ({
+          ...state,
+          localizations: {
+            ...state.localizations,
+            en: {
+              ...state.localizations.en,
+              [name]: value,
+            },
+          },
+        }));
+      }
+
+      if (id.includes("_zh")) {
+        setNewProduct((state) => ({
+          ...state,
+          localizations: {
+            ...state.localizations,
+            zh: {
+              ...state.localizations.zh,
+              [name]: value,
+            },
+          },
+        }));
+      }
+    }
+    if (id === "price") {
+      console.log("else");
+      console.log("else", name, value);
+      setNewProduct((state) => ({
+        ...state,
+        [name]: value,
+      }));
+    }
+    }
+    
+
+
+
+
+  };
+
   return (
-    <form onSubmit={handleSubmitNewProduct}  >
-      
-      <TextField
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        name="productName"
-        label={<FormattedMessage id="newProduct.name.label" />}
-        id="productName"
-        // autoComplete="current-password"
-        // onChange={handleChange}
-        // value={user.password}
-        // onBlur={handleBlur}
-        // error={errors.password ? true : false}
-        // helperText={errors.password}
-      />
+    <form onSubmit={handleSubmitNewProduct}>
+      <Grid container direction="row">
+        <Grid item xs={6}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="name"
+            label={<FormattedMessage id="newProduct.name.label" />}
+            id="productName_en"
+            // autoComplete="current-password"
+            onChange={handleChange}
+            // value={user.password}
+            // onBlur={handleBlur}
+            // error={errors.password ? true : false}
+            // helperText={errors.password}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="name"
+            label="Chinese Name"
+            id="productName_zh"
+            // autoComplete="current-password"
+            onChange={handleChange}
+            // value={user.password}
+            // onBlur={handleBlur}
+            // error={errors.password ? true : false}
+            // helperText={errors.password}
+          />
+        </Grid>
+      </Grid>
+
       <TextField
         variant="outlined"
         margin="normal"
         fullWidth
         name="price"
         label={<FormattedMessage id="newProduct.price.label" />}
-       
-        id="password"
+        id="price"
         // autoComplete="current-password"
-        // onChange={handleChange}
+        onChange={handleChange}
         // value={user.password}
         // onBlur={handleBlur}
         // error={errors.password ? true : false}
         // helperText={errors.password}
       />
-      <TextField
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        id="country"
-        label={<FormattedMessage id="newProduct.country.label" />}
-        name="country"
-        //autoComplete="email"
-        autoFocus
-        // onChange={handleChange}
-        // value={user.email}
-        // onBlur={handleBlur}
-        // error={errors.email ? true : false}
-        // helperText={errors.email}
-      />
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-outlined-label">Country</InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="country"
+          name="country"
+          //value={age}
+          onChange={handleChange}
+          label="Age"
+        >
+          {countries.map((country) => (
+            <MenuItem  id="country" value={country}>{`${country['English']} - ${country['Hongkong']}`}</MenuItem>
+          ))}
+
+        </Select>
+      </FormControl>
+
       <TextField
         variant="outlined"
         margin="normal"
         multiline
-        rows={10}
+        rows={5}
         fullWidth
         name="description"
         label={<FormattedMessage id="newProduct.description.label" />}
-      
-        id="description"
+        id="description_en"
         // autoComplete="current-password"
-        // onChange={handleChange}
+        onChange={handleChange}
+        // value={user.password}
+        // onBlur={handleBlur}
+        // error={errors.password ? true : false}
+        // helperText={errors.password}
+      />
+
+      <TextField
+        variant="outlined"
+        margin="normal"
+        multiline
+        rows={5}
+        fullWidth
+        name="description"
+        label={<FormattedMessage id="newProduct.description.label" />}
+        id="description_zh"
+        // autoComplete="current-password"
+        onChange={handleChange}
         // value={user.password}
         // onBlur={handleBlur}
         // error={errors.password ? true : false}
