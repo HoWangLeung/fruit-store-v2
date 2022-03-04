@@ -1,5 +1,6 @@
 import {
   Button,
+  CircularProgress,
   FormControl,
   Grid,
   InputLabel,
@@ -27,6 +28,7 @@ export default function ProductDetailForm({
   handleSubmitNewProduct,
   newProduct,
   setNewProduct,
+  uploading
 }) {
   const classes = useStyles();
   console.log(countries);
@@ -44,11 +46,12 @@ export default function ProductDetailForm({
           ...state.localizations,
           en: {
             ...state.localizations.en,
+            
             country:value.English,
             countryCode:value.ISO2
           },
           zh:{
-            ...state.localizations.en,
+            ...state.localizations.zh,
             country:value.Hongkong,
             countryCode:value.ISO2
 
@@ -116,10 +119,8 @@ export default function ProductDetailForm({
             id="productName_en"
             // autoComplete="current-password"
             onChange={handleChange}
-            // value={user.password}
-            // onBlur={handleBlur}
-            // error={errors.password ? true : false}
-            // helperText={errors.password}
+             value={newProduct.localizations.en.name}
+           
           />
         </Grid>
         <Grid item xs={6}>
@@ -132,7 +133,7 @@ export default function ProductDetailForm({
             id="productName_zh"
             // autoComplete="current-password"
             onChange={handleChange}
-            // value={user.password}
+            value={newProduct.localizations.zh.name}
             // onBlur={handleBlur}
             // error={errors.password ? true : false}
             // helperText={errors.password}
@@ -149,6 +150,7 @@ export default function ProductDetailForm({
         id="price"
         // autoComplete="current-password"
         onChange={handleChange}
+        value={newProduct.price}
         // value={user.password}
         // onBlur={handleBlur}
         // error={errors.password ? true : false}
@@ -160,7 +162,7 @@ export default function ProductDetailForm({
           labelId="demo-simple-select-outlined-label"
           id="country"
           name="country"
-          //value={age}
+          value={newProduct.localizations.en.country}
           onChange={handleChange}
           label="Age"
         >
@@ -182,6 +184,7 @@ export default function ProductDetailForm({
         id="description_en"
         // autoComplete="current-password"
         onChange={handleChange}
+        value={newProduct.localizations.en.description}
         // value={user.password}
         // onBlur={handleBlur}
         // error={errors.password ? true : false}
@@ -199,6 +202,7 @@ export default function ProductDetailForm({
         id="description_zh"
         // autoComplete="current-password"
         onChange={handleChange}
+        value={newProduct.localizations.zh.description}
         // value={user.password}
         // onBlur={handleBlur}
         // error={errors.password ? true : false}
@@ -211,10 +215,11 @@ export default function ProductDetailForm({
         variant="contained"
         color="primary"
         // className={classes.submit}
-        // disabled={isLoading}
+      disabled={uploading}
       >
-        {/* {isLoading && <CircularProgress
-                size={18} style={{ marginRight: "10px" }} />} */}
+         {uploading && (
+                <CircularProgress size={18} style={{ marginRight: "10px" }} />
+              )}
         <FormattedMessage id="newProduct.submit.label" />
       </Button>
     </form>

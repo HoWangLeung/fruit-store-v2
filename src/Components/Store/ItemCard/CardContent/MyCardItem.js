@@ -28,7 +28,7 @@ export default function MyCardItem({
   setLoadedImg,
   setQuantity,
 }) {
-//  console.log(item, "ITEM<", process.env.PUBLIC_URL);
+  //  console.log(item, "ITEM<", process.env.PUBLIC_URL);
 
   let src = item.img.includes("https://")
     ? item.img
@@ -90,6 +90,15 @@ export default function MyCardItem({
               ))}
             </Select>
           </FormControl>
+          <Link to={`/${locale}/product/${item.id}`}>
+            <Button
+              onClick={() => setCart(item.name)}
+              variant="contained"
+              color="primary"
+            >
+              <FormattedMessage id="store.detail" />
+            </Button>
+          </Link>
           <Button
             value={item.name}
             onClick={() => setCart(item.name)}

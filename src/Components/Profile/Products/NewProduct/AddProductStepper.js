@@ -9,9 +9,22 @@ import CategorySelector from "./SelectCategory/CategorySelector";
 import ImageSelector from "./SelectCategory/ImageSelector";
 import EasyCrop from "./SelectCategory/EasyCrop";
 import getCroppedImg from "./SelectCategory/ImageUtility";
-import { CircularProgress, Container, Grid } from "@material-ui/core";
+import {
+  CircularProgress,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Grid,
+} from "@material-ui/core";
 import { FormattedMessage } from "react-intl";
 import ProductDetail from "./ProductDetail/ProductDetail";
+import { ACCESS_TOKEN, API_BASE_URL } from "../../../../constants";
+import axios from "axios";
+import CommonDialog from "../../../Common/Dialog/CommonDialog";
+import ErrorIcon from "@material-ui/icons/Error";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,27 +44,38 @@ function getSteps() {
 }
 
 const minZoom = 0.4;
-export default function AddProductStepper() {
+export default function AddProductStepper({ setOpen, setDialog }) {
   const classes = useStyles();
+
   const [category, setCategory] = useState({
-    en: {},
-    zh: {},
+    en: "Apple",
+    zh: "蘋果",
   });
   console.log("categ", category);
   const [uploading, setUploading] = useState(false);
   const [newProduct, setNewProduct] = useState({
-    price: "",
+    price: 123,
     img: "",
     localizations: {
       en: {
-        name: "",
+        localizedId: {
+          id: 1,
+          locale: "en",
+        },
+        name: "Dummy",
         category: "",
         unit: null,
+        description: "Hello",
       },
       zh: {
-        name: "",
+        localizedId: {
+          id: 2,
+          locale: "zh",
+        },
+        name: "測試",
         category: "",
         unit: null,
+        description: "描述",
       },
     },
   });
@@ -142,6 +166,7 @@ export default function AddProductStepper() {
       case 3:
         return (
           <ProductDetail
+            uploading={uploading}
             newProduct={newProduct}
             setNewProduct={setNewProduct}
             handleSubmitNewProduct={handleSubmitNewProduct}
@@ -155,8 +180,46 @@ export default function AddProductStepper() {
   };
 
   const handleSubmitNewProduct = (e) => {
+    setUploading(true);
     e.preventDefault();
+    newProduct.img = cropper.imageSrc;
+    newProduct.localizations.en.category = category.en;
+    newProduct.localizations.zh.category = category.zh;
+    newProduct.localizations.en.localizedId.locale = "en";
+    newProduct.localizations.zh.localizedId.locale = "zh";
+
     console.log("submitting...");
+
+    console.log(newProduct);
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    if (localStorage.getItem(ACCESS_TOKEN)) {
+      headers["Authorization"] = "Bearer " + localStorage.getItem(ACCESS_TOKEN);
+    }
+
+    let config = {
+      headers: headers,
+      method: "POST",
+      url: API_BASE_URL + "/api/products/add",
+      data: newProduct,
+    };
+
+    axios(config)
+      .then((res) => {
+        console.log("res", res);
+        setUploading(false);
+        setOpen(false);
+        setDialog(state=>({
+          open:true,
+          message:"The product has been added successfully.",
+          type:"success"
+        }))
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -189,16 +252,18 @@ export default function AddProductStepper() {
             <FormattedMessage id="newProduct.uploader.back.label" />
           </Button>
 
-          <Button disabled={uploading} onClick={handleNext}>
-            {uploading && (
-              <CircularProgress size={18} style={{ marginRight: "10px" }} />
-            )}
-            {activeStep === steps.length - 1 ? (
-              <FormattedMessage id="newProduct.upload.label" />
-            ) : (
-              <FormattedMessage id="newProduct.uploader.next.label" />
-            )}
-          </Button>
+          {activeStep != 3 && (
+            <Button disabled={uploading} onClick={handleNext}>
+              {uploading && (
+                <CircularProgress size={18} style={{ marginRight: "10px" }} />
+              )}
+              {activeStep === steps.length - 1 ? (
+                <FormattedMessage id="newProduct.upload.label" />
+              ) : (
+                <FormattedMessage id="newProduct.uploader.next.label" />
+              )}
+            </Button>
+          )}
         </Grid>
       </Container>
     </Container>

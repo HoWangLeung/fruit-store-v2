@@ -12,6 +12,7 @@ const en = {
     'navbar.login': 'Login/SignUp',
     'navbar.logout': 'Logout',
     'store.add': 'Add',
+    'store.detail': 'Detail',
     'store.price': 'Price',
     'store.country': 'Country',
     'store.quantity': 'Quantity',

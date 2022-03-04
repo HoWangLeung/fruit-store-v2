@@ -104,7 +104,7 @@ export default function PersonalInfo({ user,
                 >
                     <DialogTitle id="alert-dialog-title">
                         <Grid container justifyContent="center" alignItems="center"   >
-                            <CheckCircleIcon style={{ marginRight: "8px", fill: "#01BFA6" }} />
+                          
                             {"Information"}
                         </Grid>
                     </DialogTitle>

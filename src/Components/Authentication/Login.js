@@ -134,10 +134,8 @@ export default function SignIn() {
             data: payload
         }
 
-
         axios(config)
             .then(res => {
-
                 localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
                 setIsLoading(false)
                 dispatch(setSignInStatus(true))

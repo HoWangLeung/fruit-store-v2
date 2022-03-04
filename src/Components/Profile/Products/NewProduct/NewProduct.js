@@ -1,10 +1,14 @@
-import { Button, Modal ,Paper} from "@material-ui/core";
+import { Button, Modal, Paper } from "@material-ui/core";
 import React, { useState } from "react";
+import CommonDialog from "../../../Common/Dialog/CommonDialog";
 import AddProductStepper from "./AddProductStepper";
 
 export default function NewProduct() {
   const [open, setOpen] = useState(false);
-
+  const [dialog, setDialog] = useState({
+    open: false,
+    message: "system error",
+  });
   const handleClose = (e) => {
     setOpen(false);
   };
@@ -23,7 +27,7 @@ export default function NewProduct() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          height:"auto"
+          height: "auto",
         }}
         open={open}
         onClose={handleClose}
@@ -33,14 +37,15 @@ export default function NewProduct() {
         <Paper
           style={{
             height: "90%",
-          
+
             width: "90%",
             padding: "15px",
           }}
         >
-          <AddProductStepper/>
+          <AddProductStepper setOpen={setOpen} setDialog={setDialog}  />
         </Paper>
       </Modal>
+      <CommonDialog dialog={dialog} setDialog={setDialog} />
     </>
   );
 }

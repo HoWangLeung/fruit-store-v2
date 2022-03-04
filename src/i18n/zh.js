@@ -13,6 +13,7 @@ const zh = {
     'navbar.logout': '登出',
     'store.label.all': '全部',
     'store.add': '加入',
+    'store.detail': '查看',
     'store.price': '價錢',
     'store.country': '產地',
     'store.quantity': '數量',

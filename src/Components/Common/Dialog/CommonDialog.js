@@ -5,10 +5,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ErrorIcon from '@material-ui/icons/Error';
-
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 export default function CommonDialog({ dialog, setDialog }) {
 
-
+console.log(dialog);
 
     return (
         <Dialog
@@ -21,8 +21,14 @@ export default function CommonDialog({ dialog, setDialog }) {
         >
             <DialogTitle id="alert-dialog-title">
                 <Grid container alignItems="center" justifyContent="center">
-                    <ErrorIcon style={{ fill: '#ff7961', fontSize: "200%", marginRight: "10px" }} />
-                    <Typography variant="span" align="center">Error Message</Typography>
+                    
+                    {dialog.type==="success" ? <CheckCircleIcon style={{ marginRight: "8px", fill: "#01BFA6" }} /> :<ErrorIcon style={{ fill: '#ff7961', fontSize: "200%", marginRight: "10px" }} />}
+
+                    <Typography variant="span" align="center">
+                        
+                        {dialog.type==="success" ? "Success":"Error Message"}
+                        
+                        </Typography>
                 </Grid>
             </DialogTitle>
             <DialogContent>
