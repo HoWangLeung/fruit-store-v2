@@ -16,13 +16,15 @@ const useStyles = makeStyles((theme) => ({
   myUL: {
     overflow: "scroll",
     whiteSpace: "nowrap",
-    maxWidth: "700px",
+    maxWidth: "750px",
+    width: "auto",
     "&::-webkit-scrollbar": {
       display: "none",
     },
-    //border: "1px #d8d8d8 dashed",
+    padding:"10px"
   },
   tdContainer: {
+    display: "inline-block",
     position: "relative",
     "&:after": {
       content: '""',
@@ -77,6 +79,7 @@ function ItemFilter({
       direction="row"
       justify="center"
       alignItems="center"
+      style={{ overflow: "hidden" }}
     >
       <Grid
         container
@@ -101,16 +104,21 @@ function ItemFilter({
                   <FormattedMessage id="store.category" />:
                 </td>
                 <td>
-                  <Grid container alignItems="center" justify="center">
+                  <div
+                    style={{
+                      whiteSpace: "nowrap",
+                    }}
+                  >
                     {scrollX !== 0 && (
-                      //   <IconButton
-                      //     color="primary"
-                      //     aria-label="upload picture"
-                      //     component="span"
-                      //   >
-                      <ArrowBackIosIcon style={{ marginRight: "15px" }} />
-                      //   {/* </IconButton> */}
+                      <ArrowBackIosIcon
+                        style={{
+                          marginRight: "22px",
+                          display: "inline-block",
+                          marginBottom: "32px",
+                        }}
+                      />
                     )}
+
                     <div className={classes.tdContainer}>
                       <ul
                         ref={scrl}
@@ -118,8 +126,8 @@ function ItemFilter({
                         className={classes.myUL}
                       >
                         <Button
-                        variant="outlined"
-                          style={{ color: "#646e73",marginRight:"15px" }}
+                          variant="outlined"
+                          style={{ color: "#646e73", marginRight: "15px" }}
                           value="all"
                           onClick={(e) => setSelectedCategory(null)}
                         >
@@ -165,15 +173,15 @@ function ItemFilter({
                     </div>
 
                     {!scrolEnd && (
-                      //   <IconButton
-                      //     color="primary"
-                      //     aria-label="upload picture"
-                      //     component="span"
-                      //   >
-                      <ArrowForwardIosIcon style={{ marginLeft: "15px" }} />
-                      //   </IconButton>
+                      <ArrowForwardIosIcon
+                        style={{
+                          marginLeft: "25px",
+                          display: "inline-block",
+                          marginBottom: "32px",
+                        }}
+                      />
                     )}
-                  </Grid>
+                  </div>
                 </td>
               </tr>
 
