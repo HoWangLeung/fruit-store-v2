@@ -15,7 +15,7 @@ import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
-
+import {  motion } from "framer-motion/dist/framer-motion";
 //import image from '../../../../Images/apple_1.jpg'
 
 export default function MyCardItem({
@@ -35,8 +35,8 @@ export default function MyCardItem({
     : `${process.env.PUBLIC_URL}/assets/images/${item.img}`;
 
   return (
-    <Card className="itemCard_card" variant="outlined" key={i} elevation={8}>
-      <CardContent style={{ padding: "0px" }}>
+    <Card className="itemCard_card" variant="outlined" key={i} elevation={8} component={motion.div}>
+      <CardContent style={{ padding: "0px" }} >
         <Link to={`/${locale}/product/${item.id}`}>
           <img onLoad={() => setLoadedImg(true)} src={src} alt="pic" />
         </Link>

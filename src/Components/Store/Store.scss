@@ -1,66 +1,63 @@
 $card-width: 350px;
-$card-height:430px;
+$card-height: 430px;
 
-.itemFilter{
-max-width: 1100px;
-position: sticky;
-top: 0;
+.itemFilter {
+  // max-width: 1100px;
+  // position: sticky;
+  // top: 0;
 
-background-color: white !important;
-z-index: 50;
- 
-   
-     td{
-         font-weight: 800;
-          
-     }
-}
-.store_container{
-    background-color: white !important;
-    width: 100vw;
-    padding: 0px !important;
-  
+  // background-color: white !important;
+  // z-index: 50;
+
+  //      td{
+  //          font-weight: 800;
+
+  //      }
 }
 
-.itemCard_container{
-   
+.store_container {
+  background-color: white !important;
+  width: 100vw;
+  padding: 0px !important;
+}
+
+.itemCard_container {
+  height: auto;
+  .ItemCard_innerContainer {
     height: auto;
-    .ItemCard_innerContainer{
-        height: auto;
-    }
+  }
 }
 
-.itemCard_inner_container{
-
-    // max-width: $card-width;
-    max-height: $card-height;
-   margin-top: 10px !important;
+.itemCard_inner_container {
+  // max-width: $card-width;
+  max-height: $card-height;
+  margin-top: 10px !important;
 }
 
-.itemCard_card{
- margin: 0px 5px;
+.itemCard_card {
+  margin: 0px 5px;
   height: $card-height;
-width: $card-width;
-   min-width: 300px;
-   border-radius: 8px;
-    img{
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-    }
+  width: $card-width;
+  min-width: 300px;
+  border-radius: 8px;
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
 }
 
-.MuiCollapse-wrapper{
-    padding: 6px 0px !important;
+.MuiCollapse-wrapper {
+  padding: 6px 0px !important;
+}
+
+#cardCvc {
+  color: red;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(15, 14, 14, 0.884) !important;
 }
 
 
-#cardCvc{
-
-    color: red;
-}
-
-a{
-    text-decoration: none;
-    color: rgba(15, 14, 14, 0.884) !important;
-}

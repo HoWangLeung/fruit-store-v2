@@ -24,7 +24,7 @@ function DefaultContainer({ isAuthenticated }) {
           path="/:lang"
           render={(props) => (
             
-            <StoreContainer theme={theme} isAuthenticated={isAuthenticated} />
+          <StoreContainer theme={theme} isAuthenticated={isAuthenticated} />
           )}
         />
         <Route

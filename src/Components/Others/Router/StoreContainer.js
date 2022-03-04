@@ -11,6 +11,9 @@ import HowItWorks from "../HowItWorks/HowItWorks";
 import WhatsappIcon from "../WhatsappIcon/WhatsappIcon";
 
 export default function StoreContainer({ theme, isAuthenticated }) {
+
+  
+
   return (
     <>
       <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
@@ -27,6 +30,7 @@ export default function StoreContainer({ theme, isAuthenticated }) {
         >
           <Store isAuthenticated={isAuthenticated} />
         </SnackbarProvider>
+        
         <HowItWorks />
         <KeepInTouch/>
         <Footer />
