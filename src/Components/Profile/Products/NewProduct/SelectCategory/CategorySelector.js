@@ -1,4 +1,4 @@
-import { CircularProgress, TextField } from "@material-ui/core";
+import { CircularProgress, Paper, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useHistory } from "react-router-dom";
@@ -29,7 +29,7 @@ export default function CategorySelector({ category, setCategory }) {
       }));
     }
   };
-
+  
   return (
     <React.Fragment>
       {!isLoading && (
@@ -56,6 +56,7 @@ export default function CategorySelector({ category, setCategory }) {
             id="free-solo-demo"
             freeSolo
             options={categoriesZH.map((option) => option)}
+          
             renderInput={(params) => (
               <TextField
                 {...params}

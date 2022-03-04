@@ -167,7 +167,7 @@ function Store({ isAuthenticated }) {
             />
             <CommonDialog dialog={dialog} setDialog={setDialog} />
 
-            <KeepInTouch/>
+         
 
         </Container>
 

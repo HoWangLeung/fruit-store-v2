@@ -50,8 +50,6 @@ function App() {
           <Route exact path="/:lang/user/settings" render={props => <Profile isAuthenticated={isAuthenticated} {...props} />} />
           <Route render={props => <DefaultContainer isAuthenticated={isAuthenticated} />} />
 
-     
-
         </Switch>
       </Router>
     </ThemeProvider>
