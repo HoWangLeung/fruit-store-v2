@@ -130,7 +130,7 @@ export default function HowItWorks() {
   });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(onIntersection);
+    const observer = new IntersectionObserver(onIntersection,{ threshold: 0.2});
     observer.observe(document.querySelector("#placeOrder"));
     observer.observe(document.querySelector("#confirmOrder"));
     observer.observe(document.querySelector("#orderDelivered"));
@@ -139,7 +139,9 @@ export default function HowItWorks() {
   return (
     <Container>
       <Grid container justify="center" alignItems="center">
-        <h1 style={{ fontWeight: "600px" }}>How It Works</h1>
+      <Typography variant="h5" style={{ padding: "10px" }}>
+          How It Works
+        </Typography>
       </Grid>
 
       <Grid container justify="center" alignItems="center" id="placeOrder">
