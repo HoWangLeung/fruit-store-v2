@@ -35,7 +35,7 @@ export default function MyCardItem({
     : `${process.env.PUBLIC_URL}/assets/images/${item.img}`;
 
   return (
-    <Card className="itemCard_card" variant="outlined" key={i} elevation={8} component={motion.div}>
+    <Card className="itemCard_card" variant="outlined" key={i} elevation={8}  >
       <CardContent style={{ padding: "0px" }} >
         <Link to={`/${locale}/product/${item.id}`}>
           <img onLoad={() => setLoadedImg(true)} src={src} alt="pic" />

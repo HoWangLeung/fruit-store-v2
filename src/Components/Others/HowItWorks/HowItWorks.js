@@ -33,16 +33,13 @@ export default function HowItWorks() {
         gsap.fromTo(
           placeImg.current,
           {
-            duration: 0.5,
-            opacity: 0,
-            x: "-500px",
-            ease: "Power1.easeInOut",
+            autoAlpha: 0,
+            clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)",
           },
           {
-            duration: 0.5,
-            opacity: 1,
-            x: "0px",
-            ease: "Power1.easeInOut",
+            autoAlpha: 1,
+            duration: 1,
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
           }
         );
 
@@ -67,18 +64,17 @@ export default function HowItWorks() {
         console.log("an 2");
         gsap.fromTo(
           confirmImg.current,
-          {
-            duration: 0.5,
-            opacity: 0,
-            x: "500px",
-            ease: "Power1.easeInOut",
-          },
-          {
-            duration: 0.5,
-            opacity: 1,
-            x: "0px",
-            ease: "Power1.easeInOut",
-          }
+                 {
+                  duration: 0.5,
+        autoAlpha: 0,
+        clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)"
+      },
+      {
+        duration: 0.5,
+        autoAlpha: 1,
+        duration: 1,
+        clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)"
+      }
         );
         gsap.fromTo(
           confirmTxt.current,
@@ -103,15 +99,14 @@ export default function HowItWorks() {
           deliverImg.current,
           {
             duration: 0.5,
-            opacity: 0,
-            x: "-500px",
-            ease: "Power1.easeInOut",
+            autoAlpha: 0,
+            clipPath: "polygon(0 0, 0% 0, 0% 100%, 0 100%)",
           },
           {
             duration: 0.5,
-            opacity: 1,
-            x: "0px",
-            ease: "Power1.easeInOut",
+            autoAlpha: 1,
+            duration: 1,
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
           }
         );
 
@@ -144,7 +139,7 @@ export default function HowItWorks() {
   return (
     <Container>
       <Grid container justify="center" alignItems="center">
-        <h1 style={{fontWeight:"600px"}} >How It Works</h1>
+        <h1 style={{ fontWeight: "600px" }}>How It Works</h1>
       </Grid>
 
       <Grid container justify="center" alignItems="center" id="placeOrder">

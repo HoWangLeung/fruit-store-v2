@@ -53,15 +53,31 @@ function ItemFilter({
   countries,
 }) {
   const [scrollX, setscrollX] = useState(0);
+  const [scrolEnd, setscrolEnd] = useState(false);
   const classes = useStyles();
   const colorCategory = () => {
     return "primary";
   };
   let scrl = useRef(null);
-  const [scrolEnd, setscrolEnd] = useState(false);
+
   const scrollCheck = () => {
     console.log("HIHIHIHIH");
     setscrollX(scrl.current.scrollLeft);
+    if (
+      Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
+      scrl.current.offsetWidth
+    ) {
+      setscrolEnd(true);
+    } else {
+      setscrolEnd(false);
+    }
+  };
+
+  const slide = (shift) => {
+    // alert("hi")
+    scrl.current.scrollLeft += shift;
+    setscrollX(scrollX + shift);
+
     if (
       Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
       scrl.current.offsetWidth
@@ -99,6 +115,7 @@ function ItemFilter({
               <tr>
                 <td>
                   <CategoryIcon
+          
                     style={{ fontSize: "1rem", marginRight: "5px" }}
                   />
                   <FormattedMessage id="store.category" />:
@@ -111,10 +128,12 @@ function ItemFilter({
                   >
                     {scrollX !== 0 && (
                       <ArrowBackIosIcon
+                      onClick={() => slide(-80)}
                         style={{
                           marginRight: "22px",
                           display: "inline-block",
                           marginBottom: "32px",
+                          color:"rgb(100, 110, 115)"
                         }}
                       />
                     )}
@@ -174,7 +193,9 @@ function ItemFilter({
 
                     {!scrolEnd && (
                       <ArrowForwardIosIcon
+                      onClick={() => slide(+80)}
                         style={{
+                          color:"rgb(100, 110, 115)",
                           marginLeft: "25px",
                           display: "inline-block",
                           marginBottom: "32px",

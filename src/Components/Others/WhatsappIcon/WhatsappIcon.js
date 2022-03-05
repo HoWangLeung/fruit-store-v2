@@ -4,7 +4,7 @@ import { faWhatsapp as whatsapp } from "@fortawesome/free-brands-svg-icons"
 import './Whatsapp.scss'
 function WhatsappIcon() {
     return (
-        <a target="_blank" href="https://wa.me/85292591883">
+        <a target="_blank" href="https://wa.me/447769813892">
             <div className="whatsappIcon" >
 
                 <FontAwesomeIcon icon={whatsapp} />

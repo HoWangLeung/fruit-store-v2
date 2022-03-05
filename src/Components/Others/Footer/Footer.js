@@ -27,7 +27,7 @@ export default function Footer() {
                         </tr>
                         <tr>
                             <td colSpan="1"><FormattedMessage id="footer.phone.label" /> : </td>
-                            <td colSpan="1">9259 1883</td>
+                            <td colSpan="1">07769813892</td>
                         </tr>
                         <tr>
                             <td colSpan="1"><FormattedMessage id="footer.contact.label" /> : </td>

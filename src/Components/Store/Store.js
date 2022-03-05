@@ -51,18 +51,18 @@ function Store({ isAuthenticated }) {
     let countries = Array.from(countrySet).sort();
     data = data.filter(d => {
 
-        if (selectedCategory && selectedCountry) {
-            return d.category === selectedCategory && d.country === selectedCountry
-        }
+        // if (selectedCategory && selectedCountry) {
+        //     return d.category === selectedCategory && d.country === selectedCountry
+        // }
 
         if (selectedCategory) {
 
             return d.category === selectedCategory
         }
-        if (selectedCountry) {
-            d = d.country === selectedCountry
-            return d
-        }
+        // if (selectedCountry) {
+        //     d = d.country === selectedCountry
+        //     return d
+        // }
         return d
     })
 
@@ -139,6 +139,7 @@ function Store({ isAuthenticated }) {
         console.log('redirecting...');
         return <Redirect to={`/${locale}/profile`} />
     }
+    
 
     return (
 

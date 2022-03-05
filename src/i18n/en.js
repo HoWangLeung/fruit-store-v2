@@ -20,7 +20,7 @@ const en = {
     "store.label.all": "All",
     'store.category': 'Category',
     'store.noCombination': 'No such combination yet',
-    'footer.contactUs': 'Contact Us',
+    'footer.contactUs': 'Contact',
     'footer.address.label': 'Address',
     'footer.address.value': 'somewhere',
     'footer.phone.label': 'Phone',

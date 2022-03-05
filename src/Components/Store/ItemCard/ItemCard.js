@@ -45,7 +45,11 @@ function ItemCard({
 
     setDataLength(data.length);
   }, [data]);
-  console.log(loadedImg);
+
+
+
+
+  
   return (
     <Container maxWidth="md" style={{ padding: "0px" }}>
       <Grid
@@ -57,7 +61,7 @@ function ItemCard({
         alignItems="center"
         className="itemCard_container"
       >
-        <Grid container item xs={12} className="ItemCard_innerContainer" layout  component={motion.div}>
+        <Grid container item xs={12} className="ItemCard_innerContainer" >
           {isLoading ? (
             Array.from(new Array(6)).map((item, i) => (
               <Grid
@@ -89,6 +93,7 @@ function ItemCard({
               setQuantity={setQuantity}
               page={page}
               data={_DATA.currentData()}
+              selectedCategory={selectedCategory}
             />
           )}
         </Grid>
