@@ -83,8 +83,8 @@ export default function SignIn() {
         password: "",
     });
     const [user, setUser] = useState({
-        email: "test@test.com",
-        password: "123"
+        email: "test@testFruit.com",
+        password: "1234"
     })
 
     const [dialog, setDialog] = useState({
