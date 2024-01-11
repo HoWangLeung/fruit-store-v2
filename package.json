@@ -20,7 +20,7 @@
     "axios": "^0.21.4",
     "framer-motion": "^6.2.8",
     "gsap": "^3.7.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^9.0.0",
     "notistack": "^1.0.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

@@ -1,5 +1,5 @@
 export const API_BASE_URL = process.env.NODE_ENV === 'production' ?
-    'https://ancient-headland-08346.herokuapp.com' :
+    'https://howang-app.com' :
     'http://localhost:8080'
 //https://ancient-headland-08346.herokuapp.com
 

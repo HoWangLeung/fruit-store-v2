@@ -130,7 +130,7 @@ export default function SignIn() {
         let config = {
             headers: headers,
             method: 'post',
-            url: API_BASE_URL + "/api/auth/signin",
+            url: API_BASE_URL + "/api/auth/fruitStore/signin",
             data: payload
         }
 

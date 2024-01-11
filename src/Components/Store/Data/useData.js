@@ -5,6 +5,7 @@ import { API_BASE_URL } from '../../../constants'
 
 
 export default function useData(locale) {
+    console.log("locale",locale)
     const [isLoading, setIsLoading] = useState(true)
     const [data, setData] = useState([])
     
