@@ -22,7 +22,7 @@ const zh = {
     'store.successAdd': '已加入購物籃!',
     'footer.contactUs': '聯絡我們',
     'footer.address.label': '地址',
-    'footer.address.value': '西區副食品批發市場, 豐物道8號, 西營盤',
+    'footer.address.value': '西區XX道XX號, 西營盤',
     'footer.phone.label': '聯絡電話',
     'footer.phone.value': '92591883',
     'footer.contact.label': '聯絡人',
